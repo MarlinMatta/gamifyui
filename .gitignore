@@ -1,0 +1,14 @@
+.gradle/
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+out
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.ipr
+
+/src/main/resources/application.properties
+src/main/java/edu/uapa/ui/gamify/views/schools/
+src/main/resources/frontend/views/
+src/test/

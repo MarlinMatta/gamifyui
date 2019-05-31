@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.gretty' version '2.3.1'
+    id 'com.devsoap.vaadin-flow' version '1.1.1'
+}
+
+group 'edu.uapa'
+version '1.0'
+
+description = "Proyecto para la uapa"
+
+sourceCompatibility = 11
+
+vaadin {
+    version = '13.0.5'
+    productionMode = true
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    vaadin.repositories()
+}
+
+dependencies {
+    compile vaadin.bom() as Object
+    compile vaadin.core() as Object
+    compile vaadin.lumoTheme() as Object
+    compile "com.github.appreciated:app-layout-addon:3.0.0.beta5"
+    compileOnly vaadin.servletApi() as Object
+
+    runtime vaadin.slf4j() as Object
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+gretty {
+    httpPort = 8082
+    contextPath = "/"
+}
