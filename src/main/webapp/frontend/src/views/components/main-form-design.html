@@ -1,0 +1,47 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-vertical-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-button/src/vaadin-button.html">
+
+<dom-module id="main-form-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<div style="width: 100%; height: 100px;">
+ <vaadin-vertical-layout theme="spacing">
+  <label style="width:100%; height;100%;">Label</label>
+ </vaadin-vertical-layout>
+</div>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-vertical-layout theme="margin spacing">
+  <vaadin-button theme="primary success" class="full-width" style="width:100%;">
+    Primary Success 
+  </vaadin-button>
+  <vaadin-button theme="primary error" class="full-width" style="width:100%;">
+    Primary Error 
+  </vaadin-button>
+  <vaadin-button theme="primary" class="full-width" style="width:100%;">
+    Primary 
+  </vaadin-button>
+ </vaadin-vertical-layout>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class MainFormDesign extends Polymer.Element {
+            static get is() {
+                return 'main-form-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(MainFormDesign.is, MainFormDesign);
+    </script>
+</dom-module>

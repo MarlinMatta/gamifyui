@@ -1,0 +1,44 @@
+<link href="../../bower_components/polymer/polymer.html" rel="import">
+<link href="../../bower_components/vaadin-button/src/vaadin-button.html" rel="import">
+<link href="../../bower_components/vaadin-ordered-layout/src/vaadin-horizontal-layout.html" rel="import">
+<link href="../../bower_components/vaadin-text-field/src/vaadin-text-field.html" rel="import">
+<link href="../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html" rel="import">
+<link href="../../bower_components/vaadin-select/src/vaadin-select.html" rel="import">
+
+<dom-module id="paginator-design">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+        <vaadin-form-layout id="vaadinFormLayout" style="width: 100%; height: 100%;">
+            <vaadin-horizontal-layout theme="spacing">
+                <vaadin-select id="cbItemsPage"></vaadin-select>
+                <vaadin-horizontal-layout>
+                    <vaadin-button aria-label="Add " id="btnFirst" theme="icon"></vaadin-button>
+                    <vaadin-button aria-label="Add new" id="btnPrevious" theme="icon"></vaadin-button>
+                    <vaadin-text-field id="tfPage"></vaadin-text-field>
+                    <vaadin-button aria-label="Add new" id="btnNext" theme="icon"></vaadin-button>
+                    <vaadin-button aria-label="Add new" icon="lumo:plus" id="btnLast" theme="icon"></vaadin-button>
+                </vaadin-horizontal-layout>
+            </vaadin-horizontal-layout>
+        </vaadin-form-layout>
+    </template>
+
+    <script>
+        class PaginatorDesign extends Polymer.Element {
+            static get is() {
+                return 'paginator-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+
+        customElements.define(PaginatorDesign.is, PaginatorDesign);
+    </script>
+</dom-module>

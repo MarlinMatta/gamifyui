@@ -1,0 +1,44 @@
+<link href="../../bower_components/polymer/polymer.html" rel="import">
+<link href="../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html" rel="import">
+<link href="../../bower_components/vaadin-form-layout/src/vaadin-form-item.html" rel="import">
+<link href="../../bower_components/vaadin-text-field/src/vaadin-text-field.html" rel="import">
+
+<dom-module id="company-design">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+        <vaadin-form-layout style="width: 100%; height: 100%;">
+            <vaadin-form-item>
+                <label id="label" slot="label">First Name</label>
+                <vaadin-text-field class="full-width" value="Jane"></vaadin-text-field>
+            </vaadin-form-item>
+            <vaadin-form-item>
+                <label slot="label">Last Name</label>
+                <vaadin-text-field class="full-width" value="Doe"></vaadin-text-field>
+            </vaadin-form-item>
+            <vaadin-form-item>
+                <label slot="label">Email</label>
+                <vaadin-text-field class="full-width" value="jane.doe@example.com"></vaadin-text-field>
+            </vaadin-form-item>
+        </vaadin-form-layout>
+    </template>
+
+    <script>
+        class CompanyDesign extends Polymer.Element {
+            static get is() {
+                return 'company-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+
+        customElements.define(CompanyDesign.is, CompanyDesign);
+    </script>
+</dom-module>
