@@ -1,19 +1,24 @@
 package edu.uapa.ui.gamify.utils;
 
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.server.VaadinSession;
-import edu.utesa.lib.models.dtos.security.UserDto;
-import edu.utesa.lib.utils.HashUtils;
 import edu.uapa.ui.gamify.models.LoginManager;
 import edu.uapa.ui.gamify.routes.AllRoutes;
+import edu.uapa.ui.gamify.ui.components.TabsManager;
+import edu.utesa.lib.models.dtos.security.UserDto;
+import edu.utesa.lib.utils.HashUtils;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static edu.uapa.ui.gamify.routes.AllRoutes.LOGIN_ROUTE;
+import static edu.uapa.ui.gamify.routes.AllRoutes.STUDENT_MAIN_MENU_ROUTE;
 
 public class Tools {
     public static final String SESSION_NAME = "ChistMarioAndrewAdreanJesu";
+
+    public static final String SESSION_TAB_NAME = "MinombreesKkwazzawazzakkwaquikkwalaquaza_Zzabolazza";
 
     public static final List<Long> ITEMS_PER_PAGE = Arrays.asList(5L, 10L, 15L, 20L, 25L, 30L, 35L, 40L, 45L, 50L);
 
@@ -25,16 +30,46 @@ public class Tools {
 
     public static void navigateToApp() {
         UI.getCurrent().navigate(AllRoutes.APP_ROUTE);
-//        UI.getCurrent().getPage().reload();
+    }
+
+    public static void navigateToConfiguration() {
+        UI.getCurrent().navigate(AllRoutes.CONFIGURATION_ROUTE);
+    }
+
+    public static void navigateToTopic() {
+        UI.getCurrent().navigate(AllRoutes.TOPIC_ROUTE);
     }
 
     public static void navigateToLogin() {
         UI.getCurrent().navigate(LOGIN_ROUTE);
-//        UI.getCurrent().getPage().reload();
+    }
+
+    public static void navigateToChooseSubject() {
+        UI.getCurrent().navigate(AllRoutes.CHOOSE_SUBJECT_ROUTE);
+    }
+
+    public static void navigateToProfile() {
+        UI.getCurrent().navigate(AllRoutes.PROFILE_ROUTE);
+    }
+
+    public static void navigateToGame() {
+        UI.getCurrent().navigate(AllRoutes.PROBLEM_ROUTE);
+    }
+
+    public static void navigateToSummitResult() {
+        UI.getCurrent().navigate(AllRoutes.SUMMIT_RESULT);
+    }
+
+    public static void navigateToStudentMainMenu() {
+        UI.getCurrent().navigate(STUDENT_MAIN_MENU_ROUTE);
     }
 
     public static void setSession(UserDto userDto) {
         VaadinSession.getCurrent().setAttribute(Tools.SESSION_NAME, new LoginManager(userDto));
+    }
+
+    public static void initTabs() {
+        VaadinSession.getCurrent().setAttribute(Tools.SESSION_TAB_NAME, new TabsManager(new Tabs()));
     }
 
     public static void closeSession() {

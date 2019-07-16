@@ -1,0 +1,35 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+<link rel="import" href="../../../bower_components/vaadin-combo-box/src/vaadin-combo-box.html">
+
+<dom-module id="topic-form-desing">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-text-field id="tfName"></vaadin-text-field>
+ <vaadin-text-field id="tfDescription"></vaadin-text-field>
+ <vaadin-combo-box id="cbGrade"></vaadin-combo-box>
+ <vaadin-combo-box id="cbSubject"></vaadin-combo-box>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class TopicFormDesing extends Polymer.Element {
+            static get is() {
+                return 'topic-form-desing';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(TopicFormDesing.is, TopicFormDesing);
+    </script>
+</dom-module>

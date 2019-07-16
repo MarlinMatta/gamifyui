@@ -1,0 +1,39 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-horizontal-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-button/src/vaadin-button.html">
+
+<dom-module id="tab-action-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-horizontal-layout style="width: 100%; height: 100%;">
+ <vaadin-button theme="tertiary" id="btnView" style="color: green;">
+  View 
+ </vaadin-button>
+ <vaadin-button theme="tertiary" id="btnEdit" style="color:blue;">
+  Edit
+ </vaadin-button>
+ <vaadin-button theme="tertiary" id="btnDelete" style="color:red;">
+  Delete 
+ </vaadin-button>
+</vaadin-horizontal-layout>
+</template>
+
+    <script>
+        class TabActionDesign extends Polymer.Element {
+            static get is() {
+                return 'tab-action-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(TabActionDesign.is, TabActionDesign);
+    </script>
+</dom-module>

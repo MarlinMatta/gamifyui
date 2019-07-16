@@ -5,26 +5,26 @@ import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import edu.utesa.lib.models.dtos.security.UserDto;
 import edu.uapa.ui.gamify.requests.login.LoginRequests;
+import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.utils.Tools;
+import edu.utesa.lib.models.dtos.security.PermissionDto;
+import edu.utesa.lib.models.dtos.security.UserDto;
 
-import static edu.uapa.ui.gamify.routes.AllRoutes.LOGIN_ROUTE;
 
-
-@Route(value = LOGIN_ROUTE)
+@Route(value = AllRoutes.LOGIN_ROUTE)
 public class LoginRoute extends VerticalLayout {
 
     private LoginOverlay loginOverlay;
     private LoginI18n i18n;
+    private boolean isStudent = false;
 
     public LoginRoute() {
         if (Tools.isLogin()) Tools.closeSession();
         initialized();
         setLanguage();
         setAction();
-
-        autoLogin();
+//        autoLogin();
     }
 
     private void initialized() {
@@ -34,8 +34,8 @@ public class LoginRoute extends VerticalLayout {
     }
 
     private void setLanguage() {
-        loginOverlay.setTitle("Loan Master");
-        loginOverlay.setDescription("The best Loan Software in Dominican Republic to Garroteros");
+        loginOverlay.setTitle("Gametice 2.0");
+        loginOverlay.setDescription("A Fun  Way To Learn");
         i18n.setErrorMessage(new LoginI18n.ErrorMessage());
     }
 
@@ -52,11 +52,27 @@ public class LoginRoute extends VerticalLayout {
         } else {
             loginOverlay.close();
             Tools.setSession(userDto);
-            Tools.navigateToApp();
+            isStudent(userDto);
+            if (isStudent) {
+                Tools.navigateToStudentMainMenu();
+            } else {
+                Tools.navigateToApp();
+            }
+        }
+    }
+
+    private void isStudent(UserDto userDto) {
+        userDto.getPermissionDtos().forEach(this::accept);
+    }
+
+    private void accept(PermissionDto dto) {
+        if (dto.getCode() == 0) {
+            isStudent = true;
         }
     }
 
     private void autoLogin() {
         authentication("root", "root");
     }
+
 }

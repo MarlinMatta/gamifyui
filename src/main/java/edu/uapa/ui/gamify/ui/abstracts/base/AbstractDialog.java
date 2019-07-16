@@ -7,7 +7,7 @@ import edu.uapa.ui.gamify.utils.Tools;
 
 public abstract class AbstractDialog extends Dialog {
 
-    public AbstractDialog() {
+    protected AbstractDialog() {
         build();
     }
 
@@ -16,6 +16,7 @@ public abstract class AbstractDialog extends Dialog {
     }
 
     private void build() {
-
+        this.setCloseOnEsc(true);
+        this.setCloseOnOutsideClick(false);
     }
 }

@@ -9,25 +9,20 @@
             :host {
                 display: block;
             }
+
+            #header {
+                border: 1px solid black;
+            }
         </style>
-<div style="width: 100%; height: 100px;">
- <vaadin-vertical-layout theme="spacing">
-  <label style="width:100%; height;100%;">Label</label>
- </vaadin-vertical-layout>
-</div>
-<vaadin-form-layout style="width: 100%; height: 100%;">
- <vaadin-vertical-layout theme="margin spacing">
-  <vaadin-button theme="primary success" class="full-width" style="width:100%;">
-    Primary Success 
-  </vaadin-button>
-  <vaadin-button theme="primary error" class="full-width" style="width:100%;">
-    Primary Error 
-  </vaadin-button>
-  <vaadin-button theme="primary" class="full-width" style="width:100%;">
-    Primary 
-  </vaadin-button>
+<div style="width: 100%; height: 100px;" id="header"></div>
+<vaadin-form-layout style="width: 100%; height: 100%;" theme="margin">
+ <vaadin-vertical-layout theme="margin " id="layout">
+  <vaadin-button theme="primary success" class="full-width" style="width:100%;" id="btnPlay"></vaadin-button>
+  <vaadin-button theme="primary error" class="full-width" style="width:100%;" id="btnProfile"></vaadin-button>
+  <vaadin-button theme="primary" class="full-width" style="width:100%;" id="btnSetting"></vaadin-button>
  </vaadin-vertical-layout>
 </vaadin-form-layout>
+<vaadin-button theme="tertiary" id="btnLogout" class="colLast"></vaadin-button>
 </template>
 
     <script>
@@ -42,6 +37,7 @@
                 };
             }
         }
+
         customElements.define(MainFormDesign.is, MainFormDesign);
     </script>
 </dom-module>

@@ -1,0 +1,45 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-vertical-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../bower_components/vaadin-grid/src/vaadin-grid.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-horizontal-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-button/src/vaadin-button.html">
+
+<dom-module id="form-tab-with-grid">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-vertical-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-horizontal-layout style="width:100%;">
+   <vaadin-text-field placeholder="Search" id="tfSearch" style="width:100%;" autoselect>
+    <iron-icon icon="lumo:search" slot="prefix"></iron-icon>
+   </vaadin-text-field>
+   <vaadin-button theme="icon" aria-label="Add new" id="btnAdd"></vaadin-button>
+   <vaadin-button theme="icon" aria-label="Add new" id="btnDelete"></vaadin-button>
+  </vaadin-horizontal-layout>
+  <vaadin-grid id="grid"></vaadin-grid>
+ </vaadin-vertical-layout>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class FormTabWithGrid extends Polymer.Element {
+            static get is() {
+                return 'form-tab-with-grid';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(FormTabWithGrid.is, FormTabWithGrid);
+    </script>
+</dom-module>

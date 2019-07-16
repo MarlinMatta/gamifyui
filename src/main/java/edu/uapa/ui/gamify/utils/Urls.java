@@ -7,4 +7,5 @@ public class Urls {
     public static final String APP_LOGIN = APP + "/login/";
     public static final String APP_PARAMETER = APP + "/parameter";
     public static final String APP_PERMISSION = APP + "/permission";
+    public static final String APP_USER = APP + "/user";
 }

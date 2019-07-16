@@ -1,14 +1,25 @@
 package edu.uapa.ui.gamify.ui.from;
 
-import edu.utesa.lib.models.dtos.security.PermissionDto;
-import edu.uapa.ui.gamify.models.interfaces.FormEstruture;
+import edu.uapa.ui.gamify.requests.security.PermissionRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
 import edu.uapa.ui.gamify.views.security.PermissionFormDesign;
+import edu.utesa.lib.models.dtos.security.PermissionDto;
 
-public class PermissionForm extends AbstractSingleForm<PermissionFormDesign, PermissionDto> implements FormEstruture<PermissionDto> {
+public class PermissionForm extends AbstractSingleForm<PermissionFormDesign, PermissionDto> {
 
     public PermissionForm() {
-        super(new PermissionFormDesign());
+        this(new PermissionDto(), false, true);
+        setNew(true);
+    }
+
+    public PermissionForm(PermissionDto data, boolean onlyView) {
+        super(new PermissionFormDesign(), data, onlyView, false);
+        open();
+    }
+
+    private PermissionForm(PermissionDto data, boolean onlyView, boolean isNew) {
+        super(new PermissionFormDesign(), data, onlyView, isNew);
+        open();
     }
 
     @Override
@@ -16,32 +27,27 @@ public class PermissionForm extends AbstractSingleForm<PermissionFormDesign, Per
     }
 
     @Override
-    protected void setAction() {
-
+    protected void visualize() {
+        getDesign().visualize();
     }
 
     @Override
-    public void restore() {
-
+    protected void restore() {
+        getDesign().restore(getData());
     }
 
     @Override
-    public void visualize() {
-
+    protected boolean validField() {
+        return getDesign().validField();
     }
 
     @Override
-    public boolean validComponent() {
-        return false;
+    protected void collect() {
+        setData(getDesign().collectData(getData()));
     }
 
     @Override
-    public void collectData() {
-
-    }
-
-    @Override
-    public void security() {
-
+    protected boolean persistence() {
+        return isNew() ? PermissionRequests.getInstance().save(getData()) : PermissionRequests.getInstance().update(getData());
     }
 }

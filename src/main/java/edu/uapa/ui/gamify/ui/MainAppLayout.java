@@ -7,20 +7,21 @@ import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.page.Viewport;
 import edu.uapa.ui.gamify.ui.components.AppBar;
 import edu.uapa.ui.gamify.ui.components.LeftAppMenu;
-
-/**
- * The main views contains a button and a template element.
- */
+import edu.uapa.ui.gamify.utils.Tools;
 
 @Push
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 public class MainAppLayout extends AppLayoutRouterLayout {
     public MainAppLayout() {
-        init(AppLayoutBuilder
-                .get(Behaviour.LEFT_HYBRID)
-                .withTitle("Loan Master")
-                .withAppBar(new AppBar().building())
-                .withAppMenu(LeftAppMenu.building())
-                .build());
+        if (!Tools.isLogin()) {
+//            Tools.navigateToLogin();
+        } else {
+            init(AppLayoutBuilder
+                    .get(Behaviour.LEFT_HYBRID)
+                    .withTitle("Gamifying Education")
+                    .withAppBar(new AppBar().building())
+                    .withAppMenu(LeftAppMenu.building())
+                    .build());
+        }
     }
 }

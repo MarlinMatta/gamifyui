@@ -1,0 +1,37 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-password-field.html">
+<link rel="import" href="../../../bower_components/vaadin-combo-box/src/vaadin-combo-box.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-email-field.html">
+<link rel="import" href="../../../bower_components/vaadin-button/src/vaadin-button.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+
+<dom-module id="user-form-design">
+    <template>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-text-field class="full-width" value="" required id="tfUserName" maxlength="15" has-value clear-button-visible></vaadin-text-field>
+ <vaadin-password-field label="" placeholder="" value="" id="pfPassword" class="full-width" clear-button-visible></vaadin-password-field>
+ <vaadin-combo-box id="cbLanguage" class="full-width"></vaadin-combo-box>
+ <vaadin-email-field id="efEmail" class="full-width" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" clear-button-visible></vaadin-email-field>
+ <vaadin-button id="btnPermission" class="full-width" style="colSpan:2;">
+  <iron-icon icon="lumo:arrow-right" slot="suffix"></iron-icon> Next 
+ </vaadin-button>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class UserFormDesign extends Polymer.Element {
+            static get is() {
+                return 'user-form-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(UserFormDesign.is, UserFormDesign);
+    </script>
+</dom-module>

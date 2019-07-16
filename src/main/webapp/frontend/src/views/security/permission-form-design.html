@@ -1,7 +1,7 @@
 <link href="../../bower_components/polymer/polymer.html" rel="import">
 <link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
-<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-item.html">
 <link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-area.html">
 
 <dom-module id="permission-design">
     <template>
@@ -11,18 +11,9 @@
             }
         </style>
 <vaadin-form-layout style="width: 100%; height: 100%;">
- <vaadin-form-item>
-  <label slot="label">First Name</label>
-  <vaadin-text-field class="full-width" value="Jane"></vaadin-text-field>
- </vaadin-form-item>
- <vaadin-form-item>
-  <label slot="label">Last Name</label>
-  <vaadin-text-field class="full-width" value="Doe"></vaadin-text-field>
- </vaadin-form-item>
- <vaadin-form-item>
-  <label slot="label">Email</label>
-  <vaadin-text-field class="full-width" value="jane.doe@example.com"></vaadin-text-field>
- </vaadin-form-item>
+ <vaadin-text-field class="full-width" value="" id="tfCode" style="width:100px;" has-value></vaadin-text-field>
+ <vaadin-text-field class="full-width" value="" id="tfName"></vaadin-text-field>
+ <vaadin-text-area label="" placeholder="" id="taDescription" class="full-width" style="width: 100%;"></vaadin-text-area>
 </vaadin-form-layout>
 </template>
 

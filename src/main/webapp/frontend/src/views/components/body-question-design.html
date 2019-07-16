@@ -1,0 +1,33 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-area.html">
+<link rel="import" href="../../../bower_components/vaadin-radio-button/src/vaadin-radio-group.html">
+
+<dom-module id="body-question-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-text-area style="width: 100%; " readonly id="taQuestion" has-value></vaadin-text-area>
+ <vaadin-radio-group value="foo" theme="" id="optionLayout"></vaadin-radio-group>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class BodyQuestionDesign extends Polymer.Element {
+            static get is() {
+                return 'body-question-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(BodyQuestionDesign.is, BodyQuestionDesign);
+    </script>
+</dom-module>

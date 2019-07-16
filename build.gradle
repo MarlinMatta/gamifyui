@@ -11,11 +11,11 @@ description = "Proyecto para la uapa"
 sourceCompatibility = 11
 
 def localLibs = [
-        "KogaraTools"
+        "Tools"
 ]
 
 vaadin {
-    version = '13.0.8'
+    version = '13.0.10'
     productionMode = true
 }
 
@@ -29,8 +29,15 @@ dependencies {
     compile vaadin.bom() as Object
     compile vaadin.core() as Object
     compile vaadin.lumoTheme() as Object
+    //Plugin del appLayout.....Ya hay opciones disponible, no Addon
     compile "com.github.appreciated:app-layout-addon:3.0.0.beta5"
-    compile "org.vaadin.klaudeta:grid-pagination:1.0.1"
+
+    //Puglin de Duarte
+    compile 'org.vaadin.crudui:crudui:3.9.0'
+    //Board
+    compile 'com.vaadin:vaadin-board-flow'
+    //CRUD
+    compile 'com.vaadin:vaadin-crud-flow'
 
     compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'

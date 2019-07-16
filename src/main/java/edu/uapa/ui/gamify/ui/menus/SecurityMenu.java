@@ -1,20 +1,24 @@
 package edu.uapa.ui.gamify.ui.menus;
 
 import com.github.appreciated.app.layout.component.menu.left.builder.LeftSubMenuBuilder;
-import com.github.appreciated.app.layout.component.menu.left.items.LeftNavigationItem;
+import com.github.appreciated.app.layout.component.menu.left.items.LeftBadgeIconItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import edu.utesa.lib.models.enums.EnumLoanMasterPermission;
-import edu.uapa.ui.gamify.routes.security.PermissionRoute;
-import edu.uapa.ui.gamify.ui.GridTest;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
+import edu.uapa.ui.gamify.ui.tabs.security.ParameterTab;
+import edu.uapa.ui.gamify.ui.tabs.security.PermissionGroupTab;
+import edu.uapa.ui.gamify.ui.tabs.security.PermissionTab;
+import edu.uapa.ui.gamify.ui.tabs.security.UserTab;
 import edu.uapa.ui.gamify.utils.captions.Captions;
+import edu.utesa.lib.models.enums.EnumLoanMasterPermission;
 
 public class SecurityMenu extends AbstractView {
-    private SecurityMenu() {
+
+    public SecurityMenu() {
+
     }
 
-    public static Component getInstance() {
+    public Component getInstance() {
         return LeftSubMenuBuilder.get(Captions.SECURITY_MENU, VaadinIcon.SHIELD.create())
                 .add(security(parameterMenuItem(), EnumLoanMasterPermission.PARAM.code))
                 .add(security(permissionMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
@@ -23,31 +27,29 @@ public class SecurityMenu extends AbstractView {
                 .build();
     }
 
-    private static Component parameterMenuItem() {
-        return new LeftNavigationItem(Captions.PARAMETER_ITEM,
-                VaadinIcon.COG.create(),
-                GridTest.class);
+    private Component parameterMenuItem() {
+        return new LeftBadgeIconItem(Captions.PARAMETER_ITEM, VaadinIcon.COG.create(), event -> getTabsManager().addTab(Captions.PARAMETER_ITEM, new ParameterTab(), true));
     }
 
-    private static Component permissionMenuItem() {
-        return new LeftNavigationItem(Captions.PERMISSION_ITEM,
+    private Component permissionMenuItem() {
+        return new LeftBadgeIconItem(Captions.PERMISSION_ITEM,
                 VaadinIcon.CHECK_SQUARE.create(),
-                PermissionRoute.class);
+                event -> getTabsManager().addTab(Captions.PERMISSION_ITEM, new PermissionTab(), true));
     }
 
-    private static Component permissionGroupMenuItem() {
-        return new LeftNavigationItem(Captions.PERMISSION_GROUP_ITEM,
+    private Component permissionGroupMenuItem() {
+        return new LeftBadgeIconItem(Captions.PERMISSION_GROUP_ITEM,
                 VaadinIcon.GROUP.create(),
-                GridTest.class);
+                event -> getTabsManager().addTab(Captions.PERMISSION_GROUP_ITEM, new PermissionGroupTab(), true));
     }
 
-    private static Component userMenuItem() {
-        return new LeftNavigationItem(Captions.USER_ITEM,
+    private Component userMenuItem() {
+        return new LeftBadgeIconItem(Captions.USER_ITEM,
                 VaadinIcon.USER.create(),
-                GridTest.class);
+                event -> getTabsManager().addTab(Captions.USER_ITEM, new UserTab(), true));
     }
 
-    private static Component security(Component component, int permissionCode) {
+    private Component security(Component component, int permissionCode) {
         if (getLoginManager().hasPermission(permissionCode)) {
             component.setVisible(false);
             return component;

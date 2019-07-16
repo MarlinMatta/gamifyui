@@ -1,0 +1,36 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../bower_components/vaadin-grid/src/vaadin-grid.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-vertical-layout.html">
+
+<dom-module id="picker-base-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-vertical-layout theme="spacing" style="width: 100%; height: 100%;">
+ <vaadin-text-field placeholder="Search" id="tfSearch" class="full-width" style="width: 100%;">
+  <iron-icon icon="lumo:search" slot="prefix"></iron-icon>
+ </vaadin-text-field>
+ <vaadin-grid id="grid"></vaadin-grid>
+</vaadin-vertical-layout>
+</template>
+
+    <script>
+        class PickerBaseDesign extends Polymer.Element {
+            static get is() {
+                return 'picker-base-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(PickerBaseDesign.is, PickerBaseDesign);
+    </script>
+</dom-module>

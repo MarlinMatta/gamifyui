@@ -12,7 +12,7 @@ import edu.uapa.ui.gamify.utils.captions.Captions;
 
 /**
  * A Designer generated component for the form-action-bar-design template.
- *
+ * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
@@ -30,7 +30,15 @@ public class FormActionBarDesign extends PolymerTemplate<FormActionBarDesign.For
      */
     public FormActionBarDesign() {
         btnSave.setText(Captions.BUTTON_SAVE);
+        btnSave.setWidth("50%");
+        btnSave.setMinWidth("200px");
         btnCancel.setText(Captions.BUTTON_CANCEL);
+        btnCancel.setWidth("50%");
+        btnCancel.setMinWidth("200px");
+    }
+
+    public void disabledBtnSave() {
+        btnSave.setEnabled(false);
     }
 
     public void setBtnSaveAction(ComponentEventListener<ClickEvent<Button>> clickEvent) {

@@ -1,0 +1,41 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+<link rel="import" href="../../../bower_components/vaadin-checkbox/src/vaadin-checkbox.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-area.html">
+<link rel="import" href="../../../bower_components/vaadin-combo-box/src/vaadin-combo-box.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-number-field.html">
+
+<dom-module id="parameter-form-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-number-field id="tfCode"></vaadin-number-field>
+ <vaadin-text-field class="full-width" value="" id="tfName" has-value></vaadin-text-field>
+ <vaadin-text-field class="full-width" value="" id="tfValue" has-value></vaadin-text-field>
+ <vaadin-combo-box id="cbValue" class="full-width"></vaadin-combo-box>
+ <vaadin-combo-box id="cbType" class="full-width" page-size="20"></vaadin-combo-box>
+ <vaadin-text-area label="" placeholder="" id="taDescription" class="full-width"></vaadin-text-area>
+ <vaadin-checkbox id="chOnlyRoot"></vaadin-checkbox>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class ParameterFormDesign extends Polymer.Element {
+            static get is() {
+                return 'parameter-form-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(ParameterFormDesign.is, ParameterFormDesign);
+    </script>
+</dom-module>

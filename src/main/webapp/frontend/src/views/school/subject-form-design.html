@@ -1,0 +1,32 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+
+<dom-module id="subject-form-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-text-field id="tfName"></vaadin-text-field>
+ <vaadin-text-field id="tfDescription"></vaadin-text-field>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class SubjectFormDesign extends Polymer.Element {
+            static get is() {
+                return 'subject-form-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(SubjectFormDesign.is, SubjectFormDesign);
+    </script>
+</dom-module>

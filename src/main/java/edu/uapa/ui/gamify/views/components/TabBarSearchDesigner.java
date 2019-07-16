@@ -38,6 +38,10 @@ public class TabBarSearchDesigner extends PolymerTemplate<TabBarSearchDesigner.T
         btnNew.setText(Captions.BUTTON_NEW);
     }
 
+    public Button getBtnNew() {
+        return btnNew;
+    }
+
     public void setBtnNewAction(ComponentEventListener<ClickEvent<Button>> clickEvent) {
         btnNew.addClickListener(clickEvent);
     }

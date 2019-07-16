@@ -1,0 +1,30 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+
+<dom-module id="header-question-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <h2 style="width: 100%; ">Heading 2</h2>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class HeaderQuestionDesign extends Polymer.Element {
+            static get is() {
+                return 'header-question-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(HeaderQuestionDesign.is, HeaderQuestionDesign);
+    </script>
+</dom-module>

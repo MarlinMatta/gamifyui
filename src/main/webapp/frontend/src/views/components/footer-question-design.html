@@ -1,0 +1,33 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-button/src/vaadin-button.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-horizontal-layout.html">
+
+<dom-module id="footer-question-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-horizontal-layout style="width: 100%; height: 100%;">
+ <vaadin-button theme="primary error" style="width: 100%; "></vaadin-button>
+ <vaadin-button theme="primary" style="width: 100%; "></vaadin-button>
+ <vaadin-button theme="primary success" style="width: 100%; "></vaadin-button>
+</vaadin-horizontal-layout>
+</template>
+
+    <script>
+        class FooterQuestionDesign extends Polymer.Element {
+            static get is() {
+                return 'footer-question-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(FooterQuestionDesign.is, FooterQuestionDesign);
+    </script>
+</dom-module>

@@ -2,24 +2,19 @@ package edu.uapa.ui.gamify.ui.components;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.component.tabs.TabsVariant;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class TabsManager extends VerticalLayout {
     private Tabs tabs;
-    private Set<Component> pagesShown;
     private Map<Tab, Component> tabsToPages = new HashMap<>();
     private Div pages = new Div();
 
@@ -29,66 +24,79 @@ public final class TabsManager extends VerticalLayout {
     }
 
     private void initialize() {
-        setWidthFull();
+        setSizeFull();
+        setPadding(false);
+        setSpacing(false);
+
         tabs.setWidthFull();
-        pages.setSizeFull();
-
         add(tabs);
+
+        pages.getElement().getStyle().set("height", "94%");
+        pages.getElement().getStyle().set("width", "100%");
         add(pages);
-//        setAction();
+
+        defaultTab();
     }
 
-    public void setAction() {
-        tabs.addSelectedChangeListener(event -> {
-            pagesShown.forEach(page -> page.setVisible(false));
-            pagesShown.clear();
-            Component selectedPage = tabsToPages.get(getSelectedTab());
-            selectedPage.setVisible(true);
-            pagesShown.add(selectedPage);
-        });
-    }
-
-    public void addTab(Tab tab) {
-        tabs.add(tab);
-    }
-
-    public void addDefaultTab(Icon icon, String name, Component component) {
-        addTab(icon, name, component);
-        pagesShown = Stream.of(component)
-                .collect(Collectors.toSet());
+    private void defaultTab() {
+        addTab("Academy", new Label("Hello Academy"), false);
         setAction();
     }
 
-    public void addTab(Icon icon, String name, Component component) {
+    private void setAction() {
+        tabs.addSelectedChangeListener(event -> {
+            hideAllPage();
+            Component selectedPage = tabsToPages.get(getSelectedTab());
+            selectedPage.setVisible(true);
+        });
+    }
+
+    private void hideAllPage() {
+        tabsToPages.values().forEach(component -> component.setVisible(false));
+    }
+
+    public void addTab(String name, Component component, boolean closeable) {
+        addTab(setTab(name, closeable), setBody(component));
+    }
+
+    private Tab setTab(String name, boolean closeable) {
         HorizontalLayout header = new HorizontalLayout();
         header.add(new Span(name));
-        header.add(close());
+        if (closeable) header.add(close());
         Tab tab = new Tab(header);
+        tab.setId(name);
+        return tab;
+    }
 
+    private Component setBody(Component component) {
         VerticalLayout body = new VerticalLayout();
         body.add(component);
-        body.setSizeFull();
-        body.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
-
-        addTab(tab, body);
+        body.setHeightFull();
+        body.setHorizontalComponentAlignment(Alignment.CENTER);
+        return body;
     }
 
     private void addTab(Tab tab, Component component) {
-        tabs.add(tab);
-        pages.add(component);
-        tabsToPages.put(tab, component);
-        selectTab(tab);
+        if (canAdd(tab)) {
+            tabs.add(tab);
+            pages.add(component);
+            tabsToPages.put(tab, component);
+            selectTab(tab);
+        }
     }
 
-    public void setSmallTheme() {
-        tabs.addThemeVariants(TabsVariant.LUMO_SMALL);
+    private boolean canAdd(Tab newTab) {
+        AtomicBoolean result = new AtomicBoolean(true);
+        tabsToPages.forEach((key, value) -> key.getId().ifPresent(tabName -> newTab.getId().ifPresent(newTabName -> {
+            if (tabName.equals(newTabName)) {
+                result.set(false);
+                selectTab(key);
+            }
+        })));
+        return result.get();
     }
 
-    public void setEqualWithTabsTheme() {
-        tabs.addThemeVariants(TabsVariant.LUMO_EQUAL_WIDTH_TABS);
-    }
-
-    public void selectTab(Tab tab) {
+    private void selectTab(Tab tab) {
         tabs.setSelectedTab(tab);
     }
 
@@ -108,13 +116,5 @@ public final class TabsManager extends VerticalLayout {
         span.getStyle().set("color", "red");
         span.addClickListener(e -> closeTab(getSelectedTab(), tabsToPages.get(getSelectedTab())));
         return span;
-    }
-
-    public Tabs getTabs() {
-        return tabs;
-    }
-
-    public Div getPages() {
-        return pages;
     }
 }

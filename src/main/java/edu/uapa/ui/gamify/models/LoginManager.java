@@ -25,4 +25,8 @@ public class LoginManager {
     private boolean isRoot() {
         return permission.parallelStream().anyMatch(permission -> permission == EnumLoanMasterPermission.ROOT.code);
     }
+
+    public String getName() {
+        return userDto.getNickName();
+    }
 }

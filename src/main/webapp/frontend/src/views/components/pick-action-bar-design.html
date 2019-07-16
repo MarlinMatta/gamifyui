@@ -1,0 +1,40 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-horizontal-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-button/src/vaadin-button.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+
+<dom-module id="pick-action-bar-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-button id="btnSelect" style="width:100%;">
+   <iron-icon icon="lumo:edit" slot="prefix"></iron-icon>
+  </vaadin-button>
+  <vaadin-button id="btnExit" style="width:100%;">
+   <iron-icon icon="lumo:arrow-right" slot="suffix"></iron-icon>
+  </vaadin-button>
+ </vaadin-horizontal-layout>
+</vaadin-form-layout>
+</template>
+
+    <script>
+        class PickActionBarDesign extends Polymer.Element {
+            static get is() {
+                return 'pick-action-bar-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(PickActionBarDesign.is, PickActionBarDesign);
+    </script>
+</dom-module>
