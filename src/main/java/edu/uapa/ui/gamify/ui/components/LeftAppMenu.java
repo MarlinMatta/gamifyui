@@ -18,8 +18,8 @@ public class LeftAppMenu extends AbstractView {
         return LeftAppMenuBuilder
                 .get()
                 .addToSection(profile(), Section.HEADER)
-                .add(security(new SchoolMenu().getInstance(), EnumLoanMasterPermission.SECURITY_MENU.code))
-                .add(security(new SecurityMenu().getInstance(), EnumLoanMasterPermission.SECURITY_MENU.code))
+                .add(security(new SchoolMenu().getInstance(), EnumLoanMasterPermission.ROOT.code))
+                .add(security(new SecurityMenu().getInstance(), EnumLoanMasterPermission.ROOT.code))
                 .build();
     }
 

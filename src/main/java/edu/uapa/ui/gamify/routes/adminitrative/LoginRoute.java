@@ -66,9 +66,7 @@ public class LoginRoute extends VerticalLayout {
     }
 
     private void accept(PermissionDto dto) {
-        if (dto.getCode() == 0) {
-            isStudent = true;
-        }
+        isStudent = dto.getCode() == 1;
     }
 
     private void autoLogin() {
