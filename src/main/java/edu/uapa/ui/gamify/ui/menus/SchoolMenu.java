@@ -3,8 +3,6 @@ package edu.uapa.ui.gamify.ui.menus;
 import com.github.appreciated.app.layout.component.menu.left.builder.LeftSubMenuBuilder;
 import com.github.appreciated.app.layout.component.menu.left.items.LeftBadgeIconItem;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
 import edu.uapa.ui.gamify.ui.tabs.security.ParameterTab;
@@ -16,50 +14,45 @@ import edu.utesa.lib.models.enums.EnumLoanMasterPermission;
 
 public class SchoolMenu extends AbstractView {
 
-//    private CompanyDesign companyDesign = new CompanyDesign();
-
     public SchoolMenu() {
     }
 
     public Component getInstance() {
-        return LeftSubMenuBuilder.get(Captions.SECURITY_MENU, VaadinIcon.SHIELD.create())
-                .add(security(parameterMenuItem(), EnumLoanMasterPermission.PARAM.code))
-                .add(security(permissionMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
-                .add(security(permissionGroupMenuItem(), EnumLoanMasterPermission.P_GROUP.code))
-                .add(security(userMenuItem(), EnumLoanMasterPermission.USER.code))
+        return LeftSubMenuBuilder.get(Captions.SCHOOL_MENU, VaadinIcon.BUILDING.create())
+                .add(security(schoolMenuItem(), EnumLoanMasterPermission.PARAM.code))
+                .add(security(subjectMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
+                .add(security(topicMenuItem(), EnumLoanMasterPermission.P_GROUP.code))
+                .add(security(problemMenuItem(), EnumLoanMasterPermission.USER.code))
+                .add(security(quitMenuItem(), EnumLoanMasterPermission.USER.code))
                 .build();
     }
 
-    private Component b() {
-        Button button = new Button("Company");
-        Dialog dialog = new Dialog();
-//        dialog.add(companyDesign);
-        button.addClickListener(e -> dialog.open());
-        dialog.setCloseOnEsc(false);
-        dialog.setCloseOnOutsideClick(false);
-        return button;
+    private Component schoolMenuItem() {
+        return new LeftBadgeIconItem(Captions.SCHOOL_ITEM, VaadinIcon.BUILDING_O.create(), event -> getTabsManager().addTab(Captions.SCHOOL_ITEM, new ParameterTab(), true));
     }
 
-    private Component parameterMenuItem() {
-        return new LeftBadgeIconItem(Captions.PARAMETER_ITEM, VaadinIcon.COG.create(), event -> getTabsManager().addTab(Captions.PARAMETER_ITEM, new ParameterTab(), true));
+    private Component subjectMenuItem() {
+        return new LeftBadgeIconItem(Captions.SUBJECT_ITEM,
+                VaadinIcon.ARCHIVE.create(),
+                event -> getTabsManager().addTab(Captions.SUBJECT_ITEM, new PermissionTab(), true));
     }
 
-    private Component permissionMenuItem() {
-        return new LeftBadgeIconItem(Captions.PERMISSION_ITEM,
-                VaadinIcon.CHECK_SQUARE.create(),
-                event -> getTabsManager().addTab(Captions.PERMISSION_ITEM, new PermissionTab(), true));
+    private Component topicMenuItem() {
+        return new LeftBadgeIconItem(Captions.TOPIC_ITEM,
+                VaadinIcon.CHECK_SQUARE_O.create(),
+                event -> getTabsManager().addTab(Captions.TOPIC_ITEM, new PermissionGroupTab(), true));
     }
 
-    private Component permissionGroupMenuItem() {
-        return new LeftBadgeIconItem(Captions.PERMISSION_GROUP_ITEM,
-                VaadinIcon.GROUP.create(),
-                event -> getTabsManager().addTab(Captions.PERMISSION_GROUP_ITEM, new PermissionGroupTab(), true));
+    private Component problemMenuItem() {
+        return new LeftBadgeIconItem(Captions.PROBLEM_ITEM,
+                VaadinIcon.QUESTION.create(),
+                event -> getTabsManager().addTab(Captions.PROBLEM_ITEM, new UserTab(), true));
     }
 
-    private Component userMenuItem() {
-        return new LeftBadgeIconItem(Captions.USER_ITEM,
-                VaadinIcon.USER.create(),
-                event -> getTabsManager().addTab(Captions.USER_ITEM, new UserTab(), true));
+    private Component quitMenuItem() {
+        return new LeftBadgeIconItem(Captions.QUIT_ITEM,
+                VaadinIcon.EDIT.create(),
+                event -> getTabsManager().addTab(Captions.QUIT_ITEM, new UserTab(), true));
     }
 
     private Component security(Component component, int permissionCode) {

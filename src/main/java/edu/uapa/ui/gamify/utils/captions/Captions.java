@@ -2,12 +2,12 @@ package edu.uapa.ui.gamify.utils.captions;
 
 //FIXME LADY: Agregar patron singleton e inetrnacionalizacion manejada por vaadin
 public class Captions {
-    public static final String BUSINESS_MENU = "Business";
-    public static final String COMPANY_ITEM = "Company";
-    public static final String BRANCH_ITEM = "Branch";
-    public static final String DEPARTMENT_ITEM = "Department";
-    public static final String POSITION_ITEM = "Position";
-    public static final String EMPLOYEE_ITEM = "Employee";
+    public static final String SCHOOL_MENU = "Escuela";
+    public static final String SUBJECT_ITEM = "Materia";
+    public static final String SCHOOL_ITEM = "Escuela";
+    public static final String TOPIC_ITEM = "Temas";
+    public static final String PROBLEM_ITEM = "Problemas";
+    public static final String QUIT_ITEM = "Examen";
 
     public static final String SECURITY_MENU = "Security";
     public static final String PARAMETER_ITEM = "Parameter";
@@ -70,7 +70,7 @@ public class Captions {
 
     public static final String LAST_NAME = "last name";
     public static final String DATE_BIRTH = "Date birth";
-    public static final String  GENDER = "gender";
+    public static final String GENDER = "gender";
     public static final String GRADE = "Grade";
     public static final String SUBJECT = "Subject";
     public static final String MAIL = "email";
