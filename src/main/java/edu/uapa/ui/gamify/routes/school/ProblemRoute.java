@@ -2,6 +2,7 @@ package edu.uapa.ui.gamify.routes.school;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -11,9 +12,9 @@ import edu.uapa.ui.gamify.models.Question;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.QuestionGenerator;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
-import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import static edu.uapa.ui.gamify.routes.AllRoutes.PROBLEM_ROUTE;
 public class ProblemRoute extends PageView {
 
     private List<Question> questions = new QuestionGenerator().get();
+    private List<Question> result = new ArrayList<>();
     private VerticalLayout mainLayout;
     private LinkedList<Component> components = new LinkedList<>();
     private Component currentComponent;
@@ -109,7 +111,10 @@ public class ProblemRoute extends PageView {
         next.addClickListener(event -> {
             if (((BodyQuestionDesign) currentComponent).valid()) {
                 if (next.getText().equals("Summit")) {
-                    Tools.navigateToSummitResult();
+                    components.forEach(component -> result.add(((BodyQuestionDesign) component).getResponse()));
+                    currentComponent.setVisible(false);
+                    currentComponent = result();
+                    currentComponent.setVisible(true);
                 }
                 currentComponent.setVisible(false);
                 currentComponent = components.get(components.indexOf(currentComponent) + 1);
@@ -128,5 +133,34 @@ public class ProblemRoute extends PageView {
         });
 
         return layout;
+    }
+
+    private Component result() {
+        VerticalLayout main = new VerticalLayout();
+        Span question = new Span();
+        Span response = new Span();
+
+        question.getStyle().set("color", "blue");
+        question.getStyle().set("font-size", "24px");
+        question.getStyle().set("width", "95%");
+
+        response.getStyle().set("color", "black");
+        response.getStyle().set("font-size", "18px");
+        response.getStyle().set("margin-left", "20px");
+        response.getStyle().set("width", "95%");
+
+
+        result.forEach(question1 -> {
+            if (question1.isGood()) {
+                question.getElement().getStyle().set("border", "1 px solid green");
+            } else {
+                question.getElement().getStyle().set("border", "1 px solid red");
+            }
+            question.getElement().setProperty("innerHTML", "<String><u>" + question1.getQuestion() + "</u></strong>");
+            response.getElement().setProperty("innerHTML", "<String><u>" + question1.getResponse() + "</u></strong>");
+            main.add();
+        });
+
+        return main;
     }
 }

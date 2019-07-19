@@ -62,7 +62,7 @@ public class LoginRoute extends VerticalLayout {
     }
 
     private void isStudent(UserDto userDto) {
-        userDto.getPermissionDtos().forEach(this::accept);
+        userDto.getPermissions().forEach(this::accept);
     }
 
     private void accept(PermissionDto dto) {

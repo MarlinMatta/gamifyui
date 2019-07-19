@@ -10,7 +10,6 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.location.AddressDto;
-import edu.utesa.lib.models.dtos.location.CityDto;
 import edu.utesa.lib.models.dtos.school.SchoolDto;
 
 /**
@@ -28,7 +27,7 @@ public class SchoolFormDesing extends PolymerTemplate<SchoolFormDesing.SchoolFor
     @Id("tfDistrict")
     private TextField tfDistrict;
     @Id("cbCity")
-    private ComboBox<CityDto> cbCity;
+    private ComboBox<String> cbCity;
     @Id("tfSector")
     private TextField tfSector;
     @Id("tfAddress")
@@ -58,8 +57,8 @@ public class SchoolFormDesing extends PolymerTemplate<SchoolFormDesing.SchoolFor
         address = data.getAddressDto();
         tfName.setValue(data.getName());
         tfDistrict.setValue(data.getDistrict());
-        cbCity.setValue(data.getAddressDto().getCityDto());
-        tfSector.setValue(data.getAddressDto().getRegion());
+        cbCity.setValue(data.getAddressDto().getCity());
+        tfSector.setValue(data.getAddressDto().getSector());
         tfZipCode.setValue(data.getAddressDto().getZipCode());
         tfAddress.setValue(data.getAddressDto().getAddress());
     }
@@ -85,8 +84,8 @@ public class SchoolFormDesing extends PolymerTemplate<SchoolFormDesing.SchoolFor
         model.setName(tfName.getValue());
         model.setDistrict(tfDistrict.getValue());
         address.setName(tfName.getValue());
-        address.setCityDto(cbCity.getValue());
-        address.setRegion(tfSector.getValue());
+        address.setCity(cbCity.getValue());
+        address.setSector(tfSector.getValue());
         address.setZipCode(tfZipCode.getValue());
         model.setAddressDto(address);
         return model;

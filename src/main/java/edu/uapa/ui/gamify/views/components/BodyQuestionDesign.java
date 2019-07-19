@@ -28,11 +28,14 @@ public class BodyQuestionDesign extends PolymerTemplate<BodyQuestionDesign.BodyQ
     @Id("taQuestion")
     private TextArea taQuestion;
 
+    private Question question;
+
     /**
      * Creates a new BodyQuestionDesign.
      */
     public BodyQuestionDesign(Question question) {
         taQuestion.setValue(question.getQuestion());
+        this.question = question;
 
         List<Response> res = question.getBadResponse();
         res.add(question.getResponse());
@@ -44,6 +47,16 @@ public class BodyQuestionDesign extends PolymerTemplate<BodyQuestionDesign.BodyQ
 
     public boolean valid() {
         return optionLayout.getValue() != null;
+    }
+
+    public Question getResponse() {
+        if (optionLayout.getValue().getResponse().equals(question.getResponse().getResponse())) {
+            question.setGood(true);
+        } else {
+            question.setGood(false);
+        }
+        question.setResponse(optionLayout.getValue());
+        return question;
     }
 
     /**

@@ -14,7 +14,7 @@ public class LoginManager {
 
     public LoginManager(UserDto userDto) {
         this.userDto = userDto;
-        this.permission = userDto.getPermissionDtos().stream().map(PermissionDto::getCode).collect(Collectors.toList());
+        this.permission = userDto.getPermissions().stream().map(PermissionDto::getCode).collect(Collectors.toList());
     }
 
     //Esta forma de iterar por cada permiso es pesada. Mejorar

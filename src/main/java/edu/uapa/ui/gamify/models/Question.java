@@ -8,6 +8,7 @@ public class Question {
     private String question;
     private List<Response> badResponse;
     private Response response;
+    private boolean good = false;
 
     public Question() {
         badResponse = new ArrayList<>();
@@ -47,5 +48,13 @@ public class Question {
 
     public void setResponse(Response response) {
         this.response = response;
+    }
+
+    public boolean isGood() {
+        return good;
+    }
+
+    public void setGood(boolean good) {
+        this.good = good;
     }
 }

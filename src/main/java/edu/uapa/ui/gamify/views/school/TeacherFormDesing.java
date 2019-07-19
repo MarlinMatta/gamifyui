@@ -48,7 +48,7 @@ public class TeacherFormDesing extends PolymerTemplate<TeacherFormDesing.Teacher
     @Id("cbGrade")
     private ComboBox<GradeDto> cbGrade;
     @Id("cbCity")
-    private ComboBox<CityDto> cbCity;
+    private ComboBox<String> cbCity;
     @Id("tfSector")
     private TextField tfSector;
     @Id("tfAddress")
@@ -102,8 +102,8 @@ public class TeacherFormDesing extends PolymerTemplate<TeacherFormDesing.Teacher
         cbGrade.setValue(data.getGradeDto());
         cbSchool.setValue(data.getSchoolDto());
         // cbSubject.setValue(data.getSubjectDto ()); o se por que no funciona
-        cbCity.setValue(data.getAddressDto().getCityDto());
-        tfSector.setValue(data.getAddressDto().getRegion());
+        cbCity.setValue(data.getAddressDto().getCity());
+        tfSector.setValue(data.getAddressDto().getSector());
         tfZipCode.setValue(data.getAddressDto().getZipCode());
         tfAddress.setValue(data.getAddressDto().getAddress());
         tfUserName.setValue(data.getUserDto().getNickName());
@@ -139,8 +139,8 @@ public class TeacherFormDesing extends PolymerTemplate<TeacherFormDesing.Teacher
     @Override
     public TeacherDto collectData(TeacherDto model) {
         address.setName(tfName.getValue());
-        address.setCityDto(cbCity.getValue());
-        address.setRegion(tfSector.getValue());
+        address.setCity(cbCity.getValue());
+        address.setSector(tfSector.getValue());
         address.setZipCode(tfZipCode.getValue());
         model.setAddressDto(address);
 
