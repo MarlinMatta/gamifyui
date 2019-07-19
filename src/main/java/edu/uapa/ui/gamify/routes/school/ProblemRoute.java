@@ -113,19 +113,23 @@ public class ProblemRoute extends PageView {
                 if (next.getText().equals("Summit")) {
                     components.forEach(component -> result.add(((BodyQuestionDesign) component).getResponse()));
                     currentComponent.setVisible(false);
-                    currentComponent = result();
-                    currentComponent.setVisible(true);
-                }
-                currentComponent.setVisible(false);
-                currentComponent = components.get(components.indexOf(currentComponent) + 1);
-                currentComponent.setVisible(true);
-                if (components.indexOf(currentComponent) == components.size() - 1) {
-                    next.setText("Summit");
-                    jump.setEnabled(false);
+                    add(result());
+                    back.setVisible(false);
+                    jump.setVisible(false);
+                    next.setVisible(false);
+                    Notification.show("Si se realizo");
                 } else {
-                    back.setEnabled(true);
-                    jump.setEnabled(true);
-                    next.setText("Next >>>");
+                    currentComponent.setVisible(false);
+                    currentComponent = components.get(components.indexOf(currentComponent) + 1);
+                    currentComponent.setVisible(true);
+                    if (components.indexOf(currentComponent) == components.size() - 1) {
+                        next.setText("Summit");
+                        jump.setEnabled(false);
+                    } else {
+                        back.setEnabled(true);
+                        jump.setEnabled(true);
+                        next.setText("Next >>>");
+                    }
                 }
             } else {
                 Notification.show("Tienes que selecionar una repuestas");
@@ -136,29 +140,41 @@ public class ProblemRoute extends PageView {
     }
 
     private Component result() {
+        setAlignItems(Alignment.BASELINE);
+        setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+
+        mainLayout.setAlignItems(Alignment.BASELINE);
+        mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+
         VerticalLayout main = new VerticalLayout();
-        Span question = new Span();
-        Span response = new Span();
-
-        question.getStyle().set("color", "blue");
-        question.getStyle().set("font-size", "24px");
-        question.getStyle().set("width", "95%");
-
-        response.getStyle().set("color", "black");
-        response.getStyle().set("font-size", "18px");
-        response.getStyle().set("margin-left", "20px");
-        response.getStyle().set("width", "95%");
-
+        main.setMargin(false);
+        main.setPadding(false);
+        main.setSpacing(false);
 
         result.forEach(question1 -> {
+            Span question = new Span();
+            Span response = new Span();
+
             if (question1.isGood()) {
-                question.getElement().getStyle().set("border", "1 px solid green");
+                question.getStyle().set("color", "green");
             } else {
-                question.getElement().getStyle().set("border", "1 px solid red");
+                question.getStyle().set("color", "red");
             }
-            question.getElement().setProperty("innerHTML", "<String><u>" + question1.getQuestion() + "</u></strong>");
-            response.getElement().setProperty("innerHTML", "<String><u>" + question1.getResponse() + "</u></strong>");
-            main.add();
+            question.getStyle().set("font-size", "24px");
+            question.getStyle().set("width", "95%");
+
+            response.getStyle().set("color", "black");
+            response.getStyle().set("font-size", "18px");
+            response.getStyle().set("margin-left", "20px");
+            response.getStyle().set("width", "95%");
+
+            question.getElement().setProperty("innerHTML", "<String>" + question1.getQuestion() + "</strong>");
+            response.getElement().setProperty("innerHTML", "<String>" + question1.getResponse() + "</strong>");
+
+            main.getStyle().set("border-style", "double");
+            main.add(question);
+            main.add(response);
+            main.add(new HorizontalLayout());
         });
 
         return main;
