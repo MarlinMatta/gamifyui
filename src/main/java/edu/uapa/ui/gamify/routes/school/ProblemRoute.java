@@ -62,7 +62,9 @@ public class ProblemRoute extends PageView {
             currentComponent.setVisible(true);
         }
 
-        goToInit.addClickListener(event -> Tools.navigateToLogin()
+        goToInit = new Button("<-- Volver al inicio");
+        goToInit.setWidth("200px");
+        goToInit.addClickListener(event -> Tools.navigateToStudentMainMenu()
         );
     }
 
@@ -119,6 +121,7 @@ public class ProblemRoute extends PageView {
                     components.forEach(component -> result.add(((BodyQuestionDesign) component).getResponse()));
                     removeAll();
                     add(result());
+                    add(goToInit);
                     back.setVisible(false);
                     jump.setVisible(false);
                     next.setVisible(false);
@@ -179,7 +182,6 @@ public class ProblemRoute extends PageView {
             main.add(response);
             main.add(new HorizontalLayout());
         });
-        add(goToInit);
         return main;
     }
 }
