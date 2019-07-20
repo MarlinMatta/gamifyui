@@ -17,7 +17,7 @@ public class MainAppLayout extends AppLayoutRouterLayout {
 //            Tools.navigateToLogin();
         } else {
             init(AppLayoutBuilder
-                    .get(Behaviour.LEFT_HYBRID)
+                    .get(Behaviour.LEFT_RESPONSIVE)
                     .withTitle("Gamifying Education")
                     .withAppBar(new AppBar().building())
                     .withAppMenu(LeftAppMenu.building())

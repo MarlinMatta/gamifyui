@@ -12,6 +12,7 @@ import edu.uapa.ui.gamify.models.Question;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.QuestionGenerator;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
+import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class ProblemRoute extends PageView {
     private VerticalLayout mainLayout;
     private LinkedList<Component> components = new LinkedList<>();
     private Component currentComponent;
+    private Button goToInit;
 
     public ProblemRoute() {
         initialized();
@@ -59,6 +61,9 @@ public class ProblemRoute extends PageView {
             currentComponent = components.getFirst();
             currentComponent.setVisible(true);
         }
+
+        goToInit.addClickListener(event -> Tools.navigateToLogin()
+        );
     }
 
     private void buildMainLayout() {
@@ -112,7 +117,7 @@ public class ProblemRoute extends PageView {
             if (((BodyQuestionDesign) currentComponent).valid()) {
                 if (next.getText().equals("Summit")) {
                     components.forEach(component -> result.add(((BodyQuestionDesign) component).getResponse()));
-                    currentComponent.setVisible(false);
+                    removeAll();
                     add(result());
                     back.setVisible(false);
                     jump.setVisible(false);
@@ -140,11 +145,8 @@ public class ProblemRoute extends PageView {
     }
 
     private Component result() {
-        setAlignItems(Alignment.BASELINE);
-        setJustifyContentMode(FlexComponent.JustifyContentMode.START);
-
-        mainLayout.setAlignItems(Alignment.BASELINE);
-        mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+        setAlignItems(Alignment.START);
+        mainLayout.setAlignItems(Alignment.START);
 
         VerticalLayout main = new VerticalLayout();
         main.setMargin(false);
@@ -171,12 +173,13 @@ public class ProblemRoute extends PageView {
             question.getElement().setProperty("innerHTML", "<String>" + question1.getQuestion() + "</strong>");
             response.getElement().setProperty("innerHTML", "<String>" + question1.getResponse() + "</strong>");
 
+            main.setWidthFull();
             main.getStyle().set("border-style", "double");
             main.add(question);
             main.add(response);
             main.add(new HorizontalLayout());
         });
-
+        add(goToInit);
         return main;
     }
 }
