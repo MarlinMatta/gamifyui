@@ -3,7 +3,7 @@ package edu.uapa.ui.gamify.ui.tabs.security;
 import com.vaadin.flow.component.Component;
 import edu.uapa.ui.gamify.requests.security.ParameterRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractTabWithGrid;
-import edu.uapa.ui.gamify.ui.from.ParameterForm;
+import edu.uapa.ui.gamify.ui.form.security.ParameterForm;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.security.ParamDto;
 

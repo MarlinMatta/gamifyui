@@ -37,7 +37,8 @@ public class LeftAppMenu extends AbstractView {
         layout.setSpacing(true);
         layout.setPadding(true);
 
-        RoundImage roundImage = new RoundImage("frontend/src/images/logo.jpeg", "100%", null);
+//        RoundImage roundImage = new RoundImage("frontend/src/images/logo.jpeg", "100%", null);
+        RoundImage roundImage = new RoundImage("frontend/src/images/books.png", "64px", null);
         layout.add(roundImage);
 
         Span description = new Span();
@@ -50,7 +51,7 @@ public class LeftAppMenu extends AbstractView {
         name.getStyle().set("text-align", "center");
         layout.add(name);
 
-        layout.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, name, description);
+        layout.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, roundImage, name, description);
         return layout;
     }
 }

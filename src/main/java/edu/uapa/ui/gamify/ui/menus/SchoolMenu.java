@@ -5,6 +5,8 @@ import com.github.appreciated.app.layout.component.menu.left.items.LeftBadgeIcon
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
+import edu.uapa.ui.gamify.ui.tabs.school.SchoolTab;
+import edu.uapa.ui.gamify.ui.tabs.school.SubjectTab;
 import edu.uapa.ui.gamify.ui.tabs.security.ParameterTab;
 import edu.uapa.ui.gamify.ui.tabs.security.PermissionGroupTab;
 import edu.uapa.ui.gamify.ui.tabs.security.PermissionTab;
@@ -28,18 +30,20 @@ public class SchoolMenu extends AbstractView {
     }
 
     private Component schoolMenuItem() {
-        return new LeftBadgeIconItem(Captions.SCHOOL_ITEM, VaadinIcon.BUILDING_O.create(), event -> getTabsManager().addTab(Captions.SCHOOL_ITEM, new ParameterTab(), true));
+        return new LeftBadgeIconItem(Captions.SCHOOL_ITEM,
+                VaadinIcon.BUILDING_O.create(),
+                event -> getTabsManager().addTab(Captions.SCHOOL_ITEM, new SchoolTab(), true));
     }
 
     private Component subjectMenuItem() {
         return new LeftBadgeIconItem(Captions.SUBJECT_ITEM,
-                VaadinIcon.ARCHIVE.create(),
-                event -> getTabsManager().addTab(Captions.SUBJECT_ITEM, new PermissionTab(), true));
+                VaadinIcon.OPEN_BOOK.create(),
+                event -> getTabsManager().addTab(Captions.SUBJECT_ITEM, new SubjectTab(), true));
     }
 
     private Component topicMenuItem() {
         return new LeftBadgeIconItem(Captions.TOPIC_ITEM,
-                VaadinIcon.CHECK_SQUARE_O.create(),
+                VaadinIcon.LINES_LIST.create(),
                 event -> getTabsManager().addTab(Captions.TOPIC_ITEM, new PermissionGroupTab(), true));
     }
 

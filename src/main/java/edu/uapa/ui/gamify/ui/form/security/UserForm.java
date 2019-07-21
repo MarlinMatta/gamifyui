@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.ui.from;
+package edu.uapa.ui.gamify.ui.form.security;
 
 import com.vaadin.flow.component.dialog.Dialog;
 import edu.uapa.ui.gamify.requests.security.UserRequests;

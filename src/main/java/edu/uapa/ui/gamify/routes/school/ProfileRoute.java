@@ -75,6 +75,7 @@ public class ProfileRoute extends PageView {
     }
 
     private RoundImage img(String imgAddress) {
-        return new RoundImage("frontend/src/images/logo.png", "150px", "150px");
+//        return new RoundImage("frontend/src/images/books.png", "150px", "150px");
+        return new RoundImage("frontend/src/images/books.png","64px","64px");
     }
 }

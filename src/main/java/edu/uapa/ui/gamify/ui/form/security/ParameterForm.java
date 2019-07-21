@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.ui.from;
+package edu.uapa.ui.gamify.ui.form.security;
 
 import edu.uapa.ui.gamify.requests.security.ParameterRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;

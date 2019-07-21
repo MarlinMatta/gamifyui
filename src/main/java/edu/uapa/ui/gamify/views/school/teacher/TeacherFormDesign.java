@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.views.school;
+package edu.uapa.ui.gamify.views.school.teacher;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -12,7 +12,6 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.location.AddressDto;
-import edu.utesa.lib.models.dtos.location.CityDto;
 import edu.utesa.lib.models.dtos.person.PersonDto;
 import edu.utesa.lib.models.dtos.school.GradeDto;
 import edu.utesa.lib.models.dtos.school.SchoolDto;
@@ -24,14 +23,14 @@ import edu.utesa.lib.models.enums.person.Gender;
 import edu.utesa.lib.utils.DateUtils;
 
 /**
- * A Designer generated component for the teacher-form-desing.html template.
+ * A Designer generated component for the teacher-form-design.html template.
  * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
-@Tag("teacher-form-desing")
-@HtmlImport("src/views/school/teacher-form-desing.html")
-public class TeacherFormDesing extends PolymerTemplate<TeacherFormDesing.TeacherFormDesingModel> implements FormStructure<TeacherDto> {
+@Tag("teacher-form-design")
+@HtmlImport("src/views/school/teacher-form-design.html")
+public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.TeacherFormDesignModel> implements FormStructure<TeacherDto> {
 
     @Id("tfName")
     private TextField tfName;
@@ -67,9 +66,9 @@ public class TeacherFormDesing extends PolymerTemplate<TeacherFormDesing.Teacher
     private UserDto user;
 
     /**
-     * Creates a new TeacherFormDesing.
+     * Creates a new TeacherFormDesign.
      */
-    public TeacherFormDesing() {
+    public TeacherFormDesign() {
         // You can initialise any data required for the connected UI components here.
         tfName.setLabel(Captions.NAME);
         tfLastName.setLabel(Captions.LAST_NAME);
@@ -163,9 +162,9 @@ public class TeacherFormDesing extends PolymerTemplate<TeacherFormDesing.Teacher
     }
 
     /**
-     * This model binds properties between TeacherFormDesing and teacher-form-desing.html
+     * This model binds properties between TeacherFormDesign and teacher-form-design.html
      */
-    public interface TeacherFormDesingModel extends TemplateModel {
+    public interface TeacherFormDesignModel extends TemplateModel {
         // Add setters and getters for template properties here.
     }
 }

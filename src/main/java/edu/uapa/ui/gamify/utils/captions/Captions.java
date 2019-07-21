@@ -18,6 +18,7 @@ public class Captions {
     public static final String LOGOUT = "Logout";
 
     public static final String GRID_COLUMN_CODE = "Code";
+    public static final String GRID_COLUMN_USER = "User";
     public static final String GRID_COLUMN_VALUE = "Value";
     public static final String GRID_COLUMN_ONLY_ROOT = "Only root";
     public static final String GRID_COLUMN_NAME = "Name";
@@ -27,6 +28,10 @@ public class Captions {
     public static final String GRID_COLUMN_LANGUAGE = "Language";
     public static final String GRID_COLUMN_COMPANY = "Company";
     public static final String GRID_COLUMN_DESCRIPTION = "Description";
+    public static final String GRID_COLUMN_DISTRICT = "District";
+    public static final String GRID_COLUMN_ADDRESS = "Address";
+    public static final String GRID_COLUMN_SCHOOL = "School";
+    public static final String GRID_COLUMN_GRADE = "Grade";
 
     public static final String SEARCH = "Search";
 
@@ -74,7 +79,6 @@ public class Captions {
     public static final String GRADE = "Grade";
     public static final String SUBJECT = "Subject";
     public static final String MAIL = "email";
-
 
 }
 

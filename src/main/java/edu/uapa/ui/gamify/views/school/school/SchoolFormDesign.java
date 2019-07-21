@@ -20,7 +20,7 @@ import edu.utesa.lib.models.dtos.school.SchoolDto;
  */
 @Tag("school-form-desing")
 @HtmlImport("src/views/school/school-form-desing.html")
-public class SchoolFormDesing extends PolymerTemplate<SchoolFormDesing.SchoolFormDesingModel> implements FormStructure<SchoolDto> {
+public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFormDesingModel> implements FormStructure<SchoolDto> {
 
     @Id("tfName")
     private TextField tfName;
@@ -38,9 +38,9 @@ public class SchoolFormDesing extends PolymerTemplate<SchoolFormDesing.SchoolFor
     private AddressDto address;
 
     /**
-     * Creates a new SchoolFormDesing.
+     * Creates a new SchoolFormDesign.
      */
-    public SchoolFormDesing() {
+    public SchoolFormDesign() {
         // You can initialise any data required for the connected UI components here.
         tfName.setLabel(Captions.NAME);
         tfDistrict.setLabel(Captions.DISTRICT);
@@ -98,7 +98,7 @@ public class SchoolFormDesing extends PolymerTemplate<SchoolFormDesing.SchoolFor
     }
 
     /**
-     * This model binds properties between SchoolFormDesing and school-form-desing.html
+     * This model binds properties between SchoolFormDesign and school-form-desing.html
      */
     public interface SchoolFormDesingModel extends TemplateModel {
         // Add setters and getters for template properties here.
