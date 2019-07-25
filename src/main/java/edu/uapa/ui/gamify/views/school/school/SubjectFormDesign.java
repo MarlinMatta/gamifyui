@@ -13,7 +13,7 @@ import edu.utesa.lib.models.dtos.location.AddressDto;
 import edu.utesa.lib.models.dtos.school.SubjectDto;
 
 /**
- * A Designer generated component for the school-form-desing.html template.
+ * A Designer generated component for the school-form-design.html template.
  * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
@@ -34,13 +34,12 @@ public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.Subject
         // You can initialise any data required for the connected UI components here.
         tfName.setLabel(Captions.NAME);
         tfDescription.setLabel(Captions.DESCRIPTION);
-
     }
 
     @Override
     public void restore(SubjectDto data) {
         tfName.setValue(data.getName());
-        tfDescription.setValue(data.getDescription());
+        tfDescription.setValue(data.getDescription() == null ? "" : data.getDescription());
     }
 
     @Override
@@ -57,7 +56,7 @@ public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.Subject
     @Override
     public SubjectDto collectData(SubjectDto model) {
         model.setName(tfName.getValue());
-        model.setName(tfDescription.getValue());
+        model.setDescription(tfDescription.getValue());
         return model;
     }
 
@@ -68,7 +67,7 @@ public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.Subject
     }
 
     /**
-     * This model binds properties between SchoolFormDesign and school-form-desing.html
+     * This model binds properties between SchoolFormDesign and school-form-design.html
      */
     public interface SubjectFormDesignModel extends TemplateModel {
         // Add setters and getters for template properties here.

@@ -1,39 +1,41 @@
 package edu.uapa.ui.gamify.views.school.school;
 
-import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.location.AddressDto;
 import edu.utesa.lib.models.dtos.school.SchoolDto;
 
 /**
- * A Designer generated component for the school-form-desing.html template.
+ * A Designer generated component for the school-form-design template.
  * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
-@Tag("school-form-desing")
-@HtmlImport("src/views/school/school-form-desing.html")
-public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFormDesingModel> implements FormStructure<SchoolDto> {
+@Tag("school-form-design")
+@HtmlImport("src/views/school/school-form-design.html")
+public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFormDesignModel> implements FormStructure<SchoolDto> {
 
     @Id("tfName")
     private TextField tfName;
     @Id("tfDistrict")
     private TextField tfDistrict;
-    @Id("cbCity")
-    private ComboBox<String> cbCity;
+    @Id("cbCountry")
+    private ComboBox<String> cbCountry;
+    @Id("tfCity")
+    private TextField tfCity;
     @Id("tfSector")
     private TextField tfSector;
-    @Id("tfAddress")
-    private TextField tfAddress;
     @Id("tfZipCode")
     private TextField tfZipCode;
+    @Id("tfAddress")
+    private TextField tfAddress;
 
     private AddressDto address;
 
@@ -44,7 +46,8 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
         // You can initialise any data required for the connected UI components here.
         tfName.setLabel(Captions.NAME);
         tfDistrict.setLabel(Captions.DISTRICT);
-        cbCity.setLabel(Captions.CITY);
+        tfCity.setLabel(Captions.CITY);
+        cbCountry.setLabel(Captions.COUNTRY);
         tfSector.setLabel(Captions.SECTOR);
         tfZipCode.setLabel(Captions.ZIP_CODE);
         tfAddress.setLabel(Captions.ADDRESS);
@@ -57,7 +60,8 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
         address = data.getAddressDto();
         tfName.setValue(data.getName());
         tfDistrict.setValue(data.getDistrict());
-        cbCity.setValue(data.getAddressDto().getCity());
+        tfCity.setValue(data.getAddressDto().getCity());
+        cbCountry.setValue(data.getAddressDto().getCountryDto().getName());
         tfSector.setValue(data.getAddressDto().getSector());
         tfZipCode.setValue(data.getAddressDto().getZipCode());
         tfAddress.setValue(data.getAddressDto().getAddress());
@@ -67,7 +71,8 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
     public void visualize() {
         tfName.setReadOnly(true);
         tfDistrict.setReadOnly(true);
-        cbCity.setReadOnly(true);
+        tfCity.setReadOnly(true);
+        cbCountry.setReadOnly(true);
         tfSector.setReadOnly(true);
         tfZipCode.setReadOnly(true);
         tfAddress.setReadOnly(true);
@@ -84,7 +89,8 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
         model.setName(tfName.getValue());
         model.setDistrict(tfDistrict.getValue());
         address.setName(tfName.getValue());
-        address.setCity(cbCity.getValue());
+        address.setCity(tfCity.getValue());
+        address.getCountryDto().setName(cbCountry.getValue());
         address.setSector(tfSector.getValue());
         address.setZipCode(tfZipCode.getValue());
         model.setAddressDto(address);
@@ -98,9 +104,9 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
     }
 
     /**
-     * This model binds properties between SchoolFormDesign and school-form-desing.html
+     * This model binds properties between SchoolFormDesign and school-form-design
      */
-    public interface SchoolFormDesingModel extends TemplateModel {
+    public interface SchoolFormDesignModel extends TemplateModel {
         // Add setters and getters for template properties here.
     }
 }

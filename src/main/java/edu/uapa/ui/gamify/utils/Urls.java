@@ -9,10 +9,10 @@ public class Urls {
     public static final String APP_PERMISSION = APP + "/permission";
     public static final String APP_USER = APP + "/user";
 
-    public static final String APP_SCHOOL = APP + "/school";
-    public static final String APP_SUBJECT = APP + "/subject";
+    public static final String APP_SCHOOL = APP + "/schools";
+    public static final String APP_SUBJECT = APP + "/subjects";
 
-    public static final String APP_STUDENT = APP + "/student";
+    public static final String APP_STUDENT = APP + "/students";
 
-    public static final String APP_TEACHER = APP + "/teacher";
+    public static final String APP_TEACHER = APP + "/teachers";
 }

@@ -13,13 +13,13 @@ import edu.utesa.lib.models.dtos.school.SubjectDto;
 import edu.utesa.lib.models.dtos.school.TopicDto;
 
 /**
- * A Designer generated component for the topic-form-desing.html template.
+ * A Designer generated component for the topic-form-design.html template.
  * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
-@Tag("topic-form-desing")
-@HtmlImport("src/views/school/topic-form-desing.html")
+@Tag("topic-form-design")
+@HtmlImport("src/views/school/topic-form-design.html")
 public class TopicFormDesing extends PolymerTemplate<TopicFormDesing.TopicFormDesingModel> implements FormStructure<TopicDto> {
 
     @Id("tfName")
@@ -79,7 +79,7 @@ public class TopicFormDesing extends PolymerTemplate<TopicFormDesing.TopicFormDe
     }
 
     /**
-     * This model binds properties between TopicFormDesing and topic-form-desing.html
+     * This model binds properties between TopicFormDesing and topic-form-design.html
      */
     public interface TopicFormDesingModel extends TemplateModel {
         // Add setters and getters for template properties here.

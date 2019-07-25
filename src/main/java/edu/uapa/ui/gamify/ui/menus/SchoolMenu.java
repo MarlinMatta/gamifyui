@@ -5,6 +5,7 @@ import com.github.appreciated.app.layout.component.menu.left.items.LeftBadgeIcon
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
+import edu.uapa.ui.gamify.ui.form.school.SchoolForm;
 import edu.uapa.ui.gamify.ui.tabs.school.SchoolTab;
 import edu.uapa.ui.gamify.ui.tabs.school.SubjectTab;
 import edu.uapa.ui.gamify.ui.tabs.security.ParameterTab;

@@ -69,6 +69,7 @@ public class Captions {
 
     public static final String DISTRICT = "school";
     public static final String CITY = "City";
+    public static final String COUNTRY = "Country";
     public static final String SECTOR = "Sector";
     public static final String ZIP_CODE = "Zip code";
     public static final String ADDRESS = "Address";
