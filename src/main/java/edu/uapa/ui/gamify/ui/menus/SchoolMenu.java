@@ -9,6 +9,7 @@ import edu.uapa.ui.gamify.ui.form.school.SchoolForm;
 import edu.uapa.ui.gamify.ui.tabs.school.GradeTab;
 import edu.uapa.ui.gamify.ui.tabs.school.SchoolTab;
 import edu.uapa.ui.gamify.ui.tabs.school.SubjectTab;
+import edu.uapa.ui.gamify.ui.tabs.school.TopicTab;
 import edu.uapa.ui.gamify.ui.tabs.security.ParameterTab;
 import edu.uapa.ui.gamify.ui.tabs.security.PermissionGroupTab;
 import edu.uapa.ui.gamify.ui.tabs.security.PermissionTab;
@@ -53,7 +54,7 @@ public class SchoolMenu extends AbstractView {
     private Component topicMenuItem() {
         return new LeftBadgeIconItem(Captions.TOPIC_ITEM,
                 VaadinIcon.LINES_LIST.create(),
-                event -> getTabsManager().addTab(Captions.TOPIC_ITEM, new PermissionGroupTab(), true));
+                event -> getTabsManager().addTab(Captions.TOPIC_ITEM, new TopicTab(), true));
     }
 
     private Component problemMenuItem() {

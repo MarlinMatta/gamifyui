@@ -1,6 +1,7 @@
 package edu.uapa.ui.gamify.views.school.school;
 
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.templatemodel.TemplateModel;
@@ -59,12 +60,14 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
     }
 
     public void fillCountry(List<CountryDto> items) {
+        cbCountry.setItemLabelGenerator(CountryDto::getName);
         cbCountry.setItems(items);
     }
 
     @Override
     public void restore(SchoolDto data) {
         address = data.getAddressDto();
+
         tfName.setValue(data.getName());
         tfDistrict.setValue(data.getDistrict());
         tfCity.setValue(data.getAddressDto().getCity());
@@ -83,27 +86,41 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
         tfSector.setReadOnly(true);
         tfZipCode.setReadOnly(true);
         tfAddress.setReadOnly(true);
-
     }
 
     @Override
     public boolean validField() {
-        return !tfName.isInvalid() && !tfDistrict.isInvalid() && !tfAddress.isInvalid();
+        if (tfName.isInvalid())
+            return false;
+        if (tfDistrict.isInvalid())
+            return false;
+        if (cbCountry.isInvalid())
+            return false;
+        if (tfCity.isInvalid())
+            return false;
+        if (tfSector.isInvalid())
+            return false;
+        if (tfZipCode.isInvalid())
+            return false;
+        if (tfAddress.isInvalid())
+            return false;
+        return true;
     }
 
     @Override
     public SchoolDto collectData(SchoolDto model) {
-        model.setName(tfName.getValue());
-        model.setDistrict(tfDistrict.getValue());
         address.setName(tfName.getValue());
         address.setCity(tfCity.getValue());
         address.setCountryDto(cbCountry.getValue());
         address.setSector(tfSector.getValue());
         address.setZipCode(tfZipCode.getValue());
+        address.setAddress(tfAddress.getValue());
+
+        model.setName(tfName.getValue());
+        model.setDistrict(tfDistrict.getValue());
         model.setAddressDto(address);
         return model;
     }
-
 
     @Override
     public void security() {

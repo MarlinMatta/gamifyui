@@ -56,15 +56,15 @@ public class SchoolRequests extends Request {
         return response.isEmpty() ? 0L : Long.parseLong(response);
     }
 
-    public boolean save(SchoolDto dto) {
-        setJsonBody(JsonUtils.toJSON(dto));
-        HttpResponse<String> response = postExecute("");
-        return response.getStatus() == HttpStatus.SC_CREATED;
-    }
-
     public boolean update(SchoolDto dto) {
         setJsonBody(JsonUtils.toJSON(dto));
         HttpResponse<String> response = putExecute("");
         return response.getStatus() == HttpStatus.SC_ACCEPTED;
+    }
+
+    public boolean save(SchoolDto dto) {
+        setJsonBody(JsonUtils.toJSON(dto));
+        HttpResponse<String> response = postExecute("");
+        return response.getStatus() == HttpStatus.SC_CREATED;
     }
 }

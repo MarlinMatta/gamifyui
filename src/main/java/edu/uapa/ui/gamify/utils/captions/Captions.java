@@ -33,6 +33,7 @@ public class Captions {
     public static final String GRID_COLUMN_ADDRESS = "Address";
     public static final String GRID_COLUMN_SCHOOL = "School";
     public static final String GRID_COLUMN_GRADE = "Grade";
+    public static final String GRID_COLUMN_SUBJECT = "Subject";
 
     public static final String SEARCH = "Search";
 

@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.views.school.topic;
+package edu.uapa.ui.gamify.views.school.school;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -8,9 +8,11 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
-import edu.utesa.lib.models.dtos.school.GradeDto;
+import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.SubjectDto;
 import edu.utesa.lib.models.dtos.school.TopicDto;
+
+import java.util.List;
 
 /**
  * A Designer generated component for the topic-form-design.html template.
@@ -20,35 +22,41 @@ import edu.utesa.lib.models.dtos.school.TopicDto;
  */
 @Tag("topic-form-design")
 @HtmlImport("src/views/school/topic-form-design.html")
-public class TopicFormDesing extends PolymerTemplate<TopicFormDesing.TopicFormDesingModel> implements FormStructure<TopicDto> {
+public class TopicFormDesign extends PolymerTemplate<TopicFormDesign.TopicFormDesignModel> implements FormStructure<TopicDto> {
 
+    @Id("cbSubject")
+    private ComboBox<SubjectDto> cbSubject;
     @Id("tfName")
     private TextField tfName;
     @Id("tfDescription")
     private TextField tfDescription;
-    @Id("cbGrade")
-    private ComboBox<GradeDto> cbGrade;
-    @Id("cbSubject")
-    private ComboBox<SubjectDto> cbSubject;
+
+    private SubjectDto subject;
 
     /**
      * Creates a new TopicFormDesing.
      */
-    public TopicFormDesing() {
+    public TopicFormDesign() {
         // You can initialise any data required for the connected UI components here.
-        tfName.setLabel("TopicName");
-        cbSubject.setLabel("TopicSubject");
-        cbGrade.setLabel("TopicGrade");
-        tfDescription.setLabel("TopicDescription");
+        tfName.setLabel(Captions.NAME);
+        cbSubject.setLabel(Captions.SUBJECT);
+        tfDescription.setLabel(Captions.DESCRIPTION);
+
+        subject = new SubjectDto();
+    }
+
+    public void fillSubject(List<SubjectDto> items) {
+        cbSubject.setItemLabelGenerator(SubjectDto::getName);
+        cbSubject.setItems(items);
     }
 
     @Override
     public void restore(TopicDto data) {
-        tfName.setValue(data.getName());
-        tfDescription.setValue(data.getDescription());
-        cbSubject.setValue(data.getSubjectDto());
-        cbGrade.setValue(data.getGradeDto());
+        subject = data.getSubjectDto();
 
+        cbSubject.setValue(data.getSubjectDto());
+        tfName.setValue(data.getName());
+        tfDescription.setValue(data.getDescription() == null ? "" : data.getDescription());
     }
 
     @Override
@@ -56,20 +64,26 @@ public class TopicFormDesing extends PolymerTemplate<TopicFormDesing.TopicFormDe
         tfName.setReadOnly(true);
         tfDescription.setReadOnly(true);
         cbSubject.setReadOnly(true);
-        cbGrade.setReadOnly(true);
     }
 
     @Override
     public boolean validField() {
-        return !tfName.isInvalid() && !tfDescription.isInvalid() && !cbSubject.isInvalid() && !cbGrade.isInvalid();
+        if (tfName.isInvalid())
+            return false;
+        if (cbSubject.isInvalid())
+            return false;
+        if (tfDescription.isInvalid())
+            return false;
+        return true;
     }
 
     @Override
     public TopicDto collectData(TopicDto model) {
+        subject = cbSubject.getValue();
+
         model.setName(tfName.getValue());
         model.setDescription(tfDescription.getValue());
-        model.setGradeDto(cbGrade.getValue());
-        // model.getSubjectDto(cbSubject.getValue(); verificar klk
+        model.setSubjectDto(subject);
         return model;
     }
 
@@ -81,7 +95,7 @@ public class TopicFormDesing extends PolymerTemplate<TopicFormDesing.TopicFormDe
     /**
      * This model binds properties between TopicFormDesing and topic-form-design.html
      */
-    public interface TopicFormDesingModel extends TemplateModel {
+    public interface TopicFormDesignModel extends TemplateModel {
         // Add setters and getters for template properties here.
     }
 }

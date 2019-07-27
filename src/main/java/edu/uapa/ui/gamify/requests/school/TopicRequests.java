@@ -4,19 +4,19 @@ import com.mashape.unirest.http.HttpResponse;
 import edu.uapa.ui.gamify.requests.Request;
 import edu.uapa.ui.gamify.utils.JsonUtils;
 import edu.uapa.ui.gamify.utils.Urls;
-import edu.utesa.lib.models.dtos.school.SubjectDto;
+import edu.utesa.lib.models.dtos.school.TopicDto;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SubjectRequests extends Request {
-    private static SubjectRequests requestsInstance = null;
+public class TopicRequests extends Request {
+    private static TopicRequests requestsInstance = null;
 
 
-    private SubjectRequests() {
-        super(Urls.APP_SUBJECT);
+    private TopicRequests() {
+        super(Urls.APP_TOPICS);
         Map<String, String> headers = new HashMap<>() {
             {
                 put("accept", "application/json;charset=UTF-8");
@@ -27,22 +27,22 @@ public class SubjectRequests extends Request {
         setHeaders(headers);
     }
 
-    public static SubjectRequests getInstance() {
-        return requestsInstance == null ? new SubjectRequests() : requestsInstance;
+    public static TopicRequests getInstance() {
+        return requestsInstance == null ? new TopicRequests() : requestsInstance;
     }
 
-    public List<SubjectDto> get(int page, int size, String searchValue) {
+    public List<TopicDto> get(int page, int size, String searchValue) {
         String response = getExecute("?page=" + page + "&size=" + size + "&filterValue=" + searchValue);
         if (!response.isEmpty()) {
-            return JsonUtils.toObjectList(response, SubjectDto.class);
+            return JsonUtils.toObjectList(response, TopicDto.class);
         }
         return null;
     }
 
-    public List<SubjectDto> getAll() {
+    public List<TopicDto> getAll() {
         String response = getExecute("/all");
         if (!response.isEmpty()) {
-            return JsonUtils.toObjectList(response, SubjectDto.class);
+            return JsonUtils.toObjectList(response, TopicDto.class);
         }
         return null;
     }
@@ -56,13 +56,13 @@ public class SubjectRequests extends Request {
         return response.isEmpty() ? 0L : Long.parseLong(response);
     }
 
-    public boolean save(SubjectDto dto) {
+    public boolean save(TopicDto dto) {
         setJsonBody(JsonUtils.toJSON(dto));
         HttpResponse<String> response = postExecute("");
         return response.getStatus() == HttpStatus.SC_CREATED;
     }
 
-    public boolean update(SubjectDto dto) {
+    public boolean update(TopicDto dto) {
         setJsonBody(JsonUtils.toJSON(dto));
         HttpResponse<String> response = putExecute("");
         return response.getStatus() == HttpStatus.SC_ACCEPTED;

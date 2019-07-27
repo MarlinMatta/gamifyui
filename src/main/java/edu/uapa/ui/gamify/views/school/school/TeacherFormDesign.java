@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.views.school.teacher;
+package edu.uapa.ui.gamify.views.school.school;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;

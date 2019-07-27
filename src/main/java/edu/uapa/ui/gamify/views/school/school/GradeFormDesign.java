@@ -46,12 +46,14 @@ public class GradeFormDesign extends PolymerTemplate<GradeFormDesign.GradeFormDe
     }
 
     public void fillSchool(List<SchoolDto> items) {
+        cbSchool.setItemLabelGenerator(SchoolDto::getName);
         cbSchool.setItems(items);
     }
 
     @Override
     public void restore(GradeDto data) {
         school = data.getSchoolDto();
+
         cbSchool.setValue(data.getSchoolDto());
         tfName.setValue(data.getName());
         tfDescription.setValue(data.getDescription() == null ? "" : data.getDescription());
@@ -66,12 +68,19 @@ public class GradeFormDesign extends PolymerTemplate<GradeFormDesign.GradeFormDe
 
     @Override
     public boolean validField() {
-        return !tfName.isInvalid() && !cbSchool.isInvalid();
+        if (tfName.isInvalid())
+            return false;
+        if (cbSchool.isInvalid())
+            return false;
+        if (tfDescription.isInvalid())
+            return false;
+        return true;
     }
 
     @Override
     public GradeDto collectData(GradeDto model) {
         school = cbSchool.getValue();
+
         model.setName(tfName.getValue());
         model.setDescription(tfDescription.getValue());
         model.setSchoolDto(school);

@@ -2,7 +2,7 @@ package edu.uapa.ui.gamify.ui.form.teacher;
 
 import edu.uapa.ui.gamify.requests.teacher.TeacherRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
-import edu.uapa.ui.gamify.views.school.teacher.TeacherFormDesign;
+import edu.uapa.ui.gamify.views.school.school.TeacherFormDesign;
 import edu.utesa.lib.models.dtos.school.TeacherDto;
 
 public class TeacherForm extends AbstractSingleForm<TeacherFormDesign, TeacherDto> {
