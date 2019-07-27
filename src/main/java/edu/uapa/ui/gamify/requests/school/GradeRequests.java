@@ -4,19 +4,19 @@ import com.mashape.unirest.http.HttpResponse;
 import edu.uapa.ui.gamify.requests.Request;
 import edu.uapa.ui.gamify.utils.JsonUtils;
 import edu.uapa.ui.gamify.utils.Urls;
-import edu.utesa.lib.models.dtos.school.SchoolDto;
+import edu.utesa.lib.models.dtos.school.GradeDto;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SchoolRequests extends Request {
-    private static SchoolRequests requestsInstance = null;
+public class GradeRequests extends Request {
+    private static GradeRequests requestsInstance = null;
 
 
-    private SchoolRequests() {
-        super(Urls.APP_SCHOOL);
+    private GradeRequests() {
+        super(Urls.APP_GRADE);
         Map<String, String> headers = new HashMap<>() {
             {
                 put("accept", "application/json;charset=UTF-8");
@@ -27,22 +27,22 @@ public class SchoolRequests extends Request {
         setHeaders(headers);
     }
 
-    public static SchoolRequests getInstance() {
-        return requestsInstance == null ? new SchoolRequests() : requestsInstance;
+    public static GradeRequests getInstance() {
+        return requestsInstance == null ? new GradeRequests() : requestsInstance;
     }
 
-    public List<SchoolDto> get(int page, int size, String searchValue) {
+    public List<GradeDto> get(int page, int size, String searchValue) {
         String response = getExecute("?page=" + page + "&size=" + size + "&filterValue=" + searchValue);
         if (!response.isEmpty()) {
-            return JsonUtils.toObjectList(response, SchoolDto.class);
+            return JsonUtils.toObjectList(response, GradeDto.class);
         }
         return null;
     }
 
-    public List<SchoolDto> getAll() {
+    public List<GradeDto> getAll() {
         String response = getExecute("/all");
         if (!response.isEmpty()) {
-            return JsonUtils.toObjectList(response, SchoolDto.class);
+            return JsonUtils.toObjectList(response, GradeDto.class);
         }
         return null;
     }
@@ -56,13 +56,13 @@ public class SchoolRequests extends Request {
         return response.isEmpty() ? 0L : Long.parseLong(response);
     }
 
-    public boolean save(SchoolDto dto) {
+    public boolean save(GradeDto dto) {
         setJsonBody(JsonUtils.toJSON(dto));
         HttpResponse<String> response = postExecute("");
         return response.getStatus() == HttpStatus.SC_CREATED;
     }
 
-    public boolean update(SchoolDto dto) {
+    public boolean update(GradeDto dto) {
         setJsonBody(JsonUtils.toJSON(dto));
         HttpResponse<String> response = putExecute("");
         return response.getStatus() == HttpStatus.SC_ACCEPTED;

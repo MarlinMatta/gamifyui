@@ -10,7 +10,10 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.location.AddressDto;
+import edu.utesa.lib.models.dtos.location.CountryDto;
 import edu.utesa.lib.models.dtos.school.SchoolDto;
+
+import java.util.List;
 
 /**
  * A Designer generated component for the school-form-design template.
@@ -27,7 +30,7 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
     @Id("tfDistrict")
     private TextField tfDistrict;
     @Id("cbCountry")
-    private ComboBox<String> cbCountry;
+    private ComboBox<CountryDto> cbCountry;
     @Id("tfCity")
     private TextField tfCity;
     @Id("tfSector")
@@ -55,13 +58,17 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
         address = new AddressDto();
     }
 
+    public void fillCountry(List<CountryDto> items) {
+        cbCountry.setItems(items);
+    }
+
     @Override
     public void restore(SchoolDto data) {
         address = data.getAddressDto();
         tfName.setValue(data.getName());
         tfDistrict.setValue(data.getDistrict());
         tfCity.setValue(data.getAddressDto().getCity());
-        cbCountry.setValue(data.getAddressDto().getCountryDto().getName());
+        cbCountry.setValue(data.getAddressDto().getCountryDto());
         tfSector.setValue(data.getAddressDto().getSector());
         tfZipCode.setValue(data.getAddressDto().getZipCode());
         tfAddress.setValue(data.getAddressDto().getAddress());
@@ -90,7 +97,7 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
         model.setDistrict(tfDistrict.getValue());
         address.setName(tfName.getValue());
         address.setCity(tfCity.getValue());
-        address.getCountryDto().setName(cbCountry.getValue());
+        address.setCountryDto(cbCountry.getValue());
         address.setSector(tfSector.getValue());
         address.setZipCode(tfZipCode.getValue());
         model.setAddressDto(address);

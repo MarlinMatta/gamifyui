@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.views.school.grade;
+package edu.uapa.ui.gamify.views.school.school;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -15,7 +15,7 @@ import edu.utesa.lib.models.dtos.school.SchoolDto;
 import java.util.List;
 
 /**
- * A Designer generated component for the grade-form-design.html template.
+ * A Designer generated component for the school-form-design template.
  * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
@@ -31,13 +31,18 @@ public class GradeFormDesign extends PolymerTemplate<GradeFormDesign.GradeFormDe
     @Id("tfDescription")
     private TextField tfDescription;
 
+    private SchoolDto school;
+
     /**
-     * Creates a new GradeFormDesign.
+     * Creates a new SchoolFormDesign.
      */
     public GradeFormDesign() {
+        // You can initialise any data required for the connected UI components here.
         cbSchool.setLabel(Captions.SCHOOL);
         tfName.setLabel(Captions.NAME);
         tfDescription.setLabel(Captions.DESCRIPTION);
+
+        school = new SchoolDto();
     }
 
     public void fillSchool(List<SchoolDto> items) {
@@ -46,9 +51,10 @@ public class GradeFormDesign extends PolymerTemplate<GradeFormDesign.GradeFormDe
 
     @Override
     public void restore(GradeDto data) {
+        school = data.getSchoolDto();
         cbSchool.setValue(data.getSchoolDto());
         tfName.setValue(data.getName());
-        tfDescription.setValue(data.getDescription());
+        tfDescription.setValue(data.getDescription() == null ? "" : data.getDescription());
     }
 
     @Override
@@ -60,16 +66,18 @@ public class GradeFormDesign extends PolymerTemplate<GradeFormDesign.GradeFormDe
 
     @Override
     public boolean validField() {
-        return !cbSchool.isInvalid() && !tfName.isInvalid();
+        return !tfName.isInvalid() && !cbSchool.isInvalid();
     }
 
     @Override
     public GradeDto collectData(GradeDto model) {
-        model.setSchoolDto(cbSchool.getValue());
+        school = cbSchool.getValue();
         model.setName(tfName.getValue());
         model.setDescription(tfDescription.getValue());
+        model.setSchoolDto(school);
         return model;
     }
+
 
     @Override
     public void security() {
@@ -77,7 +85,7 @@ public class GradeFormDesign extends PolymerTemplate<GradeFormDesign.GradeFormDe
     }
 
     /**
-     * This model binds properties between GradeFormDesign and grade-form-design.html
+     * This model binds properties between SchoolFormDesign and school-form-design
      */
     public interface GradeFormDesignModel extends TemplateModel {
         // Add setters and getters for template properties here.

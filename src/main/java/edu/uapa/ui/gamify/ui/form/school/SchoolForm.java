@@ -1,5 +1,6 @@
 package edu.uapa.ui.gamify.ui.form.school;
 
+import edu.uapa.ui.gamify.requests.location.CountryRequests;
 import edu.uapa.ui.gamify.requests.school.SchoolRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
 import edu.uapa.ui.gamify.views.school.school.SchoolFormDesign;
@@ -24,6 +25,7 @@ public class SchoolForm extends AbstractSingleForm<SchoolFormDesign, SchoolDto> 
 
     @Override
     protected void setLanguage() {
+        getDesign().fillCountry(CountryRequests.getInstance().getAll());
     }
 
     @Override

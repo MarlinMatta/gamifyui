@@ -4,6 +4,7 @@ package edu.uapa.ui.gamify.utils.captions;
 public class Captions {
     public static final String SCHOOL_MENU = "Escuela";
     public static final String SUBJECT_ITEM = "Materia";
+    public static final String GRADE_ITEM = "Grado";
     public static final String SCHOOL_ITEM = "Escuela";
     public static final String TOPIC_ITEM = "Temas";
     public static final String PROBLEM_ITEM = "Problemas";
@@ -65,21 +66,21 @@ public class Captions {
     public static final String TOPIC = "TOPIC";
     public static final String CONFIGURATION = "configuration";
 
-    public static final String SCHOOL = "configuration";
+    public static final String SCHOOL = "School";
 
-    public static final String DISTRICT = "school";
+    public static final String DISTRICT = "District";
     public static final String CITY = "City";
     public static final String COUNTRY = "Country";
     public static final String SECTOR = "Sector";
     public static final String ZIP_CODE = "Zip code";
     public static final String ADDRESS = "Address";
 
-    public static final String LAST_NAME = "last name";
-    public static final String DATE_BIRTH = "Date birth";
-    public static final String GENDER = "gender";
+    public static final String LAST_NAME = "Last name";
+    public static final String BIRTHDAY = "Birthday";
+    public static final String GENDER = "Gender";
     public static final String GRADE = "Grade";
     public static final String SUBJECT = "Subject";
-    public static final String MAIL = "email";
+    public static final String MAIL = "Email";
 
 }
 

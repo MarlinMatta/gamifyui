@@ -71,7 +71,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         // You can initialise any data required for the connected UI components here.
         tfName.setLabel(Captions.NAME);
         tfLastName.setLabel(Captions.LAST_NAME);
-        dpDateBirth.setLabel(Captions.DATE_BIRTH);
+        dpDateBirth.setLabel(Captions.BIRTHDAY);
         cbGender.setLabel(Captions.GENDER);
         cbSchool.setLabel(Captions.SCHOOL);
         cbGrade.setLabel(Captions.GRADE);
