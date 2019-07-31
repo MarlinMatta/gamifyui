@@ -14,7 +14,7 @@ import edu.uapa.ui.gamify.utils.Tools;
 public class MainAppLayout extends AppLayoutRouterLayout {
     public MainAppLayout() {
         if (!Tools.isLogin()) {
-//            Tools.navigateToLogin();
+            Tools.navigateToLogin();
         } else {
             init(AppLayoutBuilder
                     .get(Behaviour.LEFT_RESPONSIVE)
