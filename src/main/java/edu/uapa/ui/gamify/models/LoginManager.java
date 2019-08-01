@@ -29,4 +29,6 @@ public class LoginManager {
     public String getName() {
         return userDto.getNickName();
     }
+
+
 }

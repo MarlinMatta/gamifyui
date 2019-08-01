@@ -38,11 +38,11 @@ public class LeftAppMenu extends AbstractView {
         layout.setPadding(true);
 
 //        RoundImage roundImage = new RoundImage("frontend/src/images/logo.jpeg", "100%", null);
-        RoundImage roundImage = new RoundImage("frontend/src/images/books.png", "64px", null);
+        RoundImage roundImage = new RoundImage("frontend/src/images/logo.jpeg", "200px", null);
         layout.add(roundImage);
 
         Span description = new Span();
-        description.setText("A Fun Way To Learn");
+        description.setText("A fun way to learn");
         description.getStyle().set("text-align", "center");
         layout.add(description);
 
