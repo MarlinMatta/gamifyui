@@ -36,9 +36,9 @@ public class MainFormDesign extends PolymerTemplate<MainFormDesign.MainFormDesig
      * Creates a new MainFormDesign.
      */
     public MainFormDesign() {
-        btnPlay.setText(Captions.PLAY);
-        btnProfile.setText(Captions.PROFILE);
-        btnSetting.setText(Captions.SETTING);
+        btnPlay.setText(Captions.LEARN);
+        btnProfile.setText(Captions.PRACTICE);
+        btnSetting.setText(Captions.TEST);
         btnLogout.setText(Captions.LOGOUT);
     }
 

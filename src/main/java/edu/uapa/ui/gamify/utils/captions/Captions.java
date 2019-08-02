@@ -59,9 +59,9 @@ public class Captions {
     public static final String PERMISSION = "Permission";
 
     //Marlin
-    public static final String PLAY = "Play";
-    public static final String PROFILE = "Profile";
-    public static final String SETTING = "Setting";
+    public static final String LEARN = "Aprender";
+    public static final String PRACTICE = "Practicar";
+    public static final String TEST = "Pruebas";
 
     public static final String CHOOSE_SUBJECT = "Choose Subject";
     public static final String TOPIC = "TOPIC";
