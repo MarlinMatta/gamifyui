@@ -1,0 +1,58 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/vaadin-text-field/src/vaadin-text-area.html">
+<link rel="import" href="../../../../bower_components/vaadin-ordered-layout/src/vaadin-horizontal-layout.html">
+<link rel="import" href="../../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+<link rel="import" href="../../../../bower_components/vaadin-checkbox/src/vaadin-checkbox.html">
+<link rel="import" href="../../../../bower_components/vaadin-ordered-layout/src/vaadin-vertical-layout.html">
+
+<dom-module id="problem-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-text-area label="" placeholder="" id="taProblem" style="width: 100%"></vaadin-text-area>
+<vaadin-vertical-layout theme="padding" style="width: 100%; height: 100%;">
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-text-field label="" placeholder="" style="width:100%"></vaadin-text-field>
+  <vaadin-checkbox>
+   Correcta? 
+  </vaadin-checkbox>
+ </vaadin-horizontal-layout>
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-text-field label="" placeholder="" style="width:100%"></vaadin-text-field>
+  <vaadin-checkbox>
+    Correcta? 
+  </vaadin-checkbox>
+ </vaadin-horizontal-layout>
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-text-field label="" placeholder="" style="width:100%"></vaadin-text-field>
+  <vaadin-checkbox>
+    Correcta? 
+  </vaadin-checkbox>
+ </vaadin-horizontal-layout>
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-text-field label="" placeholder="" style="width:100%"></vaadin-text-field>
+  <vaadin-checkbox>
+    Correcta? 
+  </vaadin-checkbox>
+ </vaadin-horizontal-layout>
+</vaadin-vertical-layout>
+</template>
+
+    <script>
+        class ProblemDesign extends Polymer.Element {
+            static get is() {
+                return 'problem-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(ProblemDesign.is, ProblemDesign);
+    </script>
+</dom-module>
