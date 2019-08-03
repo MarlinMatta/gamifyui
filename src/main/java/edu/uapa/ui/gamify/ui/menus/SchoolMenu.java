@@ -6,10 +6,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
 import edu.uapa.ui.gamify.ui.form.school.SchoolForm;
-import edu.uapa.ui.gamify.ui.tabs.school.GradeTab;
-import edu.uapa.ui.gamify.ui.tabs.school.SchoolTab;
-import edu.uapa.ui.gamify.ui.tabs.school.SubjectTab;
-import edu.uapa.ui.gamify.ui.tabs.school.TopicTab;
+import edu.uapa.ui.gamify.ui.tabs.school.*;
 import edu.uapa.ui.gamify.ui.tabs.security.ParameterTab;
 import edu.uapa.ui.gamify.ui.tabs.security.PermissionGroupTab;
 import edu.uapa.ui.gamify.ui.tabs.security.PermissionTab;
@@ -27,6 +24,7 @@ public class SchoolMenu extends AbstractView {
                 .add(security(schoolMenuItem(), EnumLoanMasterPermission.PARAM.code))
                 .add(security(subjectMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
                 .add(security(gradeMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
+                .add(security(teacherMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
                 .add(security(topicMenuItem(), EnumLoanMasterPermission.P_GROUP.code))
                 .add(security(problemMenuItem(), EnumLoanMasterPermission.USER.code))
                 .add(security(quitMenuItem(), EnumLoanMasterPermission.USER.code))
@@ -49,6 +47,12 @@ public class SchoolMenu extends AbstractView {
         return new LeftBadgeIconItem(Captions.GRADE_ITEM,
                 VaadinIcon.OPEN_BOOK.create(),
                 event -> getTabsManager().addTab(Captions.GRADE_ITEM, new GradeTab(), true));
+    }
+
+    private Component teacherMenuItem() {
+        return new LeftBadgeIconItem(Captions.TEACHER_ITEM,
+                VaadinIcon.USER.create(),
+                event -> getTabsManager().addTab(Captions.TEACHER_ITEM, new TeacherTab(), true));
     }
 
     private Component topicMenuItem() {

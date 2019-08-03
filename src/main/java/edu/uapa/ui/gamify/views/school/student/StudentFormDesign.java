@@ -81,7 +81,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         tfAddress.setLabel(Captions.ADDRESS);
         tfUserName.setLabel(Captions.USER_NAME);
         tfPassword.setLabel(Captions.PASSWORD);
-        efMail.setLabel(Captions.MAIL);
+        efMail.setLabel(Captions.EMAIL);
 
         address = new AddressDto();
         person = new PersonDto();
@@ -93,7 +93,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         address = data.getAddressDto();
         tfName.setValue(data.getPersonDto().getFirstNames());
         tfLastName.setValue(data.getPersonDto().getLastNames());
-        dpDateBirth.setValue(DateUtils.asLocalDate(data.getPersonDto().getBirthDay()));
+//        dpDateBirth.setValue(data.getPersonDto().getBirthday());
         cbGender.setValue(data.getPersonDto().getGender());
         cbGrade.setValue(data.getGradeDto());
         cbSchool.setValue(data.getSchoolDto());
@@ -142,7 +142,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         person.setLastNames(tfLastName.getValue());
         person.setGender(cbGender.getValue());
         person.setAddressDto(address);
-        person.setBirthDay(DateUtils.asDate(dpDateBirth.getValue()));
+//        person.setBirthday(dpDateBirth.getValue());
         model.setPersonDto(person);
 
         user.setAdmin(false);

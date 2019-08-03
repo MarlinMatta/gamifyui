@@ -1,9 +1,9 @@
-package edu.uapa.ui.gamify.ui.form.teacher;
+package edu.uapa.ui.gamify.ui.form.school;
 
 import edu.uapa.ui.gamify.requests.location.CountryRequests;
 import edu.uapa.ui.gamify.requests.school.GradeRequests;
+import edu.uapa.ui.gamify.requests.school.TeacherRequests;
 import edu.uapa.ui.gamify.requests.school.SchoolRequests;
-import edu.uapa.ui.gamify.requests.teacher.TeacherRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
 import edu.uapa.ui.gamify.views.school.school.TeacherFormDesign;
 import edu.utesa.lib.models.dtos.school.TeacherDto;

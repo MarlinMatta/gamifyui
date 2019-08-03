@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.ui.tabs.student;
+package edu.uapa.ui.gamify.ui.tabs.school;
 
 import com.vaadin.flow.component.Component;
 import edu.uapa.ui.gamify.requests.student.StudentRequests;
