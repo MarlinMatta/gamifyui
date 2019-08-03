@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.ui.tabs.teacher;
+package edu.uapa.ui.gamify.ui.tabs.school;
 
 import com.vaadin.flow.component.Component;
 import edu.uapa.ui.gamify.requests.teacher.TeacherRequests;
@@ -17,10 +17,10 @@ public class TeacherTab extends AbstractTabWithGrid<TeacherDto> {
     @Override
     protected void setLanguage() {
         getGrid().addColumn(TeacherDto::getFullName).setHeader(Captions.GRID_COLUMN_NAME);
-        getGrid().addColumn(TeacherDto::getAddress).setHeader(Captions.GRID_COLUMN_ADDRESS);
-        getGrid().addColumn(TeacherDto::getSchool).setHeader(Captions.GRID_COLUMN_SCHOOL);
-        getGrid().addColumn(TeacherDto::getGrade).setHeader(Captions.GRID_COLUMN_GRADE);
-        getGrid().addColumn(TeacherDto::getUser).setHeader(Captions.GRID_COLUMN_USER);
+        getGrid().addColumn(TeacherDto::getFullAddress).setHeader(Captions.GRID_COLUMN_ADDRESS);
+        getGrid().addColumn(TeacherDto::getSchoolName).setHeader(Captions.GRID_COLUMN_SCHOOL);
+        getGrid().addColumn(TeacherDto::getGradeName).setHeader(Captions.GRID_COLUMN_GRADE);
+        getGrid().addColumn(TeacherDto::getUserNickname).setHeader(Captions.GRID_COLUMN_USER);
         addCRUDActionGrid();
     }
 

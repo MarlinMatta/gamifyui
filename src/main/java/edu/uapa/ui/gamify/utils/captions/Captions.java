@@ -5,6 +5,8 @@ public class Captions {
     public static final String SCHOOL_MENU = "Escuela";
     public static final String SUBJECT_ITEM = "Materia";
     public static final String GRADE_ITEM = "Grado";
+    public static final String TEACHER_ITEM = "Profesor";
+    public static final String STUDENT_ITEM = "Student";
     public static final String SCHOOL_ITEM = "Escuela";
     public static final String TOPIC_ITEM = "Temas";
     public static final String PROBLEM_ITEM = "Problemas";
@@ -63,11 +65,13 @@ public class Captions {
     public static final String PRACTICE = "Practicar";
     public static final String TEST = "Pruebas";
 
+    public static final String SCHOOL = "School";
+    public static final String GRADE = "Grade";
+    public static final String SUBJECT = "Subject";
+
     public static final String CHOOSE_SUBJECT = "Choose Subject";
     public static final String TOPIC = "TOPIC";
     public static final String CONFIGURATION = "configuration";
-
-    public static final String SCHOOL = "School";
 
     public static final String DISTRICT = "District";
     public static final String CITY = "City";
@@ -76,12 +80,14 @@ public class Captions {
     public static final String ZIP_CODE = "Zip code";
     public static final String ADDRESS = "Address";
 
+    public static final String DNI = "DNI";
+    public static final String FIRST_NAME = "First name";
     public static final String LAST_NAME = "Last name";
     public static final String BIRTHDAY = "Birthday";
     public static final String GENDER = "Gender";
-    public static final String GRADE = "Grade";
-    public static final String SUBJECT = "Subject";
-    public static final String MAIL = "Email";
+    public static final String NATIONALITY = "Nationality";
+    public static final String MARITAL_STATUS = "Marital Status";
+
 
 }
 
