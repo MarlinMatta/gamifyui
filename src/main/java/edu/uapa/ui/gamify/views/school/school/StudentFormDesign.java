@@ -26,6 +26,8 @@ import edu.utesa.lib.models.enums.person.MaritalStatus;
 import edu.utesa.lib.models.enums.person.Nationality;
 import edu.utesa.lib.utils.DateUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -153,7 +155,11 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
 //        tfDni.setValue(person.getDni());
         tfFirstName.setValue(person.getFirstNames());
         tfLastName.setValue(person.getLastNames());
-        dpBirthday.setValue(DateUtils.asLocalDate(person.getBirthday()));
+        try {
+            dpBirthday.setValue(DateUtils.asLocalDate(new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss").parse(person.getBirthday())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         cbGender.setValue(person.getGender());
         cbNationality.setValue(person.getNationality());
         cbMaritalStatus.setValue(person.getMaritalStatus());
@@ -238,7 +244,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
 //        person.setDni(tfDni.getValue());
         person.setFirstNames(tfFirstName.getValue());
         person.setLastNames(tfLastName.getValue());
-        person.setBirthday(DateUtils.asDate(dpBirthday.getValue()));
+        person.setBirthday(dpBirthday.getValue().toString());
 
         Notification.show(person.getBirthday().toString());
         person.setGender(cbGender.getValue());
