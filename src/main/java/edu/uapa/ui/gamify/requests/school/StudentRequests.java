@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.requests.student;
+package edu.uapa.ui.gamify.requests.school;
 
 import com.mashape.unirest.http.HttpResponse;
 import edu.uapa.ui.gamify.requests.Request;
@@ -33,6 +33,14 @@ public class StudentRequests extends Request {
 
     public List<StudentDto> get(int page, int size, String searchValue) {
         String response = getExecute("?page=" + page + "&size=" + size + "&filterValue=" + searchValue);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, StudentDto.class);
+        }
+        return null;
+    }
+
+    public List<StudentDto> getAll() {
+        String response = getExecute("/all");
         if (!response.isEmpty()) {
             return JsonUtils.toObjectList(response, StudentDto.class);
         }

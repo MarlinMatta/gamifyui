@@ -1,8 +1,8 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
 <link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
-<link rel="import" href="../../../bower_components/vaadin-combo-box/src/vaadin-combo-box.html">
+<link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
 <link rel="import" href="../../../bower_components/vaadin-date-picker/src/vaadin-date-picker.html">
+<link rel="import" href="../../../bower_components/vaadin-combo-box/src/vaadin-combo-box.html">
 <link rel="import" href="../../../bower_components/vaadin-text-field/src/vaadin-email-field.html">
 
 <dom-module id="student-form-design">
@@ -12,20 +12,33 @@
                 display: block;
             }
         </style>
-<vaadin-form-layout style="width: 100%; height: 100%;">
- <vaadin-text-field id="tfName"></vaadin-text-field>
+<span style="padding-bottom: 20px;">Personal</span>
+<vaadin-form-layout id="vaadinFormLayout" style="width: 100%; height: 100%; padding-bottom: 60px;">
+ <vaadin-text-field id="tfFirstName"></vaadin-text-field>
  <vaadin-text-field id="tfLastName"></vaadin-text-field>
- <vaadin-date-picker id="dpDateBirth"></vaadin-date-picker>
+ <vaadin-date-picker id="dpBirthday"></vaadin-date-picker>
  <vaadin-combo-box id="cbGender"></vaadin-combo-box>
- <vaadin-combo-box id="cbGrade"></vaadin-combo-box>
- <vaadin-combo-box id="cbSchool"></vaadin-combo-box>
- <vaadin-combo-box id="cbCity"></vaadin-combo-box>
+ <vaadin-combo-box id="cbNationality"></vaadin-combo-box>
+ <vaadin-combo-box id="cbMaritalStatus"></vaadin-combo-box>
+</vaadin-form-layout>
+<span style="padding-bottom: 20px;">Home address</span>
+<vaadin-form-layout style="width: 100%; height: 100%; padding-bottom: 60px;">
+ <vaadin-combo-box id="cbCountry"></vaadin-combo-box>
+ <vaadin-text-field id="tfCity"></vaadin-text-field>
  <vaadin-text-field id="tfSector"></vaadin-text-field>
- <vaadin-text-field id="tfZipCode"></vaadin-text-field>
  <vaadin-text-field id="tfAddress"></vaadin-text-field>
- <vaadin-text-field id="tfUserName"></vaadin-text-field>
- <vaadin-text-field id="tfPassword"></vaadin-text-field>
- <vaadin-email-field id="efMail" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$"></vaadin-email-field>
+ <vaadin-text-field id="tfZipCode"></vaadin-text-field>
+</vaadin-form-layout>
+<span style="padding-bottom: 20px;">Academic</span>
+<vaadin-form-layout style="width: 100%; height: 100%; padding-bottom: 60px;">
+ <vaadin-combo-box id="cbSchool"></vaadin-combo-box>
+ <vaadin-combo-box id="cbGrade"></vaadin-combo-box>
+</vaadin-form-layout>
+<span style="padding-bottom: 20px;">Account</span>
+<vaadin-form-layout style="width: 100%; height: 100%; padding-bottom: 60px;">
+ <vaadin-text-field id="tfUsername"></vaadin-text-field>
+ <vaadin-password-field id="tfPassword"></vaadin-password-field>
+ <vaadin-email-field id="efEmail" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$"></vaadin-email-field>
 </vaadin-form-layout>
 </template>
 
@@ -41,6 +54,7 @@
                 };
             }
         }
+
         customElements.define(StudentFormDesign.is, StudentFormDesign);
     </script>
 </dom-module>

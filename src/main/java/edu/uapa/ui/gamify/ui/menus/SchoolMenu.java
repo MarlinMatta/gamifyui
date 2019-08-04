@@ -25,6 +25,7 @@ public class SchoolMenu extends AbstractView {
                 .add(security(subjectMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
                 .add(security(gradeMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
                 .add(security(teacherMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
+                .add(security(studentMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
                 .add(security(topicMenuItem(), EnumLoanMasterPermission.P_GROUP.code))
                 .add(security(problemMenuItem(), EnumLoanMasterPermission.USER.code))
                 .add(security(quitMenuItem(), EnumLoanMasterPermission.USER.code))
@@ -53,6 +54,12 @@ public class SchoolMenu extends AbstractView {
         return new LeftBadgeIconItem(Captions.TEACHER_ITEM,
                 VaadinIcon.USER.create(),
                 event -> getTabsManager().addTab(Captions.TEACHER_ITEM, new TeacherTab(), true));
+    }
+
+    private Component studentMenuItem() {
+        return new LeftBadgeIconItem(Captions.STUDENT_ITEM,
+                VaadinIcon.USER.create(),
+                event -> getTabsManager().addTab(Captions.STUDENT_ITEM, new StudentTab(), true));
     }
 
     private Component topicMenuItem() {
