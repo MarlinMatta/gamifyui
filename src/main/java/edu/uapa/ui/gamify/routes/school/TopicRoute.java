@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
@@ -103,10 +104,30 @@ public class TopicRoute extends PageView {
         klk.setSpacing(false);
         klk.setPadding(false);
 
-        back.addClickListener(event -> Tools.navigateToChooseSubject());
+        back.addClickListener(event -> {
+            if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Aprender")) {
+                Tools.navigateToChooseSubject();
+            } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Practicar")) {
+                Tools.navigateToChooseSubject();
+            } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
+                //TODO: agregar validacion de que si haya test disponible
+                Tools.navigateToChooseSubject();
+            } else {
+                Tools.navigateToChooseSubject();
+            }
+        });
         next.addClickListener(event -> {
             if (hasSelect) {
-                Tools.navigateToConfiguration();
+                if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Aprender")) {
+                    Tools.navigateToLearn();
+                } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Practicar")) {
+                    Tools.navigateToConfiguration();
+                } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
+                    //TODO: agregar validacion de que si haya test disponible
+                    Tools.navigateToTest();
+                } else {
+                    Tools.navigateToStudentMainMenu();
+                }
             } else {
                 Notification.show("Debe selecionar un item para poder proseguir");
             }

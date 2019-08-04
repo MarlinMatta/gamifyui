@@ -12,6 +12,8 @@ public class AllRoutes {
     public static final String PROFILE_ROUTE = "profile";
     public static final String TOPIC_ROUTE = "topic";
     public static final String CONFIGURATION_ROUTE = "configuration";
+    public static final String LEARN_ROUTE = "learn";
+    public static final String TEST_ROUTE = "test";
     public static final String PROBLEM_ROUTE = "problem";
     public static final String SUMMIT_RESULT = "result";
 }

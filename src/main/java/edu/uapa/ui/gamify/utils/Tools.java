@@ -19,6 +19,7 @@ public class Tools {
     public static final String SESSION_NAME = "ChistMarioAndrewAdreanJesu";
 
     public static final String SESSION_TAB_NAME = "MinombreesKkwazzawazzakkwaquikkwalaquaza_Zzabolazza";
+    public static final String SESSION_GAME_MODE = "Kkwazzawazzakkwaquikkwalaquaza";
 
     public static final List<Long> ITEMS_PER_PAGE = Arrays.asList(5L, 10L, 15L, 20L, 25L, 30L, 35L, 40L, 45L, 50L);
 
@@ -34,6 +35,14 @@ public class Tools {
 
     public static void navigateToConfiguration() {
         UI.getCurrent().navigate(AllRoutes.CONFIGURATION_ROUTE);
+    }
+
+    public static void navigateToTest() {
+        UI.getCurrent().navigate(AllRoutes.TEST_ROUTE);
+    }
+
+    public static void navigateToLearn() {
+        UI.getCurrent().navigate(AllRoutes.LEARN_ROUTE);
     }
 
     public static void navigateToTopic() {
