@@ -157,9 +157,8 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         tfFirstName.setValue(person.getFirstNames());
         tfLastName.setValue(person.getLastNames());
         try {
-            dpBirthday.setValue(DateUtils.asLocalDate(new SimpleDateFormat("dd/MM/yyyy").parse(person.getBirthday())));
-        } catch (
-                ParseException e) {
+            dpBirthday.setValue(DateUtils.asLocalDate(new SimpleDateFormat("yyyy/MM/dd").parse(person.getBirthday())));
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         cbGender.setValue(person.getGender());
@@ -169,7 +168,7 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         tfCity.setValue(address.getCity());
         tfSector.setValue(address.getSector());
         tfZipCode.setValue(address.getZipCode());
-        tfAddress.setValue(address.getAddress());
+        tfAddress.setValue(address.getAddress() != null ? address.getAddress() : "");
         cbSchool.setValue(school);
         cbGrade.setValue(grade);
         tfUsername.setValue(user.getNickName());
@@ -242,6 +241,7 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         address.setCity(tfCity.getValue());
         address.setSector(tfSector.getValue());
         address.setZipCode(tfZipCode.getValue());
+        address.setAddress(tfAddress.getValue());
         model.setAddressDto(address);
 //        person.setDni(tfDni.getValue());
         person.setFirstNames(tfFirstName.getValue());
@@ -258,6 +258,7 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         user.setPassword(tfPassword.getValue());
         user.setAdmin(false);
         user.setLanguage(Language.SPANISH);
+        user.setMail(efEmail.getValue());
         model.setUserDto(user);
 
         model.setSchoolDto(cbSchool.getValue());

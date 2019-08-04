@@ -16,11 +16,11 @@ public class TeacherTab extends AbstractTabWithGrid<TeacherDto> {
 
     @Override
     protected void setLanguage() {
-        getGrid().addColumn(TeacherDto::getFullName).setHeader(Captions.GRID_COLUMN_NAME);
-        getGrid().addColumn(TeacherDto::getFullAddress).setHeader(Captions.GRID_COLUMN_ADDRESS);
-        getGrid().addColumn(TeacherDto::getSchoolName).setHeader(Captions.GRID_COLUMN_SCHOOL);
-        getGrid().addColumn(TeacherDto::getGradeName).setHeader(Captions.GRID_COLUMN_GRADE);
-        getGrid().addColumn(TeacherDto::getUserNickname).setHeader(Captions.GRID_COLUMN_USER);
+        getGrid().addColumn(TeacherDto::theFullName).setHeader(Captions.GRID_COLUMN_NAME);
+        getGrid().addColumn(TeacherDto::theFullAddress).setHeader(Captions.GRID_COLUMN_ADDRESS);
+        getGrid().addColumn(TeacherDto::theSchoolName).setHeader(Captions.GRID_COLUMN_SCHOOL);
+        getGrid().addColumn(TeacherDto::theGradeName).setHeader(Captions.GRID_COLUMN_GRADE);
+        getGrid().addColumn(TeacherDto::theUserNickname).setHeader(Captions.GRID_COLUMN_USER);
         addCRUDActionGrid();
     }
 
