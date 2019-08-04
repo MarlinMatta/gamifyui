@@ -1,8 +1,11 @@
-package edu.uapa.ui.gamify.ui.form.student;
+package edu.uapa.ui.gamify.ui.form.school;
 
-import edu.uapa.ui.gamify.requests.student.StudentRequests;
+import edu.uapa.ui.gamify.requests.location.CountryRequests;
+import edu.uapa.ui.gamify.requests.school.GradeRequests;
+import edu.uapa.ui.gamify.requests.school.SchoolRequests;
+import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
-import edu.uapa.ui.gamify.views.school.student.StudentFormDesign;
+import edu.uapa.ui.gamify.views.school.school.StudentFormDesign;
 import edu.utesa.lib.models.dtos.school.StudentDto;
 
 public class StudentForm extends AbstractSingleForm<StudentFormDesign, StudentDto> {
@@ -24,6 +27,9 @@ public class StudentForm extends AbstractSingleForm<StudentFormDesign, StudentDt
 
     @Override
     protected void setLanguage() {
+        getDesign().fillCountry(CountryRequests.getInstance().getAll());
+        getDesign().fillSchool(SchoolRequests.getInstance().getAll());
+        getDesign().fillGrade(GradeRequests.getInstance().getAll());
     }
 
     @Override
