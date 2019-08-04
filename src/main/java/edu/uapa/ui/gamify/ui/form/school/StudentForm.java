@@ -56,4 +56,5 @@ public class StudentForm extends AbstractSingleForm<StudentFormDesign, StudentDt
     protected boolean persistence() {
         return isNew() ? StudentRequests.getInstance().save(getData()) : StudentRequests.getInstance().update(getData());
     }
+    //
 }
