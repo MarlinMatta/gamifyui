@@ -1,6 +1,7 @@
 package edu.uapa.ui.gamify.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import java.lang.reflect.ParameterizedType;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class JsonUtils {
     public static <T> T toObject(String json, Class<T> classOfJSON) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").setPrettyPrinting().create();
         return gson.fromJson(json, classOfJSON);
     }
 

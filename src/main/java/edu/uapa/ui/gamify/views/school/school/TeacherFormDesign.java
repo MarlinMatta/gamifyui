@@ -4,8 +4,6 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -19,7 +17,6 @@ import edu.utesa.lib.models.dtos.location.CountryDto;
 import edu.utesa.lib.models.dtos.person.PersonDto;
 import edu.utesa.lib.models.dtos.school.GradeDto;
 import edu.utesa.lib.models.dtos.school.SchoolDto;
-import edu.utesa.lib.models.dtos.school.SubjectDto;
 import edu.utesa.lib.models.dtos.school.TeacherDto;
 import edu.utesa.lib.models.dtos.security.UserDto;
 import edu.utesa.lib.models.enums.Language;
@@ -28,9 +25,8 @@ import edu.utesa.lib.models.enums.person.MaritalStatus;
 import edu.utesa.lib.models.enums.person.Nationality;
 import edu.utesa.lib.utils.DateUtils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -84,6 +80,8 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
     private UserDto user;
     private GradeDto grade;
     private SchoolDto school;
+
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Creates a new TeacherFormDesign.
@@ -158,7 +156,12 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
 //        tfDni.setValue(person.getDni());
         tfFirstName.setValue(person.getFirstNames());
         tfLastName.setValue(person.getLastNames());
-        dpBirthday.setValue(DateUtils.asLocalDate(person.getBirthday()));
+        try {
+            dpBirthday.setValue(DateUtils.asLocalDate(new SimpleDateFormat("dd/MM/yyyy").parse(person.getBirthday())));
+        } catch (
+                ParseException e) {
+            e.printStackTrace();
+        }
         cbGender.setValue(person.getGender());
         cbNationality.setValue(person.getNationality());
         cbMaritalStatus.setValue(person.getMaritalStatus());
@@ -243,9 +246,8 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
 //        person.setDni(tfDni.getValue());
         person.setFirstNames(tfFirstName.getValue());
         person.setLastNames(tfLastName.getValue());
-        person.setBirthday(DateUtils.asDate(dpBirthday.getValue()));
+        person.setBirthday(dpBirthday.getValue().toString());
 
-        Notification.show(person.getBirthday().toString());
         person.setGender(cbGender.getValue());
         person.setNationality(cbNationality.getValue());
         person.setMaritalStatus(cbMaritalStatus.getValue());
