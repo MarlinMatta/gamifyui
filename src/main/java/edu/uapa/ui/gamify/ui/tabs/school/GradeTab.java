@@ -18,7 +18,7 @@ public class GradeTab extends AbstractTabWithGrid<GradeDto> {
     protected void setLanguage() {
         getGrid().addColumn(GradeDto::getName).setHeader(Captions.GRID_COLUMN_NAME);
         getGrid().addColumn(GradeDto::getDescription).setHeader(Captions.GRID_COLUMN_DESCRIPTION);
-        getGrid().addColumn(GradeDto::getSchoolName).setHeader(Captions.GRID_COLUMN_SCHOOL);
+        getGrid().addColumn(GradeDto::theSchoolName).setHeader(Captions.GRID_COLUMN_SCHOOL);
         addCRUDActionGrid();
     }
 

@@ -12,7 +12,7 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
  * does not overwrite or otherwise change this file.
  */
 @Tag("problem-design")
-@HtmlImport("src/views/school/configuration/problem-design.html")
+@HtmlImport("src/views/school/configuration/problem-form-design.html")
 public class ProblemDesign extends PolymerTemplate<ProblemDesign.ProblemDesignModel> {
 
     /**

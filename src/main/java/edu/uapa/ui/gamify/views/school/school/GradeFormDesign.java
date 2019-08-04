@@ -48,6 +48,7 @@ public class GradeFormDesign extends PolymerTemplate<GradeFormDesign.GradeFormDe
     public void fillSchool(List<SchoolDto> items) {
         cbSchool.setItemLabelGenerator(SchoolDto::getName);
         cbSchool.setItems(items);
+        cbSchool.setValue(items.get(0));
     }
 
     @Override

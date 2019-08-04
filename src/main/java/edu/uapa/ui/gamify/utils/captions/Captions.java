@@ -36,6 +36,8 @@ public class Captions {
     public static final String GRID_COLUMN_SCHOOL = "School";
     public static final String GRID_COLUMN_GRADE = "Grade";
     public static final String GRID_COLUMN_SUBJECT = "Subject";
+    public static final String GRID_COLUMN_TOPIC = "Topic";
+    public static final String GRID_COLUMN_QUESTION = "Question";
 
     public static final String SEARCH = "Search";
 
@@ -68,9 +70,12 @@ public class Captions {
     public static final String SCHOOL = "School";
     public static final String GRADE = "Grade";
     public static final String SUBJECT = "Subject";
+    public static final String TEACHER = "Teacher";
+    public static final String TOPIC = "Topic";
+    public static final String ANSWER = "Answer";
+    public static final String QUESTION = "Question";
 
     public static final String CHOOSE_SUBJECT = "Choose Subject";
-    public static final String TOPIC = "TOPIC";
     public static final String CONFIGURATION = "configuration";
 
     public static final String DISTRICT = "District";

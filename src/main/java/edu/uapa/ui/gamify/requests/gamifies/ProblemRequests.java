@@ -1,22 +1,22 @@
-package edu.uapa.ui.gamify.requests.teacher;
+package edu.uapa.ui.gamify.requests.gamifies;
 
 import com.mashape.unirest.http.HttpResponse;
 import edu.uapa.ui.gamify.requests.Request;
 import edu.uapa.ui.gamify.utils.JsonUtils;
 import edu.uapa.ui.gamify.utils.Urls;
-import edu.utesa.lib.models.dtos.school.TeacherDto;
+import edu.utesa.lib.models.dtos.school.ProblemDto;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TeacherRequests extends Request {
-    private static TeacherRequests requestsInstance = null;
+public class ProblemRequests extends Request {
+    private static ProblemRequests requestsInstance = null;
 
 
-    private TeacherRequests() {
-        super(Urls.APP_TEACHER);
+    private ProblemRequests() {
+        super(Urls.APP_PROBLEM);
         Map<String, String> headers = new HashMap<>() {
             {
                 put("accept", "application/json;charset=UTF-8");
@@ -27,14 +27,22 @@ public class TeacherRequests extends Request {
         setHeaders(headers);
     }
 
-    public static TeacherRequests getInstance() {
-        return requestsInstance == null ? new TeacherRequests() : requestsInstance;
+    public static ProblemRequests getInstance() {
+        return requestsInstance == null ? new ProblemRequests() : requestsInstance;
     }
 
-    public List<TeacherDto> get(int page, int size, String searchValue) {
+    public List<ProblemDto> get(int page, int size, String searchValue) {
         String response = getExecute("?page=" + page + "&size=" + size + "&filterValue=" + searchValue);
         if (!response.isEmpty()) {
-            return JsonUtils.toObjectList(response, TeacherDto.class);
+            return JsonUtils.toObjectList(response, ProblemDto.class);
+        }
+        return null;
+    }
+
+    public List<ProblemDto> getAll() {
+        String response = getExecute("/all");
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, ProblemDto.class);
         }
         return null;
     }
@@ -48,13 +56,13 @@ public class TeacherRequests extends Request {
         return response.isEmpty() ? 0L : Long.parseLong(response);
     }
 
-    public boolean save(TeacherDto dto) {
+    public boolean save(ProblemDto dto) {
         setJsonBody(JsonUtils.toJSON(dto));
         HttpResponse<String> response = postExecute("");
         return response.getStatus() == HttpStatus.SC_CREATED;
     }
 
-    public boolean update(TeacherDto dto) {
+    public boolean update(ProblemDto dto) {
         setJsonBody(JsonUtils.toJSON(dto));
         HttpResponse<String> response = putExecute("");
         return response.getStatus() == HttpStatus.SC_ACCEPTED;

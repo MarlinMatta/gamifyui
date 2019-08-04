@@ -10,6 +10,8 @@ import edu.uapa.ui.gamify.ui.abstracts.base.AbstractDialog;
 import edu.uapa.ui.gamify.ui.components.TabsManager;
 import edu.uapa.ui.gamify.views.components.FormActionBarDesign;
 
+import java.text.ParseException;
+
 public abstract class AbstractSingleForm<C extends Component, D> extends AbstractDialog {
 
     @Id("form-action-bar-design")
@@ -84,7 +86,7 @@ public abstract class AbstractSingleForm<C extends Component, D> extends Abstrac
 
     protected abstract boolean validField();
 
-    protected abstract void collect();
+    protected abstract void collect() ;
 
     protected abstract boolean persistence();
 

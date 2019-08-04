@@ -1,0 +1,57 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/vaadin-text-field/src/vaadin-text-area.html">
+<link rel="import" href="../../../../bower_components/vaadin-ordered-layout/src/vaadin-horizontal-layout.html">
+<link rel="import" href="../../../../bower_components/vaadin-text-field/src/vaadin-text-field.html">
+<link rel="import" href="../../../../bower_components/vaadin-ordered-layout/src/vaadin-vertical-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-form-layout/src/vaadin-form-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-combo-box/src/vaadin-combo-box.html">
+<link rel="import" href="../../../../bower_components/vaadin-checkbox/src/vaadin-checkbox.html">
+
+<dom-module id="problem-form-design">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+<vaadin-form-layout style="width: 100%; height: 100%;">
+ <vaadin-combo-box id="cbTeacher"></vaadin-combo-box>
+ <vaadin-combo-box id="cbTopic"></vaadin-combo-box>
+</vaadin-form-layout>
+<vaadin-text-area label="" placeholder="" id="taQuestion" style="width: 100%; padding-bottom: 40px;"></vaadin-text-area>
+<span>Escriba cuatro respuestas a la pregunta y seleccione la correcta.</span>
+<vaadin-vertical-layout theme="padding" style="width: 100%; height: 100%;">
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-text-field label="" placeholder="" style="width:100%" id="tfAnswer01"></vaadin-text-field>
+  <vaadin-checkbox id="cbCorrect01"></vaadin-checkbox>
+ </vaadin-horizontal-layout>
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-text-field label="" placeholder="" style="width:100%" id="tfAnswer02"></vaadin-text-field>
+  <vaadin-checkbox id="cbCorrect02"></vaadin-checkbox>
+ </vaadin-horizontal-layout>
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-text-field label="" placeholder="" style="width:100%" id="tfAnswer03"></vaadin-text-field>
+  <vaadin-checkbox id="cbCorrect03"></vaadin-checkbox>
+ </vaadin-horizontal-layout>
+ <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-text-field label="" placeholder="" style="width:100%" id="tfAnswer04"></vaadin-text-field>
+  <vaadin-checkbox id="cbCorrect04"></vaadin-checkbox>
+ </vaadin-horizontal-layout>
+</vaadin-vertical-layout>
+</template>
+
+    <script>
+        class ProblemFormDesign extends Polymer.Element {
+            static get is() {
+                return 'problem-form-design';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(ProblemFormDesign.is, ProblemFormDesign);
+    </script>
+</dom-module>

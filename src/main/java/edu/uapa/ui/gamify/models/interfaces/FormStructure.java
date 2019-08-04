@@ -1,5 +1,7 @@
 package edu.uapa.ui.gamify.models.interfaces;
 
+import java.text.ParseException;
+
 public interface FormStructure<T> {
 
     void restore(T data);
@@ -8,7 +10,7 @@ public interface FormStructure<T> {
 
     boolean validField();
 
-    T collectData(T model);
+    T collectData(T model) throws ParseException;
 
     void security();
 }

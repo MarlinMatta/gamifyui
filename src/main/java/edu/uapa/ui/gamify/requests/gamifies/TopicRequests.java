@@ -1,4 +1,4 @@
-package edu.uapa.ui.gamify.requests.school;
+package edu.uapa.ui.gamify.requests.gamifies;
 
 import com.mashape.unirest.http.HttpResponse;
 import edu.uapa.ui.gamify.requests.Request;
@@ -16,7 +16,7 @@ public class TopicRequests extends Request {
 
 
     private TopicRequests() {
-        super(Urls.APP_TOPICS);
+        super(Urls.APP_TOPIC);
         Map<String, String> headers = new HashMap<>() {
             {
                 put("accept", "application/json;charset=UTF-8");

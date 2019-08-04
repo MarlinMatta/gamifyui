@@ -247,7 +247,6 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         person.setFirstNames(tfFirstName.getValue());
         person.setLastNames(tfLastName.getValue());
         person.setBirthday(dpBirthday.getValue().toString());
-
         person.setGender(cbGender.getValue());
         person.setNationality(cbNationality.getValue());
         person.setMaritalStatus(cbMaritalStatus.getValue());

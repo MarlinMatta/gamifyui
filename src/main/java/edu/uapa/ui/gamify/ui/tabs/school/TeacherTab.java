@@ -1,9 +1,9 @@
 package edu.uapa.ui.gamify.ui.tabs.school;
 
 import com.vaadin.flow.component.Component;
-import edu.uapa.ui.gamify.requests.teacher.TeacherRequests;
+import edu.uapa.ui.gamify.requests.school.TeacherRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractTabWithGrid;
-import edu.uapa.ui.gamify.ui.form.teacher.TeacherForm;
+import edu.uapa.ui.gamify.ui.form.school.TeacherForm;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.TeacherDto;
 

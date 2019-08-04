@@ -1,7 +1,6 @@
-package edu.uapa.ui.gamify.ui.form.school;
+package edu.uapa.ui.gamify.ui.form.gamifies;
 
-import edu.uapa.ui.gamify.requests.school.TopicRequests;
-import edu.uapa.ui.gamify.requests.school.SchoolRequests;
+import edu.uapa.ui.gamify.requests.gamifies.TopicRequests;
 import edu.uapa.ui.gamify.requests.school.SubjectRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
 import edu.uapa.ui.gamify.views.school.school.TopicFormDesign;

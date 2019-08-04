@@ -239,14 +239,13 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         address.setCountryDto(cbCountry.getValue());
         address.setCity(tfCity.getValue());
         address.setSector(tfSector.getValue());
+        address.setAddress(tfAddress.getValue());
         address.setZipCode(tfZipCode.getValue());
         model.setAddressDto(address);
 //        person.setDni(tfDni.getValue());
         person.setFirstNames(tfFirstName.getValue());
         person.setLastNames(tfLastName.getValue());
         person.setBirthday(dpBirthday.getValue().toString());
-
-        Notification.show(person.getBirthday().toString());
         person.setGender(cbGender.getValue());
         person.setNationality(cbNationality.getValue());
         person.setMaritalStatus(cbMaritalStatus.getValue());
@@ -255,6 +254,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
 
         user.setNickName(tfUsername.getValue());
         user.setPassword(tfPassword.getValue());
+        user.setMail(efEmail.getValue());
         user.setAdmin(false);
         user.setLanguage(Language.SPANISH);
         model.setUserDto(user);

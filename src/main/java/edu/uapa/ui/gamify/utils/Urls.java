@@ -12,11 +12,11 @@ public class Urls {
     public static final String APP_SCHOOL = APP + "/schools";
     public static final String APP_SUBJECT = APP + "/subjects";
     public static final String APP_GRADE = APP + "/grades";
-    public static final String APP_TOPICS = APP + "/topics";
-
     public static final String APP_STUDENT = APP + "/students";
-
     public static final String APP_TEACHER = APP + "/teachers";
+
+    public static final String APP_TOPIC = APP + "/topics";
+    public static final String APP_PROBLEM = APP + "/problems";
 
     public static final String APP_COUNTRY = APP + "/countries";
 }

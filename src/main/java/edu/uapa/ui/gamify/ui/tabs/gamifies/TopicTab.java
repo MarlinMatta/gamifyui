@@ -1,9 +1,9 @@
-package edu.uapa.ui.gamify.ui.tabs.school;
+package edu.uapa.ui.gamify.ui.tabs.gamifies;
 
 import com.vaadin.flow.component.Component;
-import edu.uapa.ui.gamify.requests.school.TopicRequests;
+import edu.uapa.ui.gamify.requests.gamifies.TopicRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractTabWithGrid;
-import edu.uapa.ui.gamify.ui.form.school.TopicForm;
+import edu.uapa.ui.gamify.ui.form.gamifies.TopicForm;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.TopicDto;
 
@@ -18,7 +18,7 @@ public class TopicTab extends AbstractTabWithGrid<TopicDto> {
     protected void setLanguage() {
         getGrid().addColumn(TopicDto::getName).setHeader(Captions.GRID_COLUMN_NAME);
         getGrid().addColumn(TopicDto::getDescription).setHeader(Captions.GRID_COLUMN_DESCRIPTION);
-        getGrid().addColumn(TopicDto::getSubjectName).setHeader(Captions.GRID_COLUMN_SUBJECT);
+        getGrid().addColumn(TopicDto::theSubjectName).setHeader(Captions.GRID_COLUMN_SUBJECT);
         addCRUDActionGrid();
     }
 

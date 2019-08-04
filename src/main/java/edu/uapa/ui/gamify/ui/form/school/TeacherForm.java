@@ -8,6 +8,8 @@ import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
 import edu.uapa.ui.gamify.views.school.school.TeacherFormDesign;
 import edu.utesa.lib.models.dtos.school.TeacherDto;
 
+import java.text.ParseException;
+
 public class TeacherForm extends AbstractSingleForm<TeacherFormDesign, TeacherDto> {
 
     public TeacherForm() {
