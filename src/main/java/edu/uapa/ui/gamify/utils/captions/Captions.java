@@ -51,13 +51,13 @@ public class Captions {
     public static final String BUTTON_EXIT = "Exit";
 
     public static final String CODE = "Code";
-    public static final String NAME = "Name";
+    public static final String NAME = "Nombre";
     public static final String VALUE = "Value";
     public static final String TYPE = "Type";
-    public static final String DESCRIPTION = "Description";
+    public static final String DESCRIPTION = "Descripción";
     public static final String ONLY_ROOT = "Only root";
     public static final String USER_NAME = "Username";
-    public static final String PASSWORD = "Password";
+    public static final String PASSWORD = "Contraseña";
     public static final String LANGUAGE = "Language";
     public static final String EMAIL = "Email";
     public static final String PERMISSION = "Permission";
@@ -67,31 +67,36 @@ public class Captions {
     public static final String PRACTICE = "Practicar";
     public static final String TEST = "Pruebas";
 
-    public static final String SCHOOL = "School";
-    public static final String GRADE = "Grade";
-    public static final String SUBJECT = "Subject";
-    public static final String TEACHER = "Teacher";
-    public static final String TOPIC = "Topic";
-    public static final String ANSWER = "Answer";
-    public static final String QUESTION = "Question";
+    public static final String SCHOOL = "Escuela";
+    public static final String GRADE = "Grado";
+    public static final String SUBJECT = "Materia";
+    public static final String TEACHER = "Profesor";
+    public static final String TOPIC = "Tema";
+    public static final String ANSWER = "Respuesta";
+    public static final String QUESTION = "Pregunta";
+
+    public static final String DIFFICULTY = "Dificultad";
+    public static final String PROBLEM_QUANTITY = "Cantidad de preguntas";
+    public static final String FROM_DATE = "Desde la fecha";
+    public static final String TO_DATE = "Hasta la fecha";
 
     public static final String CHOOSE_SUBJECT = "Choose Subject";
-    public static final String CONFIGURATION = "configuration";
+    public static final String CONFIGURATION = "Configuration";
 
-    public static final String DISTRICT = "District";
-    public static final String CITY = "City";
-    public static final String COUNTRY = "Country";
+    public static final String DISTRICT = "Distrito";
+    public static final String CITY = "Ciudad";
+    public static final String COUNTRY = "País";
     public static final String SECTOR = "Sector";
-    public static final String ZIP_CODE = "Zip code";
-    public static final String ADDRESS = "Address";
+    public static final String ZIP_CODE = "Código postal";
+    public static final String ADDRESS = "Dirección";
 
     public static final String DNI = "DNI";
-    public static final String FIRST_NAME = "First name";
-    public static final String LAST_NAME = "Last name";
-    public static final String BIRTHDAY = "Birthday";
-    public static final String GENDER = "Gender";
-    public static final String NATIONALITY = "Nationality";
-    public static final String MARITAL_STATUS = "Marital Status";
+    public static final String FIRST_NAME = "Nombre";
+    public static final String LAST_NAME = "Apellido";
+    public static final String BIRTHDAY = "Cumpleaños";
+    public static final String GENDER = "Género";
+    public static final String NATIONALITY = "Nacionalidad";
+    public static final String MARITAL_STATUS = "Estado civil";
 
 
 }
