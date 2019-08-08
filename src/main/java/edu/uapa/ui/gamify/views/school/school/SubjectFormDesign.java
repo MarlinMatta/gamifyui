@@ -12,6 +12,7 @@ import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.location.AddressDto;
 import edu.utesa.lib.models.dtos.school.GradeDto;
 import edu.utesa.lib.models.dtos.school.SubjectDto;
+import edu.utesa.lib.models.dtos.school.TeacherDto;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ import java.util.List;
 @HtmlImport("src/views/school/subject-form-design.html")
 public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.SubjectFormDesignModel> implements FormStructure<SubjectDto> {
 
+    @Id("cbTeacher")
+    private ComboBox<TeacherDto> cbTeacher;
     @Id("cbGrade")
     private ComboBox<GradeDto> cbGrade;
     @Id("tfName")
@@ -32,17 +35,27 @@ public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.Subject
     @Id("tfDescription")
     private TextField tfDescription;
 
+    private TeacherDto teacher;
     private GradeDto grade;
+
     /**
      * Creates a new SchoolFormDesign.
      */
     public SubjectFormDesign() {
         // You can initialise any data required for the connected UI components here.
+        cbTeacher.setLabel(Captions.TEACHER);
         cbGrade.setLabel(Captions.GRADE);
         tfName.setLabel(Captions.NAME);
         tfDescription.setLabel(Captions.DESCRIPTION);
 
+        teacher = new TeacherDto();
         grade = new GradeDto();
+    }
+
+    public void fillTeacher(List<TeacherDto> items) {
+        cbTeacher.setItemLabelGenerator(TeacherDto::theFullName);
+        cbTeacher.setItems(items);
+        cbTeacher.setValue(items.get(0));
     }
 
     public void fillGrade(List<GradeDto> items) {
@@ -52,15 +65,18 @@ public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.Subject
 
     @Override
     public void restore(SubjectDto data) {
+        teacher = data.getTeacherDto();
         grade = data.getGradeDto();
 
-        cbGrade.setValue(data.getGradeDto());
+        cbTeacher.setValue(teacher);
+        cbGrade.setValue(grade);
         tfName.setValue(data.getName());
         tfDescription.setValue(data.getDescription() == null ? "" : data.getDescription());
     }
 
     @Override
     public void visualize() {
+        cbTeacher.setReadOnly(true);
         cbGrade.setReadOnly(true);
         tfName.setReadOnly(true);
         tfDescription.setReadOnly(true);
@@ -68,9 +84,11 @@ public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.Subject
 
     @Override
     public boolean validField() {
-        if (tfName.isInvalid())
+        if (cbTeacher.isInvalid())
             return false;
         if (cbGrade.isInvalid())
+            return false;
+        if (tfName.isInvalid())
             return false;
         if (tfDescription.isInvalid())
             return false;
@@ -79,11 +97,13 @@ public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.Subject
 
     @Override
     public SubjectDto collectData(SubjectDto model) {
+        teacher = cbTeacher.getValue();
         grade = cbGrade.getValue();
 
+        model.setTeacherDto(teacher);
+        model.setGradeDto(grade);
         model.setName(tfName.getValue());
         model.setDescription(tfDescription.getValue());
-        model.setGradeDto(grade);
         return model;
     }
 

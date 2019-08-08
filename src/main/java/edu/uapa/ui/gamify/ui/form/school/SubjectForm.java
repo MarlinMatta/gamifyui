@@ -2,6 +2,7 @@ package edu.uapa.ui.gamify.ui.form.school;
 
 import edu.uapa.ui.gamify.requests.school.GradeRequests;
 import edu.uapa.ui.gamify.requests.school.SubjectRequests;
+import edu.uapa.ui.gamify.requests.school.TeacherRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
 import edu.uapa.ui.gamify.views.school.school.SubjectFormDesign;
 import edu.utesa.lib.models.dtos.school.SubjectDto;
@@ -25,6 +26,7 @@ public class SubjectForm extends AbstractSingleForm<SubjectFormDesign, SubjectDt
 
     @Override
     protected void setLanguage() {
+        getDesign().fillTeacher(TeacherRequests.getInstance().getAll());
         getDesign().fillGrade(GradeRequests.getInstance().getAll());
     }
 

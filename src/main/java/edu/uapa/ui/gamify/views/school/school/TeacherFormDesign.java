@@ -18,6 +18,7 @@ import edu.utesa.lib.models.dtos.person.PersonDto;
 import edu.utesa.lib.models.dtos.school.GradeDto;
 import edu.utesa.lib.models.dtos.school.SchoolDto;
 import edu.utesa.lib.models.dtos.school.TeacherDto;
+import edu.utesa.lib.models.dtos.security.PermissionDto;
 import edu.utesa.lib.models.dtos.security.UserDto;
 import edu.utesa.lib.models.enums.Language;
 import edu.utesa.lib.models.enums.person.Gender;
@@ -258,6 +259,7 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         user.setAdmin(false);
         user.setLanguage(Language.SPANISH);
         user.setMail(efEmail.getValue());
+        user.getPermissions().add(new PermissionDto(2,"Teacher",""));
         model.setUserDto(user);
 
         model.setSchoolDto(cbSchool.getValue());

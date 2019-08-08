@@ -19,6 +19,7 @@ import edu.utesa.lib.models.dtos.person.PersonDto;
 import edu.utesa.lib.models.dtos.school.GradeDto;
 import edu.utesa.lib.models.dtos.school.SchoolDto;
 import edu.utesa.lib.models.dtos.school.StudentDto;
+import edu.utesa.lib.models.dtos.security.PermissionDto;
 import edu.utesa.lib.models.dtos.security.UserDto;
 import edu.utesa.lib.models.enums.Language;
 import edu.utesa.lib.models.enums.person.Gender;
@@ -69,6 +70,8 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
     private ComboBox<SchoolDto> cbSchool;
     @Id("cbGrade")
     private ComboBox<GradeDto> cbGrade;
+    @Id("tfPoints")
+    private TextField tfPoints;
     @Id("tfUsername")
     private TextField tfUsername;
     @Id("tfPassword")
@@ -101,6 +104,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         tfAddress.setLabel(Captions.ADDRESS);
         cbSchool.setLabel(Captions.SCHOOL);
         cbGrade.setLabel(Captions.GRADE);
+        tfPoints.setLabel(Captions.POINTS);
         tfUsername.setLabel(Captions.USER_NAME);
         tfPassword.setLabel(Captions.PASSWORD);
         efEmail.setLabel(Captions.EMAIL);
@@ -124,6 +128,8 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         cbMaritalStatus.setValue(MaritalStatus.SINGLE);
 
         dpBirthday.setValue(DateUtils.asLocalDate(new Date("1/1/1996")));
+        tfPoints.setValue("0");
+        tfPoints.setReadOnly(true);
     }
 
     public void fillCountry(List<CountryDto> items) {
@@ -170,6 +176,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         tfAddress.setValue(address.getAddress());
         cbSchool.setValue(school);
         cbGrade.setValue(grade);
+        tfPoints.setValue(String.valueOf(data.getPoints()));
         tfUsername.setValue(user.getNickName());
         tfPassword.setValue(user.getPassword());
         efEmail.setValue(user.getMail());
@@ -191,6 +198,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         tfZipCode.setReadOnly(true);
         cbSchool.setReadOnly(true);
         cbGrade.setReadOnly(true);
+        tfPoints.setReadOnly(true);
         tfUsername.setReadOnly(true);
         tfPassword.setReadOnly(true);
         efEmail.setReadOnly(true);
@@ -224,6 +232,8 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
             return false;
         if (cbGrade.isInvalid())
             return false;
+        if (tfPoints.isInvalid())
+            return false;
         if (tfUsername.isInvalid())
             return false;
         if (tfPassword.isInvalid())
@@ -252,15 +262,17 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         person.setAddressDto(address);
         model.setPersonDto(person);
 
+        model.setSchoolDto(cbSchool.getValue());
+        model.setGradeDto(cbGrade.getValue());
+        model.setPoints(Integer.parseInt(tfPoints.getValue()));
+
         user.setNickName(tfUsername.getValue());
         user.setPassword(tfPassword.getValue());
         user.setMail(efEmail.getValue());
         user.setAdmin(false);
         user.setLanguage(Language.SPANISH);
+        user.getPermissions().add(new PermissionDto(1,"Student",""));
         model.setUserDto(user);
-
-        model.setSchoolDto(cbSchool.getValue());
-        model.setGradeDto(cbGrade.getValue());
 
         return model;
     }

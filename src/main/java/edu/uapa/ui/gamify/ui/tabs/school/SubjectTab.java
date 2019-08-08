@@ -17,6 +17,7 @@ public class SubjectTab extends AbstractTabWithGrid<SubjectDto> {
 
     @Override
     protected void setLanguage() {
+        getGrid().addColumn(SubjectDto::theTeacherName).setHeader(Captions.GRID_COLUMN_TEACHER);
         getGrid().addColumn(SubjectDto::getName).setHeader(Captions.GRID_COLUMN_NAME);
         getGrid().addColumn(SubjectDto::getDescription).setHeader(Captions.GRID_COLUMN_DESCRIPTION);
         getGrid().addColumn(SubjectDto::theGradeName).setHeader(Captions.GRID_COLUMN_GRADE);
