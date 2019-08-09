@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.requests.school.SubjectRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
@@ -20,7 +21,6 @@ import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.SubjectDto;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Route(value = AllRoutes.CHOOSE_SUBJECT_ROUTE, layout = MainAppLayout.class)
@@ -38,8 +38,6 @@ public class ChooseSubjectRoute extends PageView {
         setMargin(false);
         setPadding(true);
         setSpacing(false);
-
-        subjects = SubjectRequests.getInstance().getByGrade();
 
         buildMainLayout();
         add(mainLayout);

@@ -28,19 +28,7 @@ public class TopicRoute extends PageView {
 
     private VerticalLayout mainLayout;
     private AppDrawerLayout bodyLayout = new AppDrawerLayout();
-//    private List<String> subjects = Arrays.asList(
-//            "Numero naturales",
-//            "Numeros reales",
-//            "Ecuaciones",
-//            "Ecuaciones lineales",
-//            "Ecuaciones cuadratica",
-//            "Logaritmo",
-//            "Aljebra",
-//            "Exponenciales",
-//            "Trigonometria"
-//    );
-
-    private List<TopicDto> subjects = TopicRequests.getInstance().getBySubject();
+    private List<TopicDto> subjects = TopicRequests.getInstance().getBySubject(Tools.getSessionSubject());
     private boolean hasSelect = false;
 
     public TopicRoute() {
@@ -90,7 +78,6 @@ public class TopicRoute extends PageView {
 
     private Component appLayoutBody() {
         bodyLayout.getElement().getStyle().set("width", "100%");
-//        subjects.forEach(s -> bodyLayout.add(subjectComponent(s)));
         subjects.forEach(subjectDto -> {
             Component component = subjectComponent(subjectDto.getName());
             component.setId(subjectDto.getId() + "");
