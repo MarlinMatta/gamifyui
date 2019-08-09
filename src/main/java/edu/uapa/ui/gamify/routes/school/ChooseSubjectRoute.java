@@ -12,36 +12,40 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import edu.uapa.ui.gamify.requests.school.SubjectRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
+import edu.utesa.lib.models.dtos.school.SubjectDto;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Route(value = AllRoutes.CHOOSE_SUBJECT_ROUTE, layout = MainAppLayout.class)
 public class ChooseSubjectRoute extends PageView {
     private VerticalLayout mainLayout;
     private AppDrawerLayout bodyLayout = new AppDrawerLayout();
-    private List<String> subjects = Arrays.asList(
-            "Moral",
-            "Civica",
-            "Legion",
-            "Fisica",
-            "Quimica",
-            "Religion",
-            "Economia",
-            "Universal",
-            "Matematica",
-            "Estadistica",
-            "Electronica",
-            "Computacion",
-            "Medio Ambiente",
-            "Lengua espagnola",
-            "Formacion Humana"
-    );
+//    private List<String> subjects = Arrays.asList(
+//            "Moral",
+//            "Civica",
+//            "Legion",
+//            "Fisica",
+//            "Quimica",
+//            "Religion",
+//            "Economia",
+//            "Universal",
+//            "Matematica",
+//            "Estadistica",
+//            "Electronica",
+//            "Computacion",
+//            "Medio Ambiente",
+//            "Lengua espagnola",
+//            "Formacion Humana"
+//    );
+
+    private List<SubjectDto> subjects = SubjectRequests.getInstance().getByGrade();
+
     private boolean hasSelect = false;
 
     public ChooseSubjectRoute() {
@@ -92,7 +96,12 @@ public class ChooseSubjectRoute extends PageView {
 
     private Component appLayoutBody() {
         bodyLayout.getElement().getStyle().set("width", "100%");
-        subjects.forEach(s -> bodyLayout.add(subjectComponent(s)));
+//        subjects.forEach(s -> bodyLayout.add(subjectComponent(s)));
+        subjects.forEach(subjectDto -> {
+            Component component = subjectComponent(subjectDto.getName());
+            component.setId(subjectDto.getId() + "");
+            bodyLayout.add(component);
+        });
         return bodyLayout;
     }
 

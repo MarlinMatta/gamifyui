@@ -13,13 +13,14 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
+import edu.uapa.ui.gamify.requests.gamifies.TopicRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
+import edu.utesa.lib.models.dtos.school.TopicDto;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Route(value = AllRoutes.TOPIC_ROUTE, layout = MainAppLayout.class)
@@ -27,17 +28,19 @@ public class TopicRoute extends PageView {
 
     private VerticalLayout mainLayout;
     private AppDrawerLayout bodyLayout = new AppDrawerLayout();
-    private List<String> subjects = Arrays.asList(
-            "Numero naturales",
-            "Numeros reales",
-            "Ecuaciones",
-            "Ecuaciones lineales",
-            "Ecuaciones cuadratica",
-            "Logaritmo",
-            "Aljebra",
-            "Exponenciales",
-            "Trigonometria"
-    );
+//    private List<String> subjects = Arrays.asList(
+//            "Numero naturales",
+//            "Numeros reales",
+//            "Ecuaciones",
+//            "Ecuaciones lineales",
+//            "Ecuaciones cuadratica",
+//            "Logaritmo",
+//            "Aljebra",
+//            "Exponenciales",
+//            "Trigonometria"
+//    );
+
+    private List<TopicDto> subjects = TopicRequests.getInstance().getBySubject();
     private boolean hasSelect = false;
 
     public TopicRoute() {
@@ -87,7 +90,12 @@ public class TopicRoute extends PageView {
 
     private Component appLayoutBody() {
         bodyLayout.getElement().getStyle().set("width", "100%");
-        subjects.forEach(s -> bodyLayout.add(subjectComponent(s)));
+//        subjects.forEach(s -> bodyLayout.add(subjectComponent(s)));
+        subjects.forEach(subjectDto -> {
+            Component component = subjectComponent(subjectDto.getName());
+            component.setId(subjectDto.getId() + "");
+            bodyLayout.add(component);
+        });
         return bodyLayout;
     }
 

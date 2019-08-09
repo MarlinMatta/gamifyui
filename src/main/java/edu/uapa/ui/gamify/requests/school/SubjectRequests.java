@@ -47,6 +47,14 @@ public class SubjectRequests extends Request {
         return null;
     }
 
+    public List<SubjectDto> getByGrade() {
+        String response = getExecute("/?grade=" + 1);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, SubjectDto.class);
+        }
+        return null;
+    }
+
     public void delete(Long id) {
         deleteExecute("?id=" + id);
     }

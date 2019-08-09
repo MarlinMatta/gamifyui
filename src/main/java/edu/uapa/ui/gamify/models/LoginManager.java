@@ -1,5 +1,7 @@
 package edu.uapa.ui.gamify.models;
 
+import edu.utesa.lib.models.dtos.school.StudentDto;
+import edu.utesa.lib.models.dtos.school.TeacherDto;
 import edu.utesa.lib.models.dtos.security.PermissionDto;
 import edu.utesa.lib.models.dtos.security.UserDto;
 import edu.utesa.lib.models.enums.EnumLoanMasterPermission;
@@ -11,6 +13,8 @@ public class LoginManager {
 
     private UserDto userDto;
     private List<Integer> permission;
+    private TeacherDto teacherDto;
+    private StudentDto studentDto;
 
     public LoginManager(UserDto userDto) {
         this.userDto = userDto;
@@ -29,6 +33,4 @@ public class LoginManager {
     public String getName() {
         return userDto.getNickName();
     }
-
-
 }
