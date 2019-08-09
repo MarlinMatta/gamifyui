@@ -4,7 +4,6 @@ import com.github.appreciated.app.layout.webcomponents.applayout.AppDrawerLayout
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -13,25 +12,17 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
-import com.vaadin.flow.theme.Theme;
-import edu.uapa.ui.gamify.requests.school.SubjectRequests;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
-import edu.uapa.ui.gamify.views.components.MainFormDesign;
-import edu.utesa.lib.models.dtos.school.SubjectDto;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static edu.uapa.ui.gamify.routes.AllRoutes.STUDENT_MAIN_MENU_ROUTE;
 
-@Route(value =STUDENT_MAIN_MENU_ROUTE, layout = MainAppLayout.class)
-public class GameModeRoute  extends PageView {
+@Route(value = STUDENT_MAIN_MENU_ROUTE, layout = MainAppLayout.class)
+public class GameModeRoute extends PageView {
     private VerticalLayout mainLayout;
     private AppDrawerLayout bodyLayout = new AppDrawerLayout();
     private boolean hasSelect = false;
@@ -46,22 +37,22 @@ public class GameModeRoute  extends PageView {
         setSpacing(false);
 
         buildMainLayout();
+        add(header());
         add(mainLayout);
     }
 
     private void buildMainLayout() {
         mainLayout = new VerticalLayout();
         mainLayout.setMargin(false);
-        mainLayout.setSpacing(false);
+        mainLayout.setSpacing(true);
         mainLayout.setPadding(true);
-        mainLayout.getElement().getStyle().set("width", "100%");
-        mainLayout.add(header());
         mainLayout.add(appLayoutBody());
         mainLayout.add(footer());
 
-        mainLayout.setAlignItems(FlexComponent.Alignment.END);
-        mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-        mainLayout.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.END);
+        mainLayout.setAlignItems(Alignment.START);
+        mainLayout.setJustifyContentMode(JustifyContentMode.CENTER);
+        mainLayout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        mainLayout.setHeight("90%");
     }
 
     private Component header() {
@@ -83,7 +74,6 @@ public class GameModeRoute  extends PageView {
     }
 
     private Component appLayoutBody() {
-        bodyLayout.getElement().getStyle().set("width", "100%");
         bodyLayout.add(playComponent());
         bodyLayout.add(practiceComponent());
         bodyLayout.add(testComponent());
@@ -133,13 +123,13 @@ public class GameModeRoute  extends PageView {
         button.setWidth("200px");
         button.setHeight("100px");
         button.getStyle().set("margin", "2px");
-//        button.getStyle().set("border", "3px solid cyan");
         button.addClickListener(event -> {
             if (!event.getSource().getStyle().has("border")) {
                 bodyLayout.getChildren().forEach(component -> {
                     ((Button) component).getStyle().remove("border");
                 });
                 event.getSource().getStyle().set("border", "3px solid cyan");
+                VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "jugar");
                 hasSelect = true;
             } else {
                 hasSelect = false;
@@ -159,6 +149,7 @@ public class GameModeRoute  extends PageView {
             if (!event.getSource().getStyle().has("border")) {
                 bodyLayout.getChildren().forEach(component -> ((Button) component).getStyle().remove("border"));
                 event.getSource().getStyle().set("border", "3px solid cyan");
+                VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "Practicar");
                 hasSelect = true;
             } else {
                 hasSelect = false;
@@ -180,6 +171,7 @@ public class GameModeRoute  extends PageView {
                     ((Button) component).getStyle().remove("border");
                 });
                 event.getSource().getStyle().set("border", "3px solid cyan");
+                VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "Aprender");
                 hasSelect = true;
             } else {
                 hasSelect = false;
@@ -201,6 +193,7 @@ public class GameModeRoute  extends PageView {
                     ((Button) component).getStyle().remove("border");
                 });
                 event.getSource().getStyle().set("border", "3px solid cyan");
+                VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "Pruebas");
                 hasSelect = true;
             } else {
                 hasSelect = false;
@@ -209,26 +202,4 @@ public class GameModeRoute  extends PageView {
         });
         return button;
     }
-
-//    private void setAction() {
-//        formDesign.setPlayAction(event -> {
-//            Tools.navigateToChooseSubject();
-//            VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "Aprender");
-//            window.close();
-//        });
-//        formDesign.setProfileAction(event -> {
-//            VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "Practicar");
-//            Tools.navigateToChooseSubject();
-//            window.close();
-//        });
-//        formDesign.setSettingAction(event -> {
-//            VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "Pruebas");
-//            Tools.navigateToChooseSubject();
-//            window.close();
-//        });
-//        formDesign.setLogoutAction(event -> {
-//            Tools.closeSession();
-//            window.close();
-//        });
-//    }
 }
