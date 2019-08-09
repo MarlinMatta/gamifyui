@@ -41,8 +41,11 @@ import java.util.List;
 @HtmlImport("src/views/school/student-form-design.html")
 public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.StudentFormDesignModel> implements FormStructure<StudentDto> {
 
-    //    @Id("tfDni")
-//    private TextField tfDni;
+    private AddressDto address;
+    private PersonDto person;
+    private UserDto user;
+    private GradeDto grade;
+    private SchoolDto school;
     @Id("tfFirstName")
     private TextField tfFirstName;
     @Id("tfLastName")
@@ -55,10 +58,10 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
     private ComboBox<Nationality> cbNationality;
     @Id("cbMaritalStatus")
     private ComboBox<MaritalStatus> cbMaritalStatus;
-    @Id("cbCountry")
-    private ComboBox<CountryDto> cbCountry;
     @Id("tfCity")
     private TextField tfCity;
+    @Id("cbCountry")
+    private ComboBox<CountryDto> cbCountry;
     @Id("tfSector")
     private TextField tfSector;
     @Id("tfAddress")
@@ -76,18 +79,10 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
     @Id("efEmail")
     private EmailField efEmail;
 
-    private AddressDto address;
-    private PersonDto person;
-    private UserDto user;
-    private GradeDto grade;
-    private SchoolDto school;
-
     /**
      * Creates a new StudentFormDesign.
      */
     public StudentFormDesign() {
-        // You can initialise any data required for the connected UI components here.
-//        tfDni.setLabel(Captions.DNI);
         tfFirstName.setLabel(Captions.FIRST_NAME);
         tfLastName.setLabel(Captions.LAST_NAME);
         dpBirthday.setLabel(Captions.BIRTHDAY);
@@ -152,7 +147,6 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         grade = data.getGradeDto();
         user = data.getUserDto();
 
-//        tfDni.setValue(person.getDni());
         tfFirstName.setValue(person.getFirstNames());
         tfLastName.setValue(person.getLastNames());
         try {
@@ -177,7 +171,6 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
 
     @Override
     public void visualize() {
-//        tfDni.setReadOnly(true);
         tfFirstName.setReadOnly(true);
         tfLastName.setReadOnly(true);
         dpBirthday.setReadOnly(true);
@@ -198,8 +191,6 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
 
     @Override
     public boolean validField() {
-//        if (tfDni.isInvalid())
-//            return false;
         if (tfFirstName.isInvalid())
             return false;
         if (tfLastName.isInvalid())
@@ -242,7 +233,6 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         address.setAddress(tfAddress.getValue());
         address.setZipCode(tfZipCode.getValue());
         model.setAddressDto(address);
-//        person.setDni(tfDni.getValue());
         person.setFirstNames(tfFirstName.getValue());
         person.setLastNames(tfLastName.getValue());
         person.setBirthday(dpBirthday.getValue().toString());
