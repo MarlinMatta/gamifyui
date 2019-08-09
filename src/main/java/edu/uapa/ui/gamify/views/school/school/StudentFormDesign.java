@@ -43,11 +43,6 @@ import java.util.List;
 @HtmlImport("src/views/school/student-form-design.html")
 public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.StudentFormDesignModel> implements FormStructure<StudentDto> {
 
-    private AddressDto address;
-    private PersonDto person;
-    private UserDto user;
-    private GradeDto grade;
-    private SchoolDto school;
     @Id("tfFirstName")
     private TextField tfFirstName;
     @Id("tfLastName")
@@ -60,10 +55,10 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
     private ComboBox<Nationality> cbNationality;
     @Id("cbMaritalStatus")
     private ComboBox<MaritalStatus> cbMaritalStatus;
-    @Id("tfCity")
-    private TextField tfCity;
     @Id("cbCountry")
     private ComboBox<CountryDto> cbCountry;
+    @Id("tfCity")
+    private TextField tfCity;
     @Id("tfSector")
     private TextField tfSector;
     @Id("tfAddress")
@@ -74,14 +69,20 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
     private ComboBox<SchoolDto> cbSchool;
     @Id("cbGrade")
     private ComboBox<GradeDto> cbGrade;
-    @Id("tfPoints")
-    private TextField tfPoints;
     @Id("tfUsername")
     private TextField tfUsername;
     @Id("tfPassword")
     private PasswordField tfPassword;
     @Id("efEmail")
     private EmailField efEmail;
+
+    private AddressDto address;
+    private PersonDto person;
+    private UserDto user;
+    private GradeDto grade;
+    private SchoolDto school;
+    @Id("tfPoints")
+    private TextField tfPoints;
 
     /**
      * Creates a new StudentFormDesign.
@@ -268,7 +269,6 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         user.setLanguage(Language.SPANISH);
         user.setPermissions(new HashSet<>(PermissionRequests.getInstance().getStudent()));
         model.setUserDto(user);
-
         return model;
     }
 
