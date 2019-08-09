@@ -23,11 +23,11 @@ public class LeftAppMenu extends AbstractView {
     }
 
     private static Component security(Component component, int permissionCode) {
-        if (getLoginManager().hasPermission(permissionCode) || getLoginManager().hasPermission(0)) {
-            component.setVisible(true);
-        } else {
-            component.setVisible(false);
-        }
+        if (getLoginManager().hasPermission(0))
+            if (getLoginManager().hasPermission(permissionCode)) {
+                component.setVisible(false);
+                return component;
+            }
         return component;
     }
 
@@ -37,7 +37,7 @@ public class LeftAppMenu extends AbstractView {
         layout.setSpacing(true);
         layout.setPadding(true);
 
-        RoundImage roundImage = new RoundImage("frontend/src/images/logo.jpeg", "200px", null);
+        RoundImage roundImage = new RoundImage("frontend/src/images/LeftLogoo.jpeg", "150px", null);
         layout.add(roundImage);
 
         Span description = new Span();

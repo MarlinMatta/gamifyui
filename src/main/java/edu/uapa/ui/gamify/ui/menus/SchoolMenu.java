@@ -78,10 +78,11 @@ public class SchoolMenu extends AbstractView {
     }
 
     private Component security(Component component, int permissionCode) {
-        if (getLoginManager().hasPermission(permissionCode)) {
-            component.setVisible(false);
-            return component;
-        }
+        if (getLoginManager().hasPermission(0))
+            if (getLoginManager().hasPermission(permissionCode)) {
+                component.setVisible(false);
+                return component;
+            }
         return component;
     }
 }
