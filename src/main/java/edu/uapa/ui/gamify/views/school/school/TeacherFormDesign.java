@@ -11,6 +11,7 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
+import edu.uapa.ui.gamify.requests.security.PermissionRequests;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.location.AddressDto;
 import edu.utesa.lib.models.dtos.location.CountryDto;
@@ -29,6 +30,7 @@ import edu.utesa.lib.utils.DateUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -41,8 +43,6 @@ import java.util.List;
 @HtmlImport("src/views/school/teacher-form-design.html")
 public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.TeacherFormDesignModel> implements FormStructure<TeacherDto> {
 
-    //    @Id("tfDni")
-//    private TextField tfDni;
     @Id("tfFirstName")
     private TextField tfFirstName;
     @Id("tfLastName")
@@ -88,8 +88,6 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
      * Creates a new TeacherFormDesign.
      */
     public TeacherFormDesign() {
-        // You can initialise any data required for the connected UI components here.
-//        tfDni.setLabel(Captions.DNI);
         tfFirstName.setLabel(Captions.FIRST_NAME);
         tfLastName.setLabel(Captions.LAST_NAME);
         dpBirthday.setLabel(Captions.BIRTHDAY);
@@ -128,6 +126,10 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         dpBirthday.setValue(DateUtils.asLocalDate(new Date("1/1/1996")));
     }
 
+    public void setPermission(List<PermissionDto> items) {
+        user.setPermissions(new HashSet<>(items));
+    }
+
     public void fillCountry(List<CountryDto> items) {
         cbCountry.setItemLabelGenerator(CountryDto::getName);
         cbCountry.setItems(items);
@@ -154,7 +156,6 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         grade = data.getGradeDto();
         user = data.getUserDto();
 
-//        tfDni.setValue(person.getDni());
         tfFirstName.setValue(person.getFirstNames());
         tfLastName.setValue(person.getLastNames());
         try {
@@ -179,7 +180,6 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
 
     @Override
     public void visualize() {
-//        tfDni.setReadOnly(true);
         tfFirstName.setReadOnly(true);
         tfLastName.setReadOnly(true);
         dpBirthday.setReadOnly(true);
@@ -200,8 +200,6 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
 
     @Override
     public boolean validField() {
-//        if (tfDni.isInvalid())
-//            return false;
         if (tfFirstName.isInvalid())
             return false;
         if (tfLastName.isInvalid())
@@ -244,7 +242,7 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         address.setZipCode(tfZipCode.getValue());
         address.setAddress(tfAddress.getValue());
         model.setAddressDto(address);
-//        person.setDni(tfDni.getValue());
+
         person.setFirstNames(tfFirstName.getValue());
         person.setLastNames(tfLastName.getValue());
         person.setBirthday(dpBirthday.getValue().toString());
@@ -259,7 +257,7 @@ public class TeacherFormDesign extends PolymerTemplate<TeacherFormDesign.Teacher
         user.setAdmin(false);
         user.setLanguage(Language.SPANISH);
         user.setMail(efEmail.getValue());
-        user.getPermissions().add(new PermissionDto(2,"Teacher",""));
+        user.setPermissions(new HashSet<>(PermissionRequests.getInstance().getTeacher()));
         model.setUserDto(user);
 
         model.setSchoolDto(cbSchool.getValue());

@@ -4,7 +4,6 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -12,6 +11,7 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
+import edu.uapa.ui.gamify.requests.security.PermissionRequests;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.location.AddressDto;
 import edu.utesa.lib.models.dtos.location.CountryDto;
@@ -30,6 +30,7 @@ import edu.utesa.lib.utils.DateUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -125,6 +126,10 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         dpBirthday.setValue(DateUtils.asLocalDate(new Date("1/1/1996")));
         tfPoints.setValue("0");
         tfPoints.setReadOnly(true);
+    }
+
+    public void setPermission(List<PermissionDto> items) {
+        user.setPermissions(new HashSet<>(items));
     }
 
     public void fillCountry(List<CountryDto> items) {
@@ -261,7 +266,7 @@ public class StudentFormDesign extends PolymerTemplate<StudentFormDesign.Student
         user.setMail(efEmail.getValue());
         user.setAdmin(false);
         user.setLanguage(Language.SPANISH);
-        user.getPermissions().add(new PermissionDto(1,"Student",""));
+        user.setPermissions(new HashSet<>(PermissionRequests.getInstance().getStudent()));
         model.setUserDto(user);
 
         return model;

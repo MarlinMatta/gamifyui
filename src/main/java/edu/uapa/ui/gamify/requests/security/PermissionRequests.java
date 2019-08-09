@@ -38,6 +38,22 @@ public class PermissionRequests extends Request {
         return null;
     }
 
+    public List<PermissionDto> getStudent() {
+        String response = getExecute("/student");
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, PermissionDto.class);
+        }
+        return null;
+    }
+
+    public List<PermissionDto> getTeacher() {
+        String response = getExecute("/teacher");
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, PermissionDto.class);
+        }
+        return null;
+    }
+
     public List<PermissionGroupDto> getGroups(int page, int size, String searchValue) {
         String response = getExecute("/groups?page=" + page + "&size=" + size + "&filterValue=" + searchValue);
         if (!response.isEmpty()) {
