@@ -12,7 +12,6 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.requests.school.SubjectRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
@@ -21,6 +20,7 @@ import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.SubjectDto;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Route(value = AllRoutes.CHOOSE_SUBJECT_ROUTE, layout = MainAppLayout.class)
@@ -38,6 +38,8 @@ public class ChooseSubjectRoute extends PageView {
         setMargin(false);
         setPadding(true);
         setSpacing(false);
+
+        subjects = SubjectRequests.getInstance().getByGrade();
 
         buildMainLayout();
         add(mainLayout);
@@ -88,11 +90,14 @@ public class ChooseSubjectRoute extends PageView {
 
     private Component footer() {
         HorizontalLayout layout = new HorizontalLayout();
-        Button next = new Button("Next >>>");
+        Button next = new Button("Next", new Icon(VaadinIcon.ARROW_RIGHT));
+        next.setIconAfterText(true);
+        next.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         next.setWidth("120px");
 
-        Button back = new Button("<<< Back");
+        Button back = new Button("Back", new Icon(VaadinIcon.ARROW_LEFT));
         back.setWidth("120px");
+
         VerticalLayout klk = new VerticalLayout();
         klk.setWidth("75%");
         klk.setMargin(false);

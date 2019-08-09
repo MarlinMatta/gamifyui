@@ -66,6 +66,7 @@ public class Captions {
 
     //Marlin
     public static final String LEARN = "Aprender";
+    public static final String PLAY = "Jugar";
     public static final String PRACTICE = "Practicar";
     public static final String TEST = "Pruebas";
 
@@ -84,6 +85,7 @@ public class Captions {
     public static final String TO_DATE = "Hasta la fecha";
 
     public static final String CHOOSE_SUBJECT = "Choose Subject";
+    public static final String HELLO_STUDENT = "Hello student!";
     public static final String CONFIGURATION = "Configuration";
 
     public static final String DISTRICT = "Distrito";
