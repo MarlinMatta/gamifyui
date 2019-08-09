@@ -4,6 +4,7 @@ import com.github.appreciated.app.layout.webcomponents.applayout.AppDrawerLayout
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -21,6 +22,7 @@ import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.TopicDto;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Route(value = AllRoutes.TOPIC_ROUTE, layout = MainAppLayout.class)
@@ -28,19 +30,7 @@ public class TopicRoute extends PageView {
 
     private VerticalLayout mainLayout;
     private AppDrawerLayout bodyLayout = new AppDrawerLayout();
-//    private List<String> subjects = Arrays.asList(
-//            "Numero naturales",
-//            "Numeros reales",
-//            "Ecuaciones",
-//            "Ecuaciones lineales",
-//            "Ecuaciones cuadratica",
-//            "Logaritmo",
-//            "Aljebra",
-//            "Exponenciales",
-//            "Trigonometria"
-//    );
-
-    private List<TopicDto> subjects = TopicRequests.getInstance().getBySubject();
+    private List<TopicDto> topics;
     private boolean hasSelect = false;
 
     public TopicRoute() {
@@ -50,6 +40,8 @@ public class TopicRoute extends PageView {
     private void initialized() {
         setMargin(true);
         setSpacing(false);
+
+        topics = TopicRequests.getInstance().getBySubject();
 
         buildMainLayout();
         add(mainLayout);
@@ -90,47 +82,34 @@ public class TopicRoute extends PageView {
 
     private Component appLayoutBody() {
         bodyLayout.getElement().getStyle().set("width", "100%");
-//        subjects.forEach(s -> bodyLayout.add(subjectComponent(s)));
-        subjects.forEach(subjectDto -> {
-            Component component = subjectComponent(subjectDto.getName());
-            component.setId(subjectDto.getId() + "");
-            bodyLayout.add(component);
-        });
+        topics.forEach(t -> bodyLayout.add(topicComponent(t.getName())));
         return bodyLayout;
     }
 
     private Component footer() {
         HorizontalLayout layout = new HorizontalLayout();
-        Button next = new Button("Next >>>");
+        Button next = new Button("Next", new Icon(VaadinIcon.ARROW_RIGHT));
+        next.setIconAfterText(true);
+        next.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         next.setWidth("120px");
 
-        Button back = new Button("<<< Back");
+        Button back = new Button("Back", new Icon(VaadinIcon.ARROW_LEFT));
         back.setWidth("120px");
+
         VerticalLayout klk = new VerticalLayout();
         klk.setWidth("75%");
         klk.setMargin(false);
         klk.setSpacing(false);
         klk.setPadding(false);
 
-        back.addClickListener(event -> {
-            if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Aprender")) {
-                Tools.navigateToChooseSubject();
-            } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Practicar")) {
-                Tools.navigateToChooseSubject();
-            } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
-                //TODO: agregar validacion de que si haya test disponible
-                Tools.navigateToChooseSubject();
-            } else {
-                Tools.navigateToChooseSubject();
-            }
-        });
+        back.addClickListener(event -> Tools.navigateToChooseSubject());
         next.addClickListener(event -> {
             if (hasSelect) {
-                if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Aprender")) {
+                if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals(Captions.LEARN)) {
                     Tools.navigateToLearn();
-                } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Practicar")) {
+                } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals(Captions.PRACTICE)) {
                     Tools.navigateToConfiguration();
-                } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
+                } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals(Captions.TEST)) {
                     //TODO: agregar validacion de que si haya test disponible
                     Tools.navigateToTest();
                 } else {
@@ -157,14 +136,14 @@ public class TopicRoute extends PageView {
         return layout;
     }
 
-    private Component subjectComponent(String name) {
+    private Component topicComponent(String name) {
         Button button = new Button(name);
         button.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         button.setId(name);
         button.setWidth("200px");
         button.setHeight("100px");
         button.getStyle().set("margin", "2px");
-        button.getStyle().set("border", "3px solid magenta");
+        button.getStyle().set("border", "3px solid cyan");
         button.addClickListener(event -> {
             if (event.getSource().getIcon() == null) {
                 bodyLayout.getChildren().forEach(component -> {
@@ -179,4 +158,5 @@ public class TopicRoute extends PageView {
         });
         return button;
     }
+
 }
