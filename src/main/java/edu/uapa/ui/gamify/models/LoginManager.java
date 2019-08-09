@@ -19,9 +19,9 @@ public class LoginManager {
     public LoginManager(UserDto userDto) {
         this.userDto = userDto;
         this.permission = userDto.getPermissions().stream().map(PermissionDto::getCode).collect(Collectors.toList());
+
     }
 
-    //Esta forma de iterar por cada permiso es pesada. Mejorar
     public boolean hasPermission(int code) {
         return !isRoot() && permission.parallelStream().noneMatch(permission -> permission == code);
     }
@@ -33,4 +33,9 @@ public class LoginManager {
     public String getName() {
         return userDto.getNickName();
     }
+
+    public long getId() {
+        return userDto.getId();
+    }
 }
+

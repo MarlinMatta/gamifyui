@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.requests.school.SubjectRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
@@ -24,29 +25,10 @@ import java.util.List;
 
 @Route(value = AllRoutes.CHOOSE_SUBJECT_ROUTE, layout = MainAppLayout.class)
 public class ChooseSubjectRoute extends PageView {
+    private boolean hasSelect = false;
     private VerticalLayout mainLayout;
     private AppDrawerLayout bodyLayout = new AppDrawerLayout();
-//    private List<String> subjects = Arrays.asList(
-//            "Moral",
-//            "Civica",
-//            "Legion",
-//            "Fisica",
-//            "Quimica",
-//            "Religion",
-//            "Economia",
-//            "Universal",
-//            "Matematica",
-//            "Estadistica",
-//            "Electronica",
-//            "Computacion",
-//            "Medio Ambiente",
-//            "Lengua espagnola",
-//            "Formacion Humana"
-//    );
-
-    private List<SubjectDto> subjects = SubjectRequests.getInstance().getByGrade();
-
-    private boolean hasSelect = false;
+    private List<SubjectDto> subjects = SubjectRequests.getInstance().getByGrade(StudentRequests.getInstance().refreshByUser(getLoginManager().getId()).getGradeDto().getId() + "");
 
     public ChooseSubjectRoute() {
         initialized();
@@ -96,7 +78,6 @@ public class ChooseSubjectRoute extends PageView {
 
     private Component appLayoutBody() {
         bodyLayout.getElement().getStyle().set("width", "100%");
-//        subjects.forEach(s -> bodyLayout.add(subjectComponent(s)));
         subjects.forEach(subjectDto -> {
             Component component = subjectComponent(subjectDto.getName());
             component.setId(subjectDto.getId() + "");
@@ -153,10 +134,9 @@ public class ChooseSubjectRoute extends PageView {
         button.getStyle().set("border", "3px solid cyan");
         button.addClickListener(event -> {
             if (event.getSource().getIcon() == null) {
-                bodyLayout.getChildren().forEach(component -> {
-                    ((Button) component).setIcon(null);
-                });
+                bodyLayout.getChildren().forEach(component -> ((Button) component).setIcon(null));
                 event.getSource().setIcon(new Icon(VaadinIcon.CHECK));
+                Tools.setSessionSubject(button.getId().orElse("1"));
                 hasSelect = true;
             } else {
                 hasSelect = false;

@@ -47,6 +47,14 @@ public class StudentRequests extends Request {
         return null;
     }
 
+    public StudentDto refreshByUser(Long id) {
+        String response = getExecute("/refresh?userId=" + id);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObject(response, StudentDto.class);
+        }
+        return null;
+    }
+
     public void delete(Long id) {
         deleteExecute("?id=" + id);
     }
@@ -67,5 +75,4 @@ public class StudentRequests extends Request {
         HttpResponse<String> response = putExecute("");
         return response.getStatus() == HttpStatus.SC_ACCEPTED;
     }
-    //
 }

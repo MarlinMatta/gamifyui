@@ -20,6 +20,9 @@ public class Tools {
     public static final String SESSION_TAB_NAME = "MinombreesKkwazzawazzakkwaquikkwalaquaza_Zzabolazza";
     public static final String SESSION_GAME_MODE = "Kkwazzawazzakkwaquikkwalaquaza";
 
+    public static final String SESSION_SUBJECT = "waquikkwalaquaza";
+    public static final String SESSION_TOPIC = "Kkwazzawazzakkwa";
+
     public static final List<Long> ITEMS_PER_PAGE = Arrays.asList(5L, 10L, 15L, 20L, 25L, 30L, 35L, 40L, 45L, 50L);
 
     public static final Long DEFAULT_ITEMS_PER_PAGE_VALUE = 15L;
@@ -69,6 +72,7 @@ public class Tools {
     }
 
     public static void navigateToStudentMainMenu() {
+
         UI.getCurrent().navigate(STUDENT_MAIN_MENU_ROUTE);
     }
 
@@ -78,6 +82,18 @@ public class Tools {
 
     public static void setSession(UserDto userDto) {
         VaadinSession.getCurrent().setAttribute(Tools.SESSION_NAME, new LoginManager(userDto));
+    }
+
+    public static void setSessionSubject(String id) {
+        VaadinSession.getCurrent().setAttribute(Tools.SESSION_SUBJECT, id);
+    }
+
+    public static String getSessionSubject() {
+        return (String) VaadinSession.getCurrent().getAttribute(Tools.SESSION_SUBJECT);
+    }
+
+    public static void setSessionTopic(String id) {
+        VaadinSession.getCurrent().setAttribute(Tools.SESSION_TOPIC, id);
     }
 
     public static void initTabs() {

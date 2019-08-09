@@ -10,13 +10,10 @@ import edu.uapa.ui.gamify.ui.abstracts.base.AbstractDialog;
 import edu.uapa.ui.gamify.ui.components.TabsManager;
 import edu.uapa.ui.gamify.views.components.FormActionBarDesign;
 
-import java.text.ParseException;
-
 public abstract class AbstractSingleForm<C extends Component, D> extends AbstractDialog {
 
     @Id("form-action-bar-design")
     private FormActionBarDesign action = new FormActionBarDesign();
-    private TabsManager tabsManager;
     private C design;
     private D data;
     private boolean onlyView;
@@ -48,7 +45,7 @@ public abstract class AbstractSingleForm<C extends Component, D> extends Abstrac
 
         action.getElement().getStyle().set("width", "100%");
         if (withTab) {
-            tabsManager = new TabsManager(new Tabs());
+            TabsManager tabsManager = new TabsManager(new Tabs());
             add(tabsManager);
             tabsManager.addTab("Info", mainLayout, false);
         } else {
@@ -86,7 +83,7 @@ public abstract class AbstractSingleForm<C extends Component, D> extends Abstrac
 
     protected abstract boolean validField();
 
-    protected abstract void collect() ;
+    protected abstract void collect();
 
     protected abstract boolean persistence();
 

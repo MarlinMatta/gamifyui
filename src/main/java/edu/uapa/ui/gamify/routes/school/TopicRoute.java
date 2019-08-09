@@ -28,19 +28,8 @@ public class TopicRoute extends PageView {
 
     private VerticalLayout mainLayout;
     private AppDrawerLayout bodyLayout = new AppDrawerLayout();
-//    private List<String> subjects = Arrays.asList(
-//            "Numero naturales",
-//            "Numeros reales",
-//            "Ecuaciones",
-//            "Ecuaciones lineales",
-//            "Ecuaciones cuadratica",
-//            "Logaritmo",
-//            "Aljebra",
-//            "Exponenciales",
-//            "Trigonometria"
-//    );
 
-    private List<TopicDto> subjects = TopicRequests.getInstance().getBySubject();
+    private List<TopicDto> subjects = TopicRequests.getInstance().getBySubject(Tools.getSessionSubject());
     private boolean hasSelect = false;
 
     public TopicRoute() {
@@ -167,10 +156,9 @@ public class TopicRoute extends PageView {
         button.getStyle().set("border", "3px solid magenta");
         button.addClickListener(event -> {
             if (event.getSource().getIcon() == null) {
-                bodyLayout.getChildren().forEach(component -> {
-                    ((Button) component).setIcon(null);
-                });
+                bodyLayout.getChildren().forEach(component -> ((Button) component).setIcon(null));
                 event.getSource().setIcon(new Icon(VaadinIcon.CHECK));
+                Tools.setSessionTopic(button.getId().orElse("1"));
                 hasSelect = true;
             } else {
                 hasSelect = false;

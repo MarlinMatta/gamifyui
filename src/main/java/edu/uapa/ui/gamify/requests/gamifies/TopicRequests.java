@@ -39,8 +39,8 @@ public class TopicRequests extends Request {
         return null;
     }
 
-    public List<TopicDto> getBySubject() {
-        String response = getExecute("/?topic=" + 1);
+    public List<TopicDto> getBySubject(String id) {
+        String response = getExecute("/?topic=" + id);
         if (!response.isEmpty()) {
             return JsonUtils.toObjectList(response, TopicDto.class);
         }
