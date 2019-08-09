@@ -38,6 +38,8 @@ public class Captions {
     public static final String GRID_COLUMN_SUBJECT = "Subject";
     public static final String GRID_COLUMN_TOPIC = "Topic";
     public static final String GRID_COLUMN_QUESTION = "Question";
+    public static final String GRID_COLUMN_DIFFICULTY = "Difficulty";
+    public static final String GRID_COLUMN_TEACHER = "Teacher";
 
     public static final String SEARCH = "Search";
 
@@ -74,6 +76,7 @@ public class Captions {
     public static final String TOPIC = "Tema";
     public static final String ANSWER = "Respuesta";
     public static final String QUESTION = "Pregunta";
+    public static final String POINTS = "Puntos";
 
     public static final String DIFFICULTY = "Dificultad";
     public static final String PROBLEM_QUANTITY = "Cantidad de preguntas";

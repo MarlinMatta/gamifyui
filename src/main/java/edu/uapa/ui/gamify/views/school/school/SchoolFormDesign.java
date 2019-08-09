@@ -62,6 +62,7 @@ public class SchoolFormDesign extends PolymerTemplate<SchoolFormDesign.SchoolFor
     public void fillCountry(List<CountryDto> items) {
         cbCountry.setItemLabelGenerator(CountryDto::getName);
         cbCountry.setItems(items);
+        cbCountry.setValue(items.get(0));
     }
 
     @Override

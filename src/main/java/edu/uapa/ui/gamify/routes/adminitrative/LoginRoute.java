@@ -18,6 +18,7 @@ public class LoginRoute extends VerticalLayout {
     private LoginOverlay loginOverlay;
     private LoginI18n i18n;
     private boolean isStudent = false;
+    private boolean isTeacher = false;
 
     public LoginRoute() {
         if (Tools.isLogin()) Tools.closeSession();
@@ -52,21 +53,24 @@ public class LoginRoute extends VerticalLayout {
         } else {
             loginOverlay.close();
             Tools.setSession(userDto);
-            isStudent(userDto);
+            getUserType(userDto);
             if (isStudent) {
                 Tools.navigateToStudentMainMenu();
+            } else if (isTeacher){
+                Tools.navigateToTeacherMainMenu();
             } else {
                 Tools.navigateToApp();
             }
         }
     }
 
-    private void isStudent(UserDto userDto) {
+    private void getUserType(UserDto userDto) {
         userDto.getPermissions().forEach(this::accept);
     }
 
     private void accept(PermissionDto dto) {
         isStudent = dto.getCode() == 1;
+        isTeacher = dto.getCode() == 2;
     }
 
     private void autoLogin() {

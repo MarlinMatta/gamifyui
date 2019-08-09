@@ -12,8 +12,7 @@ import edu.utesa.lib.utils.HashUtils;
 import java.util.Arrays;
 import java.util.List;
 
-import static edu.uapa.ui.gamify.routes.AllRoutes.LOGIN_ROUTE;
-import static edu.uapa.ui.gamify.routes.AllRoutes.STUDENT_MAIN_MENU_ROUTE;
+import static edu.uapa.ui.gamify.routes.AllRoutes.*;
 
 public class Tools {
     public static final String SESSION_NAME = "ChistMarioAndrewAdreanJesu";
@@ -71,6 +70,10 @@ public class Tools {
 
     public static void navigateToStudentMainMenu() {
         UI.getCurrent().navigate(STUDENT_MAIN_MENU_ROUTE);
+    }
+
+    public static void navigateToTeacherMainMenu() {
+        UI.getCurrent().navigate(TEACHER_MAIN_MENU_ROUTE);
     }
 
     public static void setSession(UserDto userDto) {
