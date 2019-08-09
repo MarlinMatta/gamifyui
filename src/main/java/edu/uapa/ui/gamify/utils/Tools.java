@@ -73,7 +73,7 @@ public class Tools {
     }
 
     public static void navigateToTeacherMainMenu() {
-        UI.getCurrent().navigate(TEACHER_MAIN_MENU_ROUTE);
+        UI.getCurrent().navigate(APP_ROUTE);
     }
 
     public static void setSession(UserDto userDto) {

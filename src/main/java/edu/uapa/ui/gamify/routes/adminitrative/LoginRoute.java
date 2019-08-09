@@ -25,7 +25,6 @@ public class LoginRoute extends VerticalLayout {
         initialized();
         setLanguage();
         setAction();
-//        autoLogin();
     }
 
     private void initialized() {
@@ -56,7 +55,7 @@ public class LoginRoute extends VerticalLayout {
             getUserType(userDto);
             if (isStudent) {
                 Tools.navigateToStudentMainMenu();
-            } else if (isTeacher){
+            } else if (isTeacher) {
                 Tools.navigateToTeacherMainMenu();
             } else {
                 Tools.navigateToApp();
@@ -72,9 +71,4 @@ public class LoginRoute extends VerticalLayout {
         isStudent = dto.getCode() == 1;
         isTeacher = dto.getCode() == 2;
     }
-
-    private void autoLogin() {
-        authentication("root", "root");
-    }
-
 }

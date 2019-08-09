@@ -10,7 +10,6 @@ import edu.uapa.ui.gamify.ui.tabs.gamifies.TopicTab;
 import edu.uapa.ui.gamify.ui.tabs.school.*;
 import edu.uapa.ui.gamify.ui.tabs.security.UserTab;
 import edu.uapa.ui.gamify.utils.captions.Captions;
-import edu.utesa.lib.models.enums.EnumLoanMasterPermission;
 
 public class SchoolMenu extends AbstractView {
 
@@ -19,14 +18,14 @@ public class SchoolMenu extends AbstractView {
 
     public Component getInstance() {
         return LeftSubMenuBuilder.get(Captions.SCHOOL_MENU, VaadinIcon.BUILDING.create())
-                .add(security(schoolMenuItem(), EnumLoanMasterPermission.PARAM.code))
-                .add(security(subjectMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
-                .add(security(gradeMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
-                .add(security(teacherMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
-                .add(security(studentMenuItem(), EnumLoanMasterPermission.PERMISSION.code))
-                .add(security(topicMenuItem(), EnumLoanMasterPermission.P_GROUP.code))
-                .add(security(problemMenuItem(), EnumLoanMasterPermission.USER.code))
-                .add(security(quitMenuItem(), EnumLoanMasterPermission.USER.code))
+                .add(security(schoolMenuItem(), 0))
+                .add(security(subjectMenuItem(), 2))
+                .add(security(gradeMenuItem(), 2))
+                .add(security(teacherMenuItem(), 0))
+                .add(security(studentMenuItem(), 0))
+                .add(security(topicMenuItem(), 2))
+                .add(security(problemMenuItem(), 2))
+                .add(security(quitMenuItem(), 2))
                 .build();
     }
 

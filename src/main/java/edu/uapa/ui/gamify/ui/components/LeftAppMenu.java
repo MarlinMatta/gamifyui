@@ -10,7 +10,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
 import edu.uapa.ui.gamify.ui.menus.SchoolMenu;
 import edu.uapa.ui.gamify.ui.menus.SecurityMenu;
-import edu.utesa.lib.models.enums.EnumLoanMasterPermission;
 
 public class LeftAppMenu extends AbstractView {
 
@@ -18,15 +17,16 @@ public class LeftAppMenu extends AbstractView {
         return LeftAppMenuBuilder
                 .get()
                 .addToSection(profile(), Section.HEADER)
-                .add(security(new SchoolMenu().getInstance(), EnumLoanMasterPermission.ROOT.code))
-                .add(security(new SecurityMenu().getInstance(), EnumLoanMasterPermission.ROOT.code))
+                .add(security(new SchoolMenu().getInstance(), 2))
+                .add(security(new SecurityMenu().getInstance(), 2))
                 .build();
     }
 
     private static Component security(Component component, int permissionCode) {
-        if (getLoginManager().hasPermission(permissionCode)) {
+        if (getLoginManager().hasPermission(permissionCode) || getLoginManager().hasPermission(0)) {
+            component.setVisible(true);
+        } else {
             component.setVisible(false);
-            return component;
         }
         return component;
     }
@@ -37,7 +37,6 @@ public class LeftAppMenu extends AbstractView {
         layout.setSpacing(true);
         layout.setPadding(true);
 
-//        RoundImage roundImage = new RoundImage("frontend/src/images/logo.jpeg", "100%", null);
         RoundImage roundImage = new RoundImage("frontend/src/images/logo.jpeg", "200px", null);
         layout.add(roundImage);
 
