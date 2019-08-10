@@ -74,19 +74,15 @@ public class LearnRoute extends PageView {
 
     private Component footer() {
         HorizontalLayout layout = new HorizontalLayout();
-//        Button next = new Button("Next >>>");
-//        next.setWidth("120px");
-
-        Button back = new Button("<<< Back");
-        back.setWidth("120px");
-        VerticalLayout klk = new VerticalLayout();
-        klk.setWidth("75%");
-        klk.setMargin(false);
-        klk.setSpacing(false);
-        klk.setPadding(false);
+        Button back = new Button("<<< Volver al inicio");
+        back.setWidth("220px");
+        VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.setWidth("75%");
+        verticalLayout.setMargin(false);
+        verticalLayout.setSpacing(false);
+        verticalLayout.setPadding(false);
 
         back.addClickListener(event -> Tools.navigateToStudentMainMenu());
-//        next.addClickListener(event -> Tools.navigateToStudentMainMenu());
 
         layout.setWidthFull();
         layout.setMargin(false);
@@ -94,8 +90,7 @@ public class LearnRoute extends PageView {
         layout.setPadding(false);
 
         layout.add(back);
-        layout.add(klk);
-//        layout.add(next);
+        layout.add(verticalLayout);
         layout.setJustifyContentMode(JustifyContentMode.CENTER);
         layout.getStyle().set("position", "absolute");
         layout.getStyle().set("bottom", "0px");
@@ -103,6 +98,4 @@ public class LearnRoute extends PageView {
 
         return layout;
     }
-
-
 }
