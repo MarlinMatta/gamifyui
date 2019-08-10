@@ -121,9 +121,9 @@ public class GameModeRoute extends PageView {
     private Component playComponent() {
         VerticalLayout layout = new VerticalLayout();
         Label label = new Label("Play");
-        Button button = new Button(new Image("frontend/src/images/rompecabezas.png", Captions.PLAY));
+        Button button = new Button(Captions.PLAY,new Image("frontend/src/images/rompecabezas.png", Captions.PLAY));
         button.setId(Captions.PLAY);
-        button.setWidth("200px");
+        button.setWidth("250px");
         button.setHeight("100px");
         button.getStyle().set("margin", "2px");
         button.addClickListener(event -> {
@@ -147,9 +147,9 @@ public class GameModeRoute extends PageView {
     private Component practiceComponent() {
         VerticalLayout layout = new VerticalLayout();
         Label label = new Label("Play");
-        Button button = new Button(new Image("frontend/src/images/medalla.png", Captions.PRACTICE));
+        Button button = new Button(Captions.PRACTICE, new Image("frontend/src/images/medalla.png", Captions.PRACTICE));
         button.setId(Captions.PRACTICE);
-        button.setWidth("200px");
+        button.setWidth("250px");
         button.setHeight("100px");
         button.getStyle().set("margin", "2px");
         button.addClickListener(event -> {
@@ -171,9 +171,9 @@ public class GameModeRoute extends PageView {
     private Component learnComponent() {
         VerticalLayout layout = new VerticalLayout();
         Label label = new Label("Play");
-        Button button = new Button(new Image("frontend/src/images/lectura.png", Captions.LEARN));
+        Button button = new Button(Captions.LEARN, new Image("frontend/src/images/lectura.png", Captions.LEARN));
         button.setId(Captions.LEARN);
-        button.setWidth("200px");
+        button.setWidth("250px");
         button.setHeight("100px");
         button.getStyle().set("margin", "2px");
         button.addClickListener(event -> {
@@ -197,9 +197,9 @@ public class GameModeRoute extends PageView {
     private Component testComponent() {
         VerticalLayout layout = new VerticalLayout();
         Label label = new Label("Play");
-        Button button = new Button(new Image("frontend/src/images/aprendizaje.png", Captions.TEST));
+        Button button = new Button(Captions.TEST, new Image("frontend/src/images/aprendizaje.png", Captions.TEST));
         button.setId(Captions.TEST);
-        button.setWidth("200px");
+        button.setWidth("250px");
         button.setHeight("100px");
         button.getStyle().set("margin", "2px");
         button.addClickListener(event -> {
