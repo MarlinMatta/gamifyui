@@ -8,13 +8,12 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import edu.uapa.ui.gamify.models.Question;
 import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
-import edu.uapa.ui.gamify.ui.QuestionGenerator;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
+import edu.utesa.lib.models.dtos.school.ProblemAnswerDto;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
 import edu.utesa.lib.models.enums.ExamDifficulty;
 
@@ -27,15 +26,13 @@ import static edu.uapa.ui.gamify.routes.AllRoutes.PROBLEM_ROUTE;
 @Route(value = PROBLEM_ROUTE, layout = MainAppLayout.class)
 public class ProblemRoute extends PageView {
 
-    private List<Question> questions = new QuestionGenerator().get();
-    private List<Question> result = new ArrayList<>();
-
-    private List<ProblemDto> problemDtos = ProblemRequests.getInstance().getPractice(ExamDifficulty.BASIC, 10);
-
+    private List<ProblemAnswerDto> result = new ArrayList<>();
+    private List<ProblemDto> problems = ProblemRequests.getInstance().getPractice(ExamDifficulty.BASIC, 10);
     private VerticalLayout mainLayout;
     private LinkedList<Component> components = new LinkedList<>();
     private Component currentComponent;
     private Button goToInit;
+    private int point = 0;
 
     public ProblemRoute() {
         initialized();
@@ -54,9 +51,9 @@ public class ProblemRoute extends PageView {
         mainLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
-        questions.forEach(question -> {
-            BodyQuestionDesign design = new BodyQuestionDesign(question);
-            design.setId(question.getId() + "");
+        problems.forEach(problem -> {
+            BodyQuestionDesign design = new BodyQuestionDesign(problem);
+            design.setId(problem.getId() + "");
             design.setVisible(false);
             mainLayout.add(design);
             components.add(design);
@@ -70,8 +67,8 @@ public class ProblemRoute extends PageView {
 
         goToInit = new Button("<-- Volver al inicio");
         goToInit.setWidth("200px");
-        goToInit.addClickListener(event -> Tools.navigateToStudentMainMenu()
-        );
+        goToInit.addClickListener(event -> Tools.navigateToStudentMainMenu());
+
     }
 
     private void buildMainLayout() {
@@ -84,9 +81,9 @@ public class ProblemRoute extends PageView {
 
     private Component navigator() {
         HorizontalLayout layout = new HorizontalLayout();
-        Button back = new Button("<<< Back");
-        Button jump = new Button("Jumps >>>");
-        Button next = new Button("Next >>>");
+        Button back = new Button("<<< Volver");
+        Button jump = new Button("Saltar >>>");
+        Button next = new Button("Proximo >>>");
         layout.add(back);
         layout.add(jump);
         layout.add(next);
@@ -117,14 +114,24 @@ public class ProblemRoute extends PageView {
             } else {
                 back.setEnabled(true);
                 next.setEnabled(true);
-                next.setText("Next>>>");
+                next.setText("Proximo >>>");
             }
         });
 
         next.addClickListener(event -> {
             if (((BodyQuestionDesign) currentComponent).valid()) {
                 if (next.getText().equals("Summit")) {
-                    components.forEach(component -> result.add(((BodyQuestionDesign) component).getResponse()));
+                    components.forEach(component -> {
+                        ProblemAnswerDto problemAnswerDto = new ProblemAnswerDto();
+                        problemAnswerDto.setProblemDto(((BodyQuestionDesign) component).getProblem());
+                        problemAnswerDto.setAnswer(((BodyQuestionDesign) component).getResponse());
+                        if (problemAnswerDto.getProblemDto().getCorrectAnswer().equals(problemAnswerDto.getAnswer())) {
+                            problemAnswerDto.setGood(true);
+                        } else {
+                            problemAnswerDto.setGood(false);
+                        }
+                        result.add(problemAnswerDto);
+                    });
                     removeAll();
                     add(result());
                     add(goToInit);
@@ -142,13 +149,22 @@ public class ProblemRoute extends PageView {
                     } else {
                         back.setEnabled(true);
                         jump.setEnabled(true);
-                        next.setText("Next >>>");
+                        next.setText("Proximo >>>");
                     }
                 }
             } else {
                 Notification.show("Tienes que selecionar una repuestas");
             }
         });
+
+        if (components.indexOf(currentComponent) == components.size() - 1) {
+            jump.setEnabled(false);
+            next.setText("Summit");
+        } else {
+            back.setEnabled(true);
+            next.setEnabled(true);
+            next.setText("Proximo >>>");
+        }
 
         return layout;
     }
@@ -162,11 +178,11 @@ public class ProblemRoute extends PageView {
         main.setPadding(false);
         main.setSpacing(false);
 
-        result.forEach(question1 -> {
+        result.forEach(answer -> {
             Span question = new Span();
             Span response = new Span();
-
-            if (question1.isGood()) {
+            if (answer.isGood()) {
+                point += answer.getProblemDto().getPoints();
                 question.getStyle().set("color", "green");
             } else {
                 question.getStyle().set("color", "red");
@@ -179,14 +195,15 @@ public class ProblemRoute extends PageView {
             response.getStyle().set("margin-left", "20px");
             response.getStyle().set("width", "95%");
 
-            question.getElement().setProperty("innerHTML", "<String>" + question1.getQuestion() + "</strong>");
-            response.getElement().setProperty("innerHTML", "<String>" + question1.getResponse() + "</strong>");
+            question.getElement().setProperty("innerHTML", "<String>" + answer.getProblemDto().getQuestion() + "</strong>");
+            response.getElement().setProperty("innerHTML", "<String>" + answer.getAnswer() + "</strong>");
 
             main.setWidthFull();
             main.getStyle().set("border-style", "double");
             main.add(question);
             main.add(response);
             main.add(new HorizontalLayout());
+            main.add("Total de punto adquirido: " + point);
         });
         return main;
     }

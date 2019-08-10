@@ -8,8 +8,9 @@ import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import edu.uapa.ui.gamify.models.Question;
-import edu.uapa.ui.gamify.models.Response;
+import edu.utesa.lib.models.dtos.school.ProblemDto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,21 +25,25 @@ import java.util.List;
 public class BodyQuestionDesign extends PolymerTemplate<BodyQuestionDesign.BodyQuestionDesignModel> {
 
     @Id("optionLayout")
-    private RadioButtonGroup<Response> optionLayout;
+    private RadioButtonGroup<String> optionLayout;
     @Id("taQuestion")
     private TextArea taQuestion;
 
+    private ProblemDto problem;
     private Question question;
 
     /**
      * Creates a new BodyQuestionDesign.
      */
-    public BodyQuestionDesign(Question question) {
-        taQuestion.setValue(question.getQuestion());
-        this.question = question;
+    public BodyQuestionDesign(ProblemDto problem) {
+        taQuestion.setValue(problem.getQuestion());
+        this.problem = problem;
 
-        List<Response> res = question.getBadResponse();
-        res.add(question.getResponse());
+        List<String> res = new ArrayList<>();
+        res.add(problem.getCorrectAnswer());
+        res.add(problem.getIncorrectAnswer01());
+        res.add(problem.getIncorrectAnswer02());
+        res.add(problem.getIncorrectAnswer03());
         Collections.shuffle(res);
 
         optionLayout.setItems(res);
@@ -49,14 +54,12 @@ public class BodyQuestionDesign extends PolymerTemplate<BodyQuestionDesign.BodyQ
         return optionLayout.getValue() != null;
     }
 
-    public Question getResponse() {
-        if (optionLayout.getValue().getResponse().equals(question.getResponse().getResponse())) {
-            question.setGood(true);
-        } else {
-            question.setGood(false);
-        }
-        question.setResponse(optionLayout.getValue());
-        return question;
+    public String getResponse() {
+        return optionLayout.getValue();
+    }
+
+    public ProblemDto getProblem() {
+        return problem;
     }
 
     /**
