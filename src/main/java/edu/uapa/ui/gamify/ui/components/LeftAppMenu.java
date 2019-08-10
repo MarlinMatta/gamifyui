@@ -4,12 +4,16 @@ import com.github.appreciated.app.layout.component.menu.RoundImage;
 import com.github.appreciated.app.layout.component.menu.left.builder.LeftAppMenuBuilder;
 import com.github.appreciated.app.layout.entity.Section;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
 import edu.uapa.ui.gamify.ui.menus.SchoolMenu;
 import edu.uapa.ui.gamify.ui.menus.SecurityMenu;
+import edu.uapa.ui.gamify.utils.Tools;
+import edu.uapa.ui.gamify.utils.captions.Captions;
 
 public class LeftAppMenu extends AbstractView {
 
@@ -51,6 +55,14 @@ public class LeftAppMenu extends AbstractView {
         layout.add(name);
 
         layout.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, roundImage, name, description);
+        layout.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, roundImage, closeButton(), description);
         return layout;
+    }
+
+    private static Button closeButton() {
+        Button button = new Button(Captions.LOGOUT);
+        button.setIcon(VaadinIcon.EXIT.create());
+        button.addClickListener(it -> Tools.closeSession());
+        return button;
     }
 }

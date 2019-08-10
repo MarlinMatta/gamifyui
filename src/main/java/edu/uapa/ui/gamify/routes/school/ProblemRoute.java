@@ -182,9 +182,9 @@ public class ProblemRoute extends PageView {
             Span question = new Span();
             Span response = new Span();
             if (answer.isGood()) {
-                point += answer.getProblemDto().getPoints();
+//                point += answer.getProblemDto().getPoints();
                 question.getStyle().set("color", "green");
-                main.add("Total de punto adquirido: " + answer.getProblemDto().getPoints());
+//                main.add("Total de punto adquirido: " + answer.getProblemDto().getPoints());
             } else {
                 question.getStyle().set("color", "red");
             }

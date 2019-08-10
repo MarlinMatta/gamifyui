@@ -55,7 +55,7 @@ public class GradeTab extends AbstractTabWithGrid<GradeDto> {
 
     @Override
     protected void cantAdd(Component component) {
-        component.setVisible(true);
+        component.setVisible(!getLoginManager().hasPermission(0));
     }
 
     @Override
@@ -65,11 +65,11 @@ public class GradeTab extends AbstractTabWithGrid<GradeDto> {
 
     @Override
     protected void cantEdit(Component component) {
-        component.setVisible(true);
+        component.setVisible(!getLoginManager().hasPermission(0));
     }
 
     @Override
     protected void cantDelete(Component component) {
-        component.setVisible(false);
+        component.setVisible(!getLoginManager().hasPermission(0));
     }
 }

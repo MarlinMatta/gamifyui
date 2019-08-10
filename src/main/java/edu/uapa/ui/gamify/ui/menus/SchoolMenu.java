@@ -22,7 +22,7 @@ public class SchoolMenu extends AbstractView {
                 .add(security(subjectMenuItem(), 2))
                 .add(security(gradeMenuItem(), 2))
                 .add(security(teacherMenuItem(), 0))
-                .add(security(studentMenuItem(), 0))
+                .add(security(studentMenuItem(), 2))
                 .add(security(topicMenuItem(), 2))
                 .add(security(problemMenuItem(), 2))
                 .add(security(quitMenuItem(), 2))
