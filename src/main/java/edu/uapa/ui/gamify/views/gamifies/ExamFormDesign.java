@@ -1,23 +1,21 @@
 package edu.uapa.ui.gamify.views.gamifies;
 
+import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.Query;
 import com.vaadin.flow.templatemodel.TemplateModel;
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
 import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
 import edu.uapa.ui.gamify.requests.gamifies.TopicRequests;
 import edu.uapa.ui.gamify.requests.school.SubjectRequests;
 import edu.uapa.ui.gamify.requests.school.TeacherRequests;
-import edu.uapa.ui.gamify.ui.abstracts.PageView;
-import edu.uapa.ui.gamify.ui.tabs.gamifies.ExamTab;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.*;
@@ -63,7 +61,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
     private SubjectDto subject;
     private TopicDto topic;
 
-    private String[] problemQuantity = {"5","10","15","20","25","30","35","40"};
+    private String[] problemQuantity = {"5", "10", "15", "20", "25", "30", "35", "40"};
 
 
     /**
@@ -92,7 +90,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         buildGrid();
     }
 
-    private void setClickListeners(){
+    private void setClickListeners() {
         btGenerate.addClickListener(event -> {
             generateExam();
         });
@@ -121,18 +119,18 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         cbTopic.setValue(items.get(0));
     }
 
-    public void generateExam(){
+    public void generateExam() {
         final ExamDifficulty difficulty = cbDifficulty.getValue();
         final int size = Integer.parseInt(cbProblemQuantity.getValue());
         final List<ProblemDto> problems = ProblemRequests.getInstance().getPractice(difficulty, size);
         fillGrid(problems);
     }
 
-    public void fillGrid(List<ProblemDto> problems){
+    public void fillGrid(List<ProblemDto> problems) {
         gdProblems.setItems(problems);
     }
 
-    public void buildGrid(){
+    public void buildGrid() {
         gdProblems.addColumn(ProblemDto::theTopicName).setHeader(Captions.GRID_COLUMN_TOPIC);
         gdProblems.addColumn(ProblemDto::getExamDifficulty).setHeader(Captions.GRID_COLUMN_DIFFICULTY);
         gdProblems.addColumn(ProblemDto::getQuestion).setHeader(Captions.GRID_COLUMN_QUESTION);

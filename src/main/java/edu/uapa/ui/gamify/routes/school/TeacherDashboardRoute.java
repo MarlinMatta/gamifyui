@@ -1,27 +1,16 @@
 package edu.uapa.ui.gamify.routes.school;
 
-import com.github.appreciated.app.layout.webcomponents.applayout.AppDrawerLayout;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.ui.charts.BubbleChartExample;
-import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 
-import static edu.uapa.ui.gamify.routes.AllRoutes.STUDENT_MAIN_MENU_ROUTE;
 import static edu.uapa.ui.gamify.routes.AllRoutes.TEACHER_MAIN_MENU_ROUTE;
 
 @Route(value = TEACHER_MAIN_MENU_ROUTE, layout = MainAppLayout.class)

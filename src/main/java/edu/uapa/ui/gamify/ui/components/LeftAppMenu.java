@@ -15,6 +15,7 @@ import edu.uapa.ui.gamify.ui.menus.SchoolMenu;
 import edu.uapa.ui.gamify.ui.menus.SecurityMenu;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
+import edu.utesa.lib.models.dtos.school.StudentDto;
 
 public class LeftAppMenu extends AbstractView {
 
@@ -54,11 +55,16 @@ public class LeftAppMenu extends AbstractView {
         name.setText(getLoginManager().getName());
         name.getStyle().set("text-align", "center");
         Span point = new Span();
-        //if (!getLoginManager().hasPermission(1)) {
-          //  String poin = StudentRequests.getInstance().refreshByUser(getLoginManager().getId()).getPoints() + "";
-            point.setText("Puntos acumulados: " + 0);
+        if (!getLoginManager().hasPermission(1)) {
+            StudentDto studentDto = StudentRequests.getInstance().refreshByUser(getLoginManager().getId());
+            if (studentDto != null) {
+                String poin = studentDto.getPoints() + "";
+                point.setText("Puntos acumulados: " + poin);
+            } else {
+                point.setVisible(false);
+            }
             point.getStyle().set("text-align", "center");
-        //}
+        }
         Button button = closeButton();
 
         layout.add(name);
