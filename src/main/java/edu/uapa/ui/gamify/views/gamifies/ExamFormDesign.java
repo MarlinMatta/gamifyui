@@ -6,11 +6,13 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.provider.Query;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
+import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.ExamDto;
@@ -21,7 +23,9 @@ import edu.utesa.lib.models.enums.ExamDifficulty;
 import edu.utesa.lib.utils.DateUtils;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A Designer generated component for the exam-form-design template.
@@ -73,10 +77,20 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
 
         cbProblemQuantity.setItems(problemQuantity);
 
-        buildGrid();
-
         subject = new SubjectDto();
         topic = new TopicDto();
+
+        btGenerate.addClickListener(event -> {
+            generateExam();
+        });
+        buildGrid();
+    }
+
+    public void generateExam(){
+        final ExamDifficulty difficulty = cbDifficulty.getValue();
+        final int size = Integer.parseInt(cbProblemQuantity.getValue());
+        final List<ProblemDto> problems = ProblemRequests.getInstance().getPractice(difficulty, size);
+        fillGrid(problems);
     }
 
     public void fillGrid(List<ProblemDto> problems){
@@ -101,6 +115,8 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         dpFromDate.setValue(DateUtils.asLocalDate(data.getFromDate()));
         dpToDate.setValue(DateUtils.asLocalDate(data.getToDate()));
         tfPoints.setValue(String.valueOf(data.getPoints()));
+
+        fillGrid(new ArrayList<>(data.getProblems()));
     }
 
     @Override
@@ -139,7 +155,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         subject = cbSubject.getValue();
         topic = cbTopic.getValue();
 
-//        model.setTeacherDto(Tools.);
+//        model.setTeacherDto(Tools);
         model.setSubjectDto(subject);
         model.setTopicDto(topic);
         model.setExamDifficulty(cbDifficulty.getValue());
@@ -147,6 +163,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         model.setFromDate(DateUtils.asDate(dpFromDate.getValue()));
         model.setToDate(DateUtils.asDate(dpToDate.getValue()));
         model.setPoints(Integer.parseInt(tfPoints.getValue()));
+        model.setProblems(gdProblems.getDataProvider().fetch(new Query<>()).collect(Collectors.toSet()));
 
         return null;
     }
