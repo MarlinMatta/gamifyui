@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 /**
  * A Designer generated component for the problem-form-design template.
- *
+ * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
@@ -73,7 +73,9 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
 
         teacher = new TeacherDto();
         topic = new TopicDto();
+    }
 
+    public void fillDifficulty() {
         cbDifficulty.setItems(ExamDifficulty.values());
         cbDifficulty.setItemLabelGenerator(ExamDifficulty::name);
         cbDifficulty.setValue(ExamDifficulty.BASIC);
@@ -163,22 +165,22 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         model.setExamDifficulty(cbDifficulty.getValue());
         model.setQuestion(taQuestion.getValue());
 
-        if (cbCorrect01.getValue()){
+        if (cbCorrect01.getValue()) {
             model.setCorrectAnswer(tfAnswer01.getValue());
             model.setIncorrectAnswer01(tfAnswer02.getValue());
             model.setIncorrectAnswer02(tfAnswer03.getValue());
             model.setIncorrectAnswer03(tfAnswer04.getValue());
-        } else if (cbCorrect02.getValue()){
+        } else if (cbCorrect02.getValue()) {
             model.setCorrectAnswer(tfAnswer02.getValue());
             model.setIncorrectAnswer01(tfAnswer01.getValue());
             model.setIncorrectAnswer02(tfAnswer03.getValue());
             model.setIncorrectAnswer03(tfAnswer04.getValue());
-        } else if (cbCorrect03.getValue()){
+        } else if (cbCorrect03.getValue()) {
             model.setCorrectAnswer(tfAnswer03.getValue());
             model.setIncorrectAnswer01(tfAnswer01.getValue());
             model.setIncorrectAnswer02(tfAnswer02.getValue());
             model.setIncorrectAnswer03(tfAnswer04.getValue());
-        } else if (cbCorrect04.getValue()){
+        } else if (cbCorrect04.getValue()) {
             model.setCorrectAnswer(tfAnswer04.getValue());
             model.setIncorrectAnswer01(tfAnswer01.getValue());
             model.setIncorrectAnswer02(tfAnswer02.getValue());

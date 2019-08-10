@@ -48,6 +48,7 @@ public class TopicFormDesign extends PolymerTemplate<TopicFormDesign.TopicFormDe
     public void fillSubject(List<SubjectDto> items) {
         cbSubject.setItemLabelGenerator(SubjectDto::getName);
         cbSubject.setItems(items);
+        cbSubject.setValue(items.get(0));
     }
 
     @Override

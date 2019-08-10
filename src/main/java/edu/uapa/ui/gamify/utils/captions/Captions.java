@@ -10,7 +10,7 @@ public class Captions {
     public static final String SCHOOL_ITEM = "Escuela";
     public static final String TOPIC_ITEM = "Temas";
     public static final String PROBLEM_ITEM = "Problemas";
-    public static final String QUIT_ITEM = "Examen";
+    public static final String TEST_ITEM = "Examen";
 
     public static final String SECURITY_MENU = "Security";
     public static final String PARAMETER_ITEM = "Parameter";

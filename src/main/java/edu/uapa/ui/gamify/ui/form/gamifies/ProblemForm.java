@@ -28,6 +28,7 @@ public class ProblemForm extends AbstractSingleForm<ProblemFormDesign, ProblemDt
     protected void setLanguage() {
         getDesign().fillTeacher(TeacherRequests.getInstance().getAll());
         getDesign().fillTopic(TopicRequests.getInstance().getAll());
+        getDesign().fillDifficulty();
     }
 
     @Override

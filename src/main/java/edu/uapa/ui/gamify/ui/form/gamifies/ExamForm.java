@@ -2,6 +2,7 @@ package edu.uapa.ui.gamify.ui.form.gamifies;
 
 import edu.uapa.ui.gamify.requests.gamifies.ExamRequests;
 import edu.uapa.ui.gamify.requests.gamifies.TopicRequests;
+import edu.uapa.ui.gamify.requests.school.SubjectRequests;
 import edu.uapa.ui.gamify.requests.school.TeacherRequests;
 import edu.uapa.ui.gamify.ui.abstracts.AbstractSingleForm;
 import edu.uapa.ui.gamify.views.gamifies.ExamFormDesign;

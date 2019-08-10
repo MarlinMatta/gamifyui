@@ -61,6 +61,7 @@ public class SubjectFormDesign extends PolymerTemplate<SubjectFormDesign.Subject
     public void fillGrade(List<GradeDto> items) {
         cbGrade.setItemLabelGenerator(GradeDto::getName);
         cbGrade.setItems(items);
+        cbGrade.setValue(items.get(0));
     }
 
     @Override

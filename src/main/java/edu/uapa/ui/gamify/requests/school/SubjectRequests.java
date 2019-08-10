@@ -48,7 +48,15 @@ public class SubjectRequests extends Request {
     }
 
     public List<SubjectDto> getByGrade(String id) {
-        String response = getExecute("/?grade=" + id);
+        String response = getExecute("/grade?grade=" + id);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, SubjectDto.class);
+        }
+        return null;
+    }
+
+    public List<SubjectDto> getByTeacher(String id) {
+        String response = getExecute("/teacher?teacher=" + id);
         if (!response.isEmpty()) {
             return JsonUtils.toObjectList(response, SubjectDto.class);
         }

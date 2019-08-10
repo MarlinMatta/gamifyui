@@ -5,6 +5,7 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.models.LoginManager;
 import edu.uapa.ui.gamify.routes.AllRoutes;
+import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.ui.components.TabsManager;
 import edu.utesa.lib.models.dtos.security.UserDto;
 import edu.utesa.lib.utils.HashUtils;
@@ -14,7 +15,7 @@ import java.util.List;
 
 import static edu.uapa.ui.gamify.routes.AllRoutes.*;
 
-public class Tools {
+public class Tools extends PageView {
     public static final String SESSION_NAME = "ChistMarioAndrewAdreanJesu";
 
     public static final String SESSION_TAB_NAME = "MinombreesKkwazzawazzakkwaquikkwalaquaza_Zzabolazza";
@@ -93,6 +94,10 @@ public class Tools {
 
     public static String getSessionSubject() {
         return (String) VaadinSession.getCurrent().getAttribute(Tools.SESSION_SUBJECT);
+    }
+
+    public static Long getUserId(){
+        return getLoginManager().getId();
     }
 
     public static void setSessionTopic(String id) {
