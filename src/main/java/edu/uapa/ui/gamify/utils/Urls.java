@@ -13,6 +13,7 @@ public class Urls {
     public static final String APP_SUBJECT = APP + "/subjects";
     public static final String APP_GRADE = APP + "/grades";
     public static final String APP_STUDENT = APP + "/students";
+    public static final String APP_LEARN = APP + "/learn";
     public static final String APP_TEACHER = APP + "/teachers";
 
     public static final String APP_TOPIC = APP + "/topics";

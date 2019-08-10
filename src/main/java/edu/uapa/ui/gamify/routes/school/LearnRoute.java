@@ -6,15 +6,17 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import edu.uapa.ui.gamify.requests.learn.LearnRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
-import edu.uapa.ui.gamify.utils.captions.Captions;
+import edu.utesa.lib.models.dtos.school.LearnDto;
 
 @Route(value = AllRoutes.LEARN_ROUTE, layout = MainAppLayout.class)
 public class LearnRoute extends PageView {
     private VerticalLayout mainLayout;
+    private LearnDto learnDto = LearnRequests.getInstance().getByTopicId(Tools.getSessionTopic());
 
     public LearnRoute() {
         initialized();
@@ -26,28 +28,29 @@ public class LearnRoute extends PageView {
         setSpacing(false);
 
         buildMainLayout();
+        add(header());
         add(mainLayout);
     }
 
     private void buildMainLayout() {
         mainLayout = new VerticalLayout();
         mainLayout.setMargin(false);
-        mainLayout.setSpacing(false);
-        mainLayout.setPadding(false);
-        mainLayout.getElement().getStyle().set("width", "100%");
-        mainLayout.add(header());
+        mainLayout.setSpacing(true);
+        mainLayout.setPadding(true);
+        mainLayout.add(body());
         mainLayout.add(footer());
 
-        mainLayout.setAlignItems(Alignment.END);
-        mainLayout.setJustifyContentMode(JustifyContentMode.END);
-        mainLayout.setDefaultHorizontalComponentAlignment(Alignment.END);
+        mainLayout.setAlignItems(Alignment.START);
+        mainLayout.setJustifyContentMode(JustifyContentMode.START);
+        mainLayout.setDefaultHorizontalComponentAlignment(Alignment.START);
+        mainLayout.setHeight("90%");
     }
 
     private Component header() {
         HorizontalLayout layout = new HorizontalLayout();
         layout.setWidthFull();
         Span h2 = new Span();
-        h2.getElement().setProperty("innerHTML", "<String><u>" + Captions.LEARN + "</u></strong>");
+        h2.getElement().setProperty("innerHTML", "<String><u>" + learnDto.getTopicDto().getName() + "</u></strong>");
         h2.getStyle().set("color", "blue");
         h2.getStyle().set("font-size", "24px");
         h2.getStyle().set("margin-bottom", "20px");
@@ -61,11 +64,18 @@ public class LearnRoute extends PageView {
         return layout;
     }
 
+    private Component body() {
+        mainLayout = new VerticalLayout();
+        Span span = new Span();
+        span.setText(learnDto.getDescription());
+        mainLayout.add(span);
+        return mainLayout;
+    }
 
     private Component footer() {
         HorizontalLayout layout = new HorizontalLayout();
-        Button next = new Button("Next >>>");
-        next.setWidth("120px");
+//        Button next = new Button("Next >>>");
+//        next.setWidth("120px");
 
         Button back = new Button("<<< Back");
         back.setWidth("120px");
@@ -76,9 +86,7 @@ public class LearnRoute extends PageView {
         klk.setPadding(false);
 
         back.addClickListener(event -> Tools.navigateToStudentMainMenu());
-        next.addClickListener(event -> {
-            Tools.navigateToStudentMainMenu();
-        });
+//        next.addClickListener(event -> Tools.navigateToStudentMainMenu());
 
         layout.setWidthFull();
         layout.setMargin(false);
@@ -87,7 +95,7 @@ public class LearnRoute extends PageView {
 
         layout.add(back);
         layout.add(klk);
-        layout.add(next);
+//        layout.add(next);
         layout.setJustifyContentMode(JustifyContentMode.CENTER);
         layout.getStyle().set("position", "absolute");
         layout.getStyle().set("bottom", "0px");
@@ -95,4 +103,6 @@ public class LearnRoute extends PageView {
 
         return layout;
     }
+
+
 }

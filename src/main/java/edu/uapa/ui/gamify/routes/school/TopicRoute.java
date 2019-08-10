@@ -40,21 +40,21 @@ public class TopicRoute extends PageView {
         setSpacing(false);
 
         buildMainLayout();
+        add(header());
         add(mainLayout);
     }
 
     private void buildMainLayout() {
         mainLayout = new VerticalLayout();
         mainLayout.setMargin(false);
-        mainLayout.setSpacing(false);
-        mainLayout.setPadding(false);
-        mainLayout.add(header());
+        mainLayout.setSpacing(true);
+        mainLayout.setPadding(true);
         mainLayout.add(appLayoutBody());
         mainLayout.add(footer());
 
-        mainLayout.setAlignItems(FlexComponent.Alignment.END);
-        mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-        mainLayout.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.END);
+        mainLayout.setAlignItems(Alignment.START);
+        mainLayout.setJustifyContentMode(JustifyContentMode.CENTER);
+        mainLayout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         mainLayout.setHeight("90%");
     }
 
@@ -77,7 +77,6 @@ public class TopicRoute extends PageView {
     }
 
     private Component appLayoutBody() {
-        bodyLayout.getElement().getStyle().set("width", "100%");
         subjects.forEach(subjectDto -> {
             Component component = subjectComponent(subjectDto.getName());
             component.setId(subjectDto.getId() + "");
