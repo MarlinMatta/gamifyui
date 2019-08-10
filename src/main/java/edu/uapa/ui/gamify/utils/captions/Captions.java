@@ -89,6 +89,7 @@ public class Captions {
 
     public static final String CHOOSE_SUBJECT = "Choose Subject";
     public static final String HELLO_STUDENT = "Hello student!";
+    public static final String HELLO_TEACHER = "Hello Teacher!";
     public static final String CONFIGURATION = "Configuration";
 
     public static final String DISTRICT = "Distrito";

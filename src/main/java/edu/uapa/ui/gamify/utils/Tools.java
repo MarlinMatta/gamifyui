@@ -81,7 +81,7 @@ public class Tools extends PageView {
     }
 
     public static void navigateToTeacherMainMenu() {
-        UI.getCurrent().navigate(APP_ROUTE);
+        UI.getCurrent().navigate(TEACHER_MAIN_MENU_ROUTE);
     }
 
     public static void setSession(UserDto userDto) {

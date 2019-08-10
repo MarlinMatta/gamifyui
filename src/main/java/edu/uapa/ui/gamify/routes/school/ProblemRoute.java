@@ -31,7 +31,7 @@ public class ProblemRoute extends PageView {
     private LinkedList<Component> components = new LinkedList<>();
     private Component currentComponent;
     private Button goToInit;
-    private int point = 0;
+    private int points = 0;
 
     public ProblemRoute() {
         initialized();
@@ -181,7 +181,7 @@ public class ProblemRoute extends PageView {
             Span question = new Span();
             Span response = new Span();
             if (answer.isGood()) {
-//                point += answer.getProblemDto().getPoints();
+//                points += answer.getProblemDto().getPoints();
                 question.getStyle().set("color", "green");
 //                main.add("Total de punto adquirido: " + answer.getProblemDto().getPoints());
             } else {
@@ -204,7 +204,7 @@ public class ProblemRoute extends PageView {
             main.add(response);
             main.add(new HorizontalLayout());
         });
-        main.add("Total de punto adquirido: " + point);
+        main.add("Total de punto adquirido: " + points);
         return main;
     }
 }
