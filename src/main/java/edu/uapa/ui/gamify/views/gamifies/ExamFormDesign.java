@@ -13,12 +13,14 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
 import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
+import edu.uapa.ui.gamify.requests.gamifies.TopicRequests;
+import edu.uapa.ui.gamify.requests.school.SubjectRequests;
+import edu.uapa.ui.gamify.requests.school.TeacherRequests;
+import edu.uapa.ui.gamify.ui.abstracts.PageView;
+import edu.uapa.ui.gamify.ui.tabs.gamifies.ExamTab;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
-import edu.utesa.lib.models.dtos.school.ExamDto;
-import edu.utesa.lib.models.dtos.school.ProblemDto;
-import edu.utesa.lib.models.dtos.school.SubjectDto;
-import edu.utesa.lib.models.dtos.school.TopicDto;
+import edu.utesa.lib.models.dtos.school.*;
 import edu.utesa.lib.models.enums.ExamDifficulty;
 import edu.utesa.lib.utils.DateUtils;
 
@@ -56,10 +58,11 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
     @Id("tfPoints")
     private TextField tfPoints;
 
+    private TeacherDto teacher;
     private SubjectDto subject;
     private TopicDto topic;
 
-    private String[] problemQuantity = {"20","25","30","35","40"};
+    private String[] problemQuantity = {"5","10","15","20","25","30","35","40"};
 
 
     /**
@@ -76,14 +79,45 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         btGenerate.setText(Captions.BUTTON_GENERATE);
 
         cbProblemQuantity.setItems(problemQuantity);
+        cbProblemQuantity.setValue(problemQuantity[0]);
 
         subject = new SubjectDto();
         topic = new TopicDto();
+        teacher = TeacherRequests.getInstance().refreshByUser(Tools.getUserId());
 
+        setClickListeners();
+        fillDifficulty();
+        fillSubject();
+        buildGrid();
+    }
+
+    private void setClickListeners(){
         btGenerate.addClickListener(event -> {
             generateExam();
         });
-        buildGrid();
+
+        cbSubject.addValueChangeListener(event -> {
+            fillTopic(TopicRequests.getInstance().getBySubject(event.getValue().getId().toString()));
+        });
+    }
+
+    public void fillDifficulty() {
+        cbDifficulty.setItems(ExamDifficulty.values());
+        cbDifficulty.setItemLabelGenerator(ExamDifficulty::name);
+        cbDifficulty.setValue(ExamDifficulty.BASIC);
+    }
+
+    public void fillSubject() {
+        List<SubjectDto> items = SubjectRequests.getInstance().getByTeacher(teacher.getId().toString());
+        cbSubject.setItemLabelGenerator(SubjectDto::getName);
+        cbSubject.setItems(items);
+        cbSubject.setValue(items.get(0));
+    }
+
+    public void fillTopic(List<TopicDto> items) {
+        cbTopic.setItemLabelGenerator(TopicDto::getName);
+        cbTopic.setItems(items);
+        cbTopic.setValue(items.get(0));
     }
 
     public void generateExam(){
@@ -155,7 +189,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         subject = cbSubject.getValue();
         topic = cbTopic.getValue();
 
-//        model.setTeacherDto(Tools);
+        model.setTeacherDto(teacher);
         model.setSubjectDto(subject);
         model.setTopicDto(topic);
         model.setExamDifficulty(cbDifficulty.getValue());

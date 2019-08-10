@@ -5,6 +5,7 @@ import com.github.appreciated.app.layout.component.menu.left.items.LeftBadgeIcon
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
+import edu.uapa.ui.gamify.ui.tabs.gamifies.ExamTab;
 import edu.uapa.ui.gamify.ui.tabs.gamifies.ProblemTab;
 import edu.uapa.ui.gamify.ui.tabs.gamifies.TopicTab;
 import edu.uapa.ui.gamify.ui.tabs.school.*;
@@ -25,7 +26,7 @@ public class SchoolMenu extends AbstractView {
                 .add(security(studentMenuItem(), 2))
                 .add(security(topicMenuItem(), 2))
                 .add(security(problemMenuItem(), 2))
-                .add(security(quitMenuItem(), 2))
+                .add(security(testMenuItem(), 2))
                 .build();
     }
 
@@ -71,10 +72,10 @@ public class SchoolMenu extends AbstractView {
                 event -> getTabsManager().addTab(Captions.PROBLEM_ITEM, new ProblemTab(), true));
     }
 
-    private Component quitMenuItem() {
-        return new LeftBadgeIconItem(Captions.QUIT_ITEM,
+    private Component testMenuItem() {
+        return new LeftBadgeIconItem(Captions.TEST_ITEM,
                 VaadinIcon.EDIT.create(),
-                event -> getTabsManager().addTab(Captions.QUIT_ITEM, new UserTab(), true));
+                event -> getTabsManager().addTab(Captions.TEST_ITEM, new ExamTab(), true));
     }
 
     private Component security(Component component, int permissionCode) {
