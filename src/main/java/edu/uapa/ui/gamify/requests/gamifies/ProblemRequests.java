@@ -8,6 +8,7 @@ import edu.utesa.lib.models.dtos.school.ProblemDto;
 import edu.utesa.lib.models.enums.ExamDifficulty;
 import org.apache.http.HttpStatus;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,16 @@ public class ProblemRequests extends Request {
 
     public List<ProblemDto> getPractice(ExamDifficulty difficulty, int size) {
         String response = getExecute("/?difficulty=" + difficulty.name() + "&size=" + size);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, ProblemDto.class);
+        }
+        return null;
+    }
+
+    public List<ProblemDto> getAllByExam(ExamDifficulty difficulty, int size, int teacherId, int topicId, Date from,
+                                         Date to) {
+        String response = getExecute("/exam?difficulty=" + difficulty.name() + "&size=" + size
+                + "&teacherId=" + teacherId + "&topicId=" + topicId + "&from=" + from + "&to=" + to);
         if (!response.isEmpty()) {
             return JsonUtils.toObjectList(response, ProblemDto.class);
         }

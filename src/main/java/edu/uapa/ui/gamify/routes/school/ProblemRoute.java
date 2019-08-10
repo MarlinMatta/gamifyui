@@ -76,7 +76,6 @@ public class ProblemRoute extends PageView {
         mainLayout.setSpacing(false);
         mainLayout.setPadding(false);
         mainLayout.getElement().getStyle().set("width", "100%");
-        mainLayout.getElement().getStyle().set("height", "90%");
     }
 
     private Component navigator() {
