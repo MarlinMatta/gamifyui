@@ -8,11 +8,13 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.uapa.ui.gamify.views.school.configuration.ConfigurationFormDesign;
+import edu.utesa.lib.models.dtos.configurations.ConfigurationDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,11 +26,15 @@ public class ConfigurationRoute extends PageView {
 
     private VerticalLayout mainLayout = new VerticalLayout();
     private ConfigurationFormDesign doForm = new ConfigurationFormDesign();
+    private ConfigurationDto dto = new ConfigurationDto();
     private List<Integer> questionQuantity = Arrays.asList(5, 10, 20, 30, 40, 50, 100, 150, 200, 500, 1000);
     private boolean hasSelect = false;
 
     public ConfigurationRoute() {
         initialized();
+        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Practicar")) {
+            doForm.activeMode(false);
+        }
     }
 
     private void initialized() {
@@ -52,7 +58,7 @@ public class ConfigurationRoute extends PageView {
 
 
     protected void collect() {
-//        doForm.collectData()
+        doForm.collectData(dto);
     }
 
     private Component header() {

@@ -25,7 +25,7 @@ public class LearnRoute extends PageView {
     private void initialized() {
         setMargin(false);
         setPadding(true);
-        setSpacing(false);
+        setSpacing(true);
 
         buildMainLayout();
         add(header());

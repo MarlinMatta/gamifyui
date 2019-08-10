@@ -57,6 +57,10 @@ public class ConfigurationFormDesign extends PolymerTemplate<ConfigurationFormDe
         cbmode.setItems(GameMode.values());
     }
 
+    public void activeMode(boolean active) {
+        cbmode.setVisible(active);
+    }
+
     @Override
     public void restore(ConfigurationDto data) {
         cbdifficulty.setValue(data.getDifficulty());
@@ -77,7 +81,7 @@ public class ConfigurationFormDesign extends PolymerTemplate<ConfigurationFormDe
             return false;
         else if (cbquestions.getValue() == null)
             return false;
-        else if (cbmode.getValue() == null)
+        else if (cbmode.getValue() == null && cbmode.isVisible())
             return false;
         return true;
     }
