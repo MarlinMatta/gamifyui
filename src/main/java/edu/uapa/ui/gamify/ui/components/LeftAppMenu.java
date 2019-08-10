@@ -55,7 +55,7 @@ public class LeftAppMenu extends AbstractView {
         name.getStyle().set("text-align", "center");
         Span point = new Span();
         String poin = StudentRequests.getInstance().refreshByUser(getLoginManager().getId()).getPoints() + "";
-        point.setText("Puntos acumulados: " + poin == null ? poin : "0");
+        point.setText("Puntos acumulados: " + (poin != null ? poin : "0"));
         point.getStyle().set("text-align", "center");
         Button button = closeButton();
 
