@@ -86,11 +86,11 @@ public class ConfigurationRoute extends PageView {
 
         Button back = new Button("<<< Back");
         back.setWidth("120px");
-        VerticalLayout klk = new VerticalLayout();
-        klk.setWidth("75%");
-        klk.setMargin(false);
-        klk.setSpacing(false);
-        klk.setPadding(false);
+        VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.setWidth("75%");
+        verticalLayout.setMargin(false);
+        verticalLayout.setSpacing(false);
+        verticalLayout.setPadding(false);
 
         back.addClickListener(event -> Tools.navigateToTopic());
         next.addClickListener(event -> {
@@ -107,7 +107,7 @@ public class ConfigurationRoute extends PageView {
         layout.setPadding(false);
 
         layout.add(back);
-        layout.add(klk);
+        layout.add(verticalLayout);
         layout.add(next);
         layout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         layout.getStyle().set("position", "absolute");

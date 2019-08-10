@@ -5,6 +5,7 @@ import edu.uapa.ui.gamify.requests.Request;
 import edu.uapa.ui.gamify.utils.JsonUtils;
 import edu.uapa.ui.gamify.utils.Urls;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
+import edu.utesa.lib.models.enums.ExamDifficulty;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -33,6 +34,14 @@ public class ProblemRequests extends Request {
 
     public List<ProblemDto> get(int page, int size, String searchValue) {
         String response = getExecute("?page=" + page + "&size=" + size + "&filterValue=" + searchValue);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, ProblemDto.class);
+        }
+        return null;
+    }
+
+    public List<ProblemDto> getPractice(ExamDifficulty difficulty, int size) {
+        String response = getExecute("/?difficulty=" + difficulty.name() + "&size=" + size);
         if (!response.isEmpty()) {
             return JsonUtils.toObjectList(response, ProblemDto.class);
         }

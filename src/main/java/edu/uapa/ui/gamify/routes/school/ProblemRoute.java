@@ -9,11 +9,14 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import edu.uapa.ui.gamify.models.Question;
+import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.QuestionGenerator;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
+import edu.utesa.lib.models.dtos.school.ProblemDto;
+import edu.utesa.lib.models.enums.ExamDifficulty;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -26,6 +29,9 @@ public class ProblemRoute extends PageView {
 
     private List<Question> questions = new QuestionGenerator().get();
     private List<Question> result = new ArrayList<>();
+
+    private List<ProblemDto> problemDtos = ProblemRequests.getInstance().getPractice(ExamDifficulty.BASIC, 10);
+
     private VerticalLayout mainLayout;
     private LinkedList<Component> components = new LinkedList<>();
     private Component currentComponent;
