@@ -25,6 +25,7 @@ import edu.utesa.lib.models.enums.ExamDifficulty;
 import edu.utesa.lib.utils.DateUtils;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -146,8 +147,12 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         cbSubject.setValue(subject);
         cbTopic.setValue(topic);
         cbProblemQuantity.setValue(String.valueOf(data.getProblemQuantity()));
-        dpFromDate.setValue(DateUtils.asLocalDate(data.getFromDate()));
-        dpToDate.setValue(DateUtils.asLocalDate(data.getToDate()));
+        try {
+            dpFromDate.setValue(DateUtils.asLocalDate(new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss").parse(data.getFromDate())));
+            dpToDate.setValue(DateUtils.asLocalDate(new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss").parse(data.getToDate())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         tfPoints.setValue(String.valueOf(data.getPoints()));
 
         fillGrid(new ArrayList<>(data.getProblems()));
@@ -194,12 +199,12 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         model.setTopicDto(topic);
         model.setExamDifficulty(cbDifficulty.getValue());
         model.setProblemQuantity(Integer.parseInt(cbProblemQuantity.getValue()));
-        model.setFromDate(DateUtils.asDate(dpFromDate.getValue()));
-        model.setToDate(DateUtils.asDate(dpToDate.getValue()));
+        model.setFromDate(dpFromDate.getValue().toString());
+        model.setToDate(dpToDate.getValue().toString());
         model.setPoints(Integer.parseInt(tfPoints.getValue()));
         model.setProblems(gdProblems.getDataProvider().fetch(new Query<>()).collect(Collectors.toSet()));
 
-        return null;
+        return model;
     }
 
     @Override
