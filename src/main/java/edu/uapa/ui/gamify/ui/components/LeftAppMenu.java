@@ -52,10 +52,13 @@ public class LeftAppMenu extends AbstractView {
         Span name = new Span();
         name.setText(getLoginManager().getName());
         name.getStyle().set("text-align", "center");
+        Button button = closeButton();
+
         layout.add(name);
-        layout.add(closeButton());
+        layout.add(button);
 
         layout.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, roundImage, name, description);
+        layout.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, roundImage, button, description);
         return layout;
     }
 
