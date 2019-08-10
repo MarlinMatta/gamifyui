@@ -40,8 +40,6 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
     private ComboBox<TopicDto> cbTopic;
     @Id("cbDifficulty")
     private ComboBox<ExamDifficulty> cbDifficulty;
-    @Id("tfPoints")
-    private TextField tfPoints;
     @Id("taQuestion")
     private TextArea taQuestion;
     @Id("tfAnswer01")
@@ -71,7 +69,6 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         cbTeacher.setLabel(Captions.TEACHER);
         cbTopic.setLabel(Captions.TOPIC);
         cbDifficulty.setLabel(Captions.DIFFICULTY);
-        tfPoints.setLabel(Captions.POINTS);
         taQuestion.setLabel(Captions.QUESTION);
 
         teacher = new TeacherDto();
@@ -102,7 +99,6 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         cbTeacher.setValue(teacher);
         cbTopic.setValue(topic);
         cbDifficulty.setValue(data.getExamDifficulty());
-        tfPoints.setValue(String.valueOf(data.getPoints()));
         taQuestion.setValue(data.getQuestion());
         tfAnswer01.setValue(data.getCorrectAnswer());
         cbCorrect01.setValue(true);
@@ -119,7 +115,6 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         cbTeacher.setReadOnly(true);
         cbTopic.setReadOnly(true);
         cbDifficulty.setReadOnly(true);
-        tfPoints.setReadOnly(true);
         taQuestion.setReadOnly(true);
         tfAnswer01.setReadOnly(true);
         cbCorrect01.setReadOnly(true);
@@ -138,8 +133,6 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         if (cbTopic.isInvalid())
             return false;
         if (cbDifficulty.isInvalid())
-            return false;
-        if (tfPoints.isInvalid())
             return false;
         if (taQuestion.isInvalid())
             return false;
@@ -168,7 +161,6 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         topic = cbTopic.getValue();
 
         model.setExamDifficulty(cbDifficulty.getValue());
-        model.setPoints(Integer.parseInt(tfPoints.getValue()));
         model.setQuestion(taQuestion.getValue());
 
         if (cbCorrect01.getValue()){
