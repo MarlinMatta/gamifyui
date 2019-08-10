@@ -14,7 +14,6 @@ import java.util.Map;
 public class SchoolRequests extends Request {
     private static SchoolRequests requestsInstance = null;
 
-
     private SchoolRequests() {
         super(Urls.APP_SCHOOL);
         Map<String, String> headers = new HashMap<>() {

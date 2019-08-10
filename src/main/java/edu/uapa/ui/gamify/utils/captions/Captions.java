@@ -38,6 +38,8 @@ public class Captions {
     public static final String GRID_COLUMN_SUBJECT = "Subject";
     public static final String GRID_COLUMN_TOPIC = "Topic";
     public static final String GRID_COLUMN_QUESTION = "Question";
+    public static final String GRID_COLUMN_POINTS = "Points";
+    public static final String GRID_COLUMN_TO_DATE = "Hasta fecha";
     public static final String GRID_COLUMN_DIFFICULTY = "Difficulty";
     public static final String GRID_COLUMN_TEACHER = "Teacher";
 
@@ -51,6 +53,7 @@ public class Captions {
     public static final String BUTTON_CANCEL = "Cancel";
     public static final String BUTTON_SELECT = "Select";
     public static final String BUTTON_EXIT = "Exit";
+    public static final String BUTTON_GENERATE = "Generate";
 
     public static final String CODE = "Code";
     public static final String NAME = "Nombre";
