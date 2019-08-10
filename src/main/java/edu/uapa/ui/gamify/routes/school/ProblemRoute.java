@@ -4,7 +4,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -42,14 +41,14 @@ public class ProblemRoute extends PageView {
         setMargin(false);
         setPadding(true);
         setSpacing(false);
-        setAlignItems(FlexComponent.Alignment.CENTER);
-        setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        setAlignItems(Alignment.START);
+        setJustifyContentMode(JustifyContentMode.START);
 
         buildMainLayout();
         add(mainLayout);
 
-        mainLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        mainLayout.setAlignItems(Alignment.START);
+        mainLayout.setJustifyContentMode(JustifyContentMode.START);
 
         problems.forEach(problem -> {
             BodyQuestionDesign design = new BodyQuestionDesign(problem);
@@ -77,6 +76,7 @@ public class ProblemRoute extends PageView {
         mainLayout.setSpacing(false);
         mainLayout.setPadding(false);
         mainLayout.getElement().getStyle().set("width", "100%");
+        mainLayout.getElement().getStyle().set("height", "90%");
     }
 
     private Component navigator() {
@@ -184,6 +184,7 @@ public class ProblemRoute extends PageView {
             if (answer.isGood()) {
                 point += answer.getProblemDto().getPoints();
                 question.getStyle().set("color", "green");
+                main.add("Total de punto adquirido: " + answer.getProblemDto().getPoints());
             } else {
                 question.getStyle().set("color", "red");
             }
@@ -203,8 +204,8 @@ public class ProblemRoute extends PageView {
             main.add(question);
             main.add(response);
             main.add(new HorizontalLayout());
-            main.add("Total de punto adquirido: " + point);
         });
+        main.add("Total de punto adquirido: " + point);
         return main;
     }
 }
