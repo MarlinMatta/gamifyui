@@ -76,7 +76,7 @@ public class ProblemRoute extends PageView {
         mainLayout.setSpacing(false);
         mainLayout.setPadding(false);
         mainLayout.getElement().getStyle().set("width", "100%");
-        mainLayout.getElement().getStyle().set("height", "90%");
+//        mainLayout.getElement().getStyle().set("height", "90%");
     }
 
     private Component navigator() {
@@ -182,9 +182,9 @@ public class ProblemRoute extends PageView {
             Span question = new Span();
             Span response = new Span();
             if (answer.isGood()) {
-                point += answer.getProblemDto().getPoints();
+//                point += answer.getProblemDto().getPoints();
                 question.getStyle().set("color", "green");
-                main.add("Total de punto adquirido: " + answer.getProblemDto().getPoints());
+//                main.add("Total de punto adquirido: " + answer.getProblemDto().getPoints());
             } else {
                 question.getStyle().set("color", "red");
             }

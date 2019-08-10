@@ -122,7 +122,8 @@ public class TopicRoute extends PageView {
                 } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
                     Tools.navigateToPlay();
                 } else {
-                    Tools.navigateToStudentMainMenu();
+                    System.out.println(VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE) + "");
+//                    Tools.navigateToStudentMainMenu();
                 }
             } else {
                 Notification.show("Debe selecionar un item para poder proseguir");

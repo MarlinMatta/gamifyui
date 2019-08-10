@@ -34,7 +34,7 @@ public class LoginRoute extends VerticalLayout {
     }
 
     private void setLanguage() {
-        loginOverlay.setTitle("Gametice 2.0");
+        loginOverlay.setTitle("Gametice");
         loginOverlay.setDescription("A Fun  Way To Learn");
         i18n.setErrorMessage(new LoginI18n.ErrorMessage());
     }

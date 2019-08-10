@@ -132,7 +132,7 @@ public class GameModeRoute extends PageView {
                     ((Button) component).getStyle().remove("border");
                 });
                 event.getSource().getStyle().set("border", "3px solid cyan");
-                VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "jugar");
+                VaadinSession.getCurrent().setAttribute(Tools.SESSION_GAME_MODE, "Play");
                 hasSelect = true;
             } else {
                 hasSelect = false;
