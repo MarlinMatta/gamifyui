@@ -56,6 +56,14 @@ public class TeacherRequests extends Request {
         return response.isEmpty() ? 0L : Long.parseLong(response);
     }
 
+    public TeacherDto refreshByUser(Long id) {
+        String response = getExecute("/refresh?userId=" + id);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObject(response, TeacherDto.class);
+        }
+        return null;
+    }
+
     public boolean save(TeacherDto dto) {
         setJsonBody(JsonUtils.toJSON(dto));
         HttpResponse<String> response = postExecute("");

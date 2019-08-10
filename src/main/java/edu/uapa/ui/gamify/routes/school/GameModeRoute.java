@@ -5,6 +5,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -118,6 +119,8 @@ public class GameModeRoute extends PageView {
     }
 
     private Component playComponent() {
+        VerticalLayout layout = new VerticalLayout();
+        Label label = new Label("Play");
         Button button = new Button(new Image("frontend/src/images/rompecabezas.png", Captions.PLAY));
         button.setId(Captions.PLAY);
         button.setWidth("200px");
@@ -136,10 +139,14 @@ public class GameModeRoute extends PageView {
                 event.getSource().getStyle().remove("border");
             }
         });
+        layout.add(button);
+        layout.add(label);
         return button;
     }
 
     private Component practiceComponent() {
+        VerticalLayout layout = new VerticalLayout();
+        Label label = new Label("Play");
         Button button = new Button(new Image("frontend/src/images/medalla.png", Captions.PRACTICE));
         button.setId(Captions.PRACTICE);
         button.setWidth("200px");
@@ -156,10 +163,14 @@ public class GameModeRoute extends PageView {
                 event.getSource().getStyle().remove("border");
             }
         });
+        layout.add(button);
+        layout.add(label);
         return button;
     }
 
     private Component learnComponent() {
+        VerticalLayout layout = new VerticalLayout();
+        Label label = new Label("Play");
         Button button = new Button(new Image("frontend/src/images/lectura.png", Captions.LEARN));
         button.setId(Captions.LEARN);
         button.setWidth("200px");
@@ -178,10 +189,14 @@ public class GameModeRoute extends PageView {
                 event.getSource().getStyle().remove("border");
             }
         });
+        layout.add(button);
+        layout.add(label);
         return button;
     }
 
     private Component testComponent() {
+        VerticalLayout layout = new VerticalLayout();
+        Label label = new Label("Play");
         Button button = new Button(new Image("frontend/src/images/aprendizaje.png", Captions.TEST));
         button.setId(Captions.TEST);
         button.setWidth("200px");
@@ -200,6 +215,8 @@ public class GameModeRoute extends PageView {
                 event.getSource().getStyle().remove("border");
             }
         });
+        layout.add(button);
+        layout.add(label);
         return button;
     }
 }

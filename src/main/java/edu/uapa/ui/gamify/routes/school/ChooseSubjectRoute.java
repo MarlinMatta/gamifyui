@@ -48,7 +48,6 @@ public class ChooseSubjectRoute extends PageView {
         mainLayout.setMargin(false);
         mainLayout.setSpacing(false);
         mainLayout.setPadding(false);
-        mainLayout.getElement().getStyle().set("width", "100%");
         mainLayout.add(header());
         mainLayout.add(appLayoutBody());
         mainLayout.add(footer());
@@ -56,6 +55,7 @@ public class ChooseSubjectRoute extends PageView {
         mainLayout.setAlignItems(FlexComponent.Alignment.END);
         mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
         mainLayout.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.END);
+        mainLayout.setHeight("90%");
     }
 
     private Component header() {

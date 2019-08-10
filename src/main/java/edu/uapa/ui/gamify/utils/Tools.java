@@ -43,6 +43,10 @@ public class Tools {
         UI.getCurrent().navigate(AllRoutes.TEST_ROUTE);
     }
 
+    public static void navigateToPlay() {
+        UI.getCurrent().navigate(PLAY_ROUTE);
+    }
+
     public static void navigateToLearn() {
         UI.getCurrent().navigate(AllRoutes.LEARN_ROUTE);
     }
@@ -72,7 +76,6 @@ public class Tools {
     }
 
     public static void navigateToStudentMainMenu() {
-
         UI.getCurrent().navigate(STUDENT_MAIN_MENU_ROUTE);
     }
 
@@ -94,6 +97,10 @@ public class Tools {
 
     public static void setSessionTopic(String id) {
         VaadinSession.getCurrent().setAttribute(Tools.SESSION_TOPIC, id);
+    }
+
+    public static String getSessionTopic() {
+        return (String) VaadinSession.getCurrent().getAttribute(Tools.SESSION_TOPIC);
     }
 
     public static void initTabs() {

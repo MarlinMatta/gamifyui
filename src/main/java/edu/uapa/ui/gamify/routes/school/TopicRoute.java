@@ -48,7 +48,6 @@ public class TopicRoute extends PageView {
         mainLayout.setMargin(false);
         mainLayout.setSpacing(false);
         mainLayout.setPadding(false);
-        mainLayout.getElement().getStyle().set("width", "100%");
         mainLayout.add(header());
         mainLayout.add(appLayoutBody());
         mainLayout.add(footer());
@@ -56,6 +55,7 @@ public class TopicRoute extends PageView {
         mainLayout.setAlignItems(FlexComponent.Alignment.END);
         mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
         mainLayout.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.END);
+        mainLayout.setHeight("90%");
     }
 
     private Component header() {
@@ -105,7 +105,8 @@ public class TopicRoute extends PageView {
             } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Practicar")) {
                 Tools.navigateToChooseSubject();
             } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
-                //TODO: agregar validacion de que si haya test disponible
+                Tools.navigateToChooseSubject();
+            } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
                 Tools.navigateToChooseSubject();
             } else {
                 Tools.navigateToChooseSubject();
@@ -118,8 +119,9 @@ public class TopicRoute extends PageView {
                 } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Practicar")) {
                     Tools.navigateToConfiguration();
                 } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
-                    //TODO: agregar validacion de que si haya test disponible
                     Tools.navigateToTest();
+                } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
+                    Tools.navigateToPlay();
                 } else {
                     Tools.navigateToStudentMainMenu();
                 }
@@ -154,10 +156,9 @@ public class TopicRoute extends PageView {
         button.getStyle().set("border", "3px solid magenta");
         button.addClickListener(event -> {
             if (event.getSource().getIcon() == null) {
-                bodyLayout.getChildren().forEach(component -> {
-                    ((Button) component).setIcon(null);
-                });
+                bodyLayout.getChildren().forEach(component -> ((Button) component).setIcon(null));
                 event.getSource().setIcon(new Icon(VaadinIcon.CHECK));
+                Tools.setSessionTopic(button.getId().orElse("1"));
                 hasSelect = true;
             } else {
                 hasSelect = false;
