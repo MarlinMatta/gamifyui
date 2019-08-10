@@ -36,6 +36,5 @@ public class LineChartExample extends Div {
                         .build())
                 .withSeries(new Series("Desktops", 10.0, 41.0, 35.0, 51.0, 49.0, 62.0, 69.0, 91.0, 148.0));
         add(lineChart);
-        setWidth("50%");
-    }
+        setWidth("500px");    }
 }

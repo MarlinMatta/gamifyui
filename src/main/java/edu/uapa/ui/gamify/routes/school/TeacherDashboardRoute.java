@@ -1,7 +1,7 @@
 package edu.uapa.ui.gamify.routes.school;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -9,6 +9,9 @@ import com.vaadin.flow.router.Route;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.ui.charts.BubbleChartExample;
+import edu.uapa.ui.gamify.ui.charts.HorizontalBarChartExample;
+import edu.uapa.ui.gamify.ui.charts.LineChartExample;
+import edu.uapa.ui.gamify.ui.charts.VerticalBarChartExample;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 
 import static edu.uapa.ui.gamify.routes.AllRoutes.TEACHER_MAIN_MENU_ROUTE;
@@ -16,7 +19,7 @@ import static edu.uapa.ui.gamify.routes.AllRoutes.TEACHER_MAIN_MENU_ROUTE;
 @Route(value = TEACHER_MAIN_MENU_ROUTE, layout = MainAppLayout.class)
 public class TeacherDashboardRoute extends PageView {
     private VerticalLayout mainLayout;
-    private Div bodyLayout = new Div();
+    private FormLayout bodyLayout = new FormLayout();
     private boolean hasSelect = false;
 
     public TeacherDashboardRoute() {
@@ -40,7 +43,7 @@ public class TeacherDashboardRoute extends PageView {
         mainLayout.setPadding(true);
         mainLayout.add(appLayoutBody());
 
-        mainLayout.setAlignItems(Alignment.START);
+        mainLayout.setAlignItems(Alignment.CENTER);
         mainLayout.setJustifyContentMode(JustifyContentMode.CENTER);
         mainLayout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         mainLayout.setHeight("90%");
@@ -66,6 +69,11 @@ public class TeacherDashboardRoute extends PageView {
 
     private Component appLayoutBody() {
         bodyLayout.add(new BubbleChartExample());
+        bodyLayout.add(new HorizontalBarChartExample());
+        bodyLayout.add(new VerticalBarChartExample());
+        bodyLayout.add(new LineChartExample());
+        bodyLayout.setWidth("80%");
+        bodyLayout.setHeight("80%");
         return bodyLayout;
     }
 
