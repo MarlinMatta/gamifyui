@@ -9,6 +9,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.ui.abstracts.base.AbstractView;
 import edu.uapa.ui.gamify.ui.menus.SchoolMenu;
 import edu.uapa.ui.gamify.ui.menus.SecurityMenu;
@@ -52,9 +53,16 @@ public class LeftAppMenu extends AbstractView {
         Span name = new Span();
         name.setText(getLoginManager().getName());
         name.getStyle().set("text-align", "center");
+        Span point = new Span();
+        //if (!getLoginManager().hasPermission(1)) {
+          //  String poin = StudentRequests.getInstance().refreshByUser(getLoginManager().getId()).getPoints() + "";
+            point.setText("Puntos acumulados: " + 0);
+            point.getStyle().set("text-align", "center");
+        //}
         Button button = closeButton();
 
         layout.add(name);
+        layout.add(point);
         layout.add(button);
 
         layout.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, roundImage, name, description);
