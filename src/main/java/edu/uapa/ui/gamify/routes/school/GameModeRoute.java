@@ -55,7 +55,7 @@ public class GameModeRoute extends PageView {
         mainLayout.setJustifyContentMode(JustifyContentMode.CENTER);
         mainLayout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         mainLayout.setHeight("90%");
-        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
+        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE) != null && VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
             UI.getCurrent().getPage().reload();
         }
     }
