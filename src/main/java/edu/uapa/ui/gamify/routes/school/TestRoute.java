@@ -7,7 +7,9 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.requests.gamifies.ExamRequests;
+import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
@@ -180,18 +182,6 @@ public class TestRoute extends PageView {
         result.forEach(answer -> {
             Span question = new Span();
             Span response = new Span();
-
-            question.getElement().setProperty("innerHTML", "<String>" + answer.getProblemDto().getQuestion() + "</strong>");
-            response.getElement().setProperty("innerHTML", "<String>" + answer.getAnswer() + "</strong>");
-
-            if (answer.isGood()) {
-                points += pointsPerProblem;
-                question.getStyle().set("color", "green");
-                main.add("Punto adquirido: " + answer.getProblemDto().getPoint());
-            } else {
-                question.getStyle().set("color", "red");
-                main.add("Punto adquirido: " + 0);
-            }
             question.getStyle().set("font-size", "24px");
             question.getStyle().set("width", "95%");
 
@@ -200,13 +190,32 @@ public class TestRoute extends PageView {
             response.getStyle().set("margin-left", "20px");
             response.getStyle().set("width", "95%");
 
+            question.getElement().setProperty("innerHTML", "<String>" + answer.getProblemDto().getQuestion() + "</strong>");
+            response.getElement().setProperty("innerHTML", "<String>" + answer.getAnswer() + "</strong>");
+
+            if (answer.isGood()) {
+                points += pointsPerProblem;
+                question.getStyle().set("color", "green");
+                main.add("Punto adquirido: " + points);
+            } else {
+                question.getStyle().set("color", "red");
+                main.add("Punto adquirido: " + 0);
+            }
+
             main.setWidthFull();
             main.getStyle().set("border-style", "double");
             main.add(question);
             main.add(response);
             main.add(new HorizontalLayout());
         });
-        main.add("Total de punto adquirido: " + points);
+
+        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
+            VerticalLayout verticalLayout = new VerticalLayout();
+            verticalLayout.setHeight("20px");
+            main.add(verticalLayout);
+            main.add("Total de punto adquirido: " + points);
+            StudentRequests.getInstance().setPoint(getLoginManager().getId(), points);
+        }
         return main;
     }
 }
