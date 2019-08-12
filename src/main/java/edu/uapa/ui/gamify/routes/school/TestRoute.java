@@ -18,6 +18,7 @@ import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
+import edu.uapa.ui.gamify.views.gamifies.AnswerLayout;
 import edu.uapa.ui.gamify.views.gamifies.QuestionLayout;
 import edu.utesa.lib.models.dtos.school.ExamDto;
 import edu.utesa.lib.models.dtos.school.ProblemAnswerDto;
@@ -122,32 +123,20 @@ public class TestRoute extends PageView {
         main.setSpacing(false);
 
         result.forEach(answer -> {
-            Span question = new Span();
-            Span response = new Span();
-            question.getStyle().set("font-size", "24px");
-            question.getStyle().set("width", "95%");
-
-            response.getStyle().set("color", "black");
-            response.getStyle().set("font-size", "18px");
-            response.getStyle().set("margin-left", "20px");
-            response.getStyle().set("width", "95%");
-
-            question.getElement().setProperty("innerHTML", "<String>" + answer.getProblemDto().getQuestion() + "</strong>");
-            response.getElement().setProperty("innerHTML", "<String>" + answer.getAnswer() + "</strong>");
+            AnswerLayout answerLayout;
+            String question = answer.getProblemDto().getQuestion();
+            String correctAnswer = answer.getProblemDto().getCorrectAnswer();
+            String studentAnswer = answer.getAnswer();
 
             if (answer.isGood()) {
                 points += pointsPerProblem;
-                question.getStyle().set("color", "green");
-                main.add("Punto adquirido: " + points);
+                answerLayout = new AnswerLayout(question, correctAnswer, "");
             } else {
-                question.getStyle().set("color", "red");
-                main.add("Punto adquirido: " + 0);
+                answerLayout = new AnswerLayout(question, correctAnswer, studentAnswer);
             }
 
             main.setWidthFull();
-            main.getStyle().set("border-style", "double");
-            main.add(question);
-            main.add(response);
+            main.add(answerLayout);
             main.add(new HorizontalLayout());
         });
 
@@ -155,7 +144,7 @@ public class TestRoute extends PageView {
             VerticalLayout verticalLayout = new VerticalLayout();
             verticalLayout.setHeight("20px");
             main.add(verticalLayout);
-            main.add("Total de punto adquirido: " + points);
+            main.add("Total de puntos adquiridos: " + points);
             StudentRequests.getInstance().setPoint(getLoginManager().getId(), points);
         }
         return main;
