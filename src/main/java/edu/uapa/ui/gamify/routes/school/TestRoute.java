@@ -2,10 +2,13 @@ package edu.uapa.ui.gamify.routes.school;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.requests.gamifies.ExamRequests;
@@ -15,6 +18,7 @@ import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
+import edu.uapa.ui.gamify.views.gamifies.QuestionLayout;
 import edu.utesa.lib.models.dtos.school.ExamDto;
 import edu.utesa.lib.models.dtos.school.ProblemAnswerDto;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
@@ -25,6 +29,7 @@ import java.util.List;
 
 @Route(value = AllRoutes.TEST_ROUTE, layout = MainAppLayout.class)
 public class TestRoute extends PageView {
+
     private List<ExamDto> exam = ExamRequests.getInstance().getAll();
     private List<ProblemAnswerDto> result = new ArrayList<>();
     private List<ProblemDto> problems = new ArrayList<>(exam.get(0).getProblems());
@@ -32,7 +37,9 @@ public class TestRoute extends PageView {
     private LinkedList<Component> components = new LinkedList<>();
     private Component currentComponent;
     private Button goToInit;
-    private int pointsPerProblem = exam.get(0).getPoints() / exam.get(0).getProblemQuantity();
+    private final int problemQuantity = exam.get(0).getProblemQuantity();
+    private final int pointsPerProblem = exam.get(0).getPoints() / problemQuantity;
+    private int questionNumber = 1;
     private int points = 0;
 
     public TestRoute() {
@@ -54,10 +61,15 @@ public class TestRoute extends PageView {
 
         problems.forEach(problem -> {
             BodyQuestionDesign design = new BodyQuestionDesign(problem);
-            design.setId(problem.getId() + "");
-            design.setVisible(false);
-            mainLayout.add(design);
-            components.add(design);
+            QuestionLayout questionLayout = new QuestionLayout(problem, questionNumber, problemQuantity);
+            questionLayout.setId(problem.getId() + "");
+            questionLayout.setVisible(false);
+            questionLayout.getDivAnswer01().addEventListener("click", e->{
+
+            });
+            mainLayout.add(questionLayout);
+            components.add(questionLayout);
+            questionNumber++;
         });
         mainLayout.add(navigator());
 
@@ -157,6 +169,8 @@ public class TestRoute extends PageView {
                 Notification.show("Tienes que selecionar una repuestas");
             }
         });
+
+
 
         if (components.indexOf(currentComponent) == components.size() - 1) {
             jump.setEnabled(false);
