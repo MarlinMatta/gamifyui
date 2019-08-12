@@ -1,6 +1,7 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-vertical-layout.html">
 <link rel="import" href="../../../bower_components/vaadin-ordered-layout/src/vaadin-horizontal-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-button/src/vaadin-button.html">
 
 <dom-module id="question-layout">
     <template>
@@ -9,24 +10,16 @@
                 display: block;
             }
         </style>
-<vaadin-vertical-layout theme="" id="questionLayout" style="width: 100%; height: 100%;">
- <vaadin-horizontal-layout theme="" id="questionHeader" style="color: #fff; background-color: #3c3b38; cursor: default; font-weight: bold; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: block; text-align: left; width: 100%;">
-  <span id="questionText" style="display: inline-block; margin-right: 65px; color: #fff; font-weight: bold; text-align: left; line-height: 1.15;">Text</span>
-  <span id="questionProgress" style="padding: 3px 10px; font-size: 12px; font-weight: bold; line-height: 1; color: #fff; text-align: center; white-space: nowrap; vertical-align: baseline; background-color: #7d7d7d; border-radius: 5px; position: absolute; top: 20px; right: 20px;">Text</span>
+<vaadin-vertical-layout theme="" id="questionLayout" style="width: 100%; height: 100%; min-width: 585px;">
+ <vaadin-horizontal-layout theme="" id="questionHeader" style="color: #fff; background-color: #8e44ad; cursor: default; font-weight: bold; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: block; text-align: left; width: 100%; min-width: 585px;">
+  <span id="questionText" style="display: inline-block; margin-right: 65px; color: #fff; font-weight: bold; text-align: left; line-height: 1.15; min-width: 585px;">Text</span>
+  <span id="questionProgress" style="padding: 3px 10px; font-size: 12px; font-weight: bold; line-height: 1; color: #fff; text-align: center; white-space: nowrap; vertical-align: baseline; background-color: #9b59b6; border-radius: 5px; position: absolute; top: 20px; right: 20px;">Text</span>
  </vaadin-horizontal-layout>
- <vaadin-horizontal-layout theme="" id="answerList" style="display: block; text-align: left; color: #000; font-weight: 300; width: 100%;">
-  <div id="divAnswer01" style="cursor: pointer; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: table; text-align: left; width: 100%; background-color: #fff; color: #3c3b38; font-weight: 300;">
-   <span id="answer01" style="display: inline-block; margin-right: 65px; text-align: left; line-height: 1.15;">Text</span>
-  </div>
-  <div style="cursor: pointer; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: table; text-align: left; width: 100%; background-color: #fff; color: #3c3b38; font-weight: 300;" id="divAnswer02">
-   <span id="answer02" style="display: inline-block; margin-right: 65px; text-align: left; line-height: 1.15;">Text</span>
-  </div>
-  <div style="cursor: pointer; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: table; text-align: left; width: 100%; background-color: #fff; color: #3c3b38; font-weight: 300;" id="divAnswer03">
-   <span id="answer03" style="display: inline-block; margin-right: 65px; text-align: left; line-height: 1.15;">Text</span>
-  </div>
-  <div style="cursor: pointer; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: table; text-align: left; width: 100%; background-color: #fff; color: #3c3b38; font-weight: 300;" id="divAnswer04">
-   <span id="answer04" style="display: inline-block; margin-right: 65px; text-align: left; line-height: 1.15;">Text</span>
-  </div>
+ <vaadin-horizontal-layout theme="" id="answerList" style="display: block; text-align: left; color: #000; font-weight: 300; width: 100%;min-width: 585px;">
+  <vaadin-button style="cursor: pointer; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: table; text-align: left; width: 100%; background-color: #fff; color: #2c3e50;" id="answer01"></vaadin-button>
+  <vaadin-button style="cursor: pointer; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: table; text-align: left; width: 100%; background-color: #fff; color: #2c3e50;" id="answer01"></vaadin-button>
+  <vaadin-button style="cursor: pointer; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: table; text-align: left; width: 100%; background-color: #fff; color: #2c3e50;" id="answer01"></vaadin-button>
+  <vaadin-button style="cursor: pointer; padding: 20px; position: relative; border-bottom: 1px solid #ddd; display: table; text-align: left; width: 100%; background-color: #fff; color: #2c3e50;" id="answer01"></vaadin-button>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
 </template>

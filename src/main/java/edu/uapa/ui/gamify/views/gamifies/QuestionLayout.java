@@ -35,24 +35,17 @@ public class QuestionLayout extends PolymerTemplate<QuestionLayout.QuestionLayou
     private Span questionText;
     @Id("questionProgress")
     private Span questionProgress;
-    @Id("divAnswer01")
-    private Element divAnswer01;
-    @Id("divAnswer02")
-    private Element divAnswer02;
-    @Id("answer01")
-    private Span answer01;
-    @Id("divAnswer03")
-    private Element divAnswer03;
-    @Id("answer02")
-    private Span answer02;
-    @Id("answer03")
-    private Span answer03;
-    @Id("divAnswer04")
-    private Element divAnswer04;
-    @Id("answer04")
-    private Span answer04;
 
     private ProblemDto problem;
+    @Id("answer02")
+    private Button answer02;
+    @Id("answer03")
+    private Button answer03;
+    @Id("answer04")
+    private Button answer04;
+    @Id("answer01")
+    private Button answer01;
+
     /**
      * Creates a new QuestionLayout.
      */
@@ -74,20 +67,11 @@ public class QuestionLayout extends PolymerTemplate<QuestionLayout.QuestionLayou
         answer04.setText(answers.get(3));
     }
 
-    public Element getDivAnswer01() {
-        return divAnswer01;
-    }
-
-    public Element getDivAnswer02() {
-        return divAnswer02;
-    }
-
-    public Element getDivAnswer03() {
-        return divAnswer03;
-    }
-
-    public Element getDivAnswer04() {
-        return divAnswer04;
+    public void setAction(ComponentEventListener<ClickEvent<Button>> clickEvent) {
+        answer01.addClickListener(clickEvent);
+        answer02.addClickListener(clickEvent);
+        answer03.addClickListener(clickEvent);
+        answer04.addClickListener(clickEvent);
     }
 
     public ProblemDto getProblem() {

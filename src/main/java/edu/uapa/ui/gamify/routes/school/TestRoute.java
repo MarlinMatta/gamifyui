@@ -60,28 +60,23 @@ public class TestRoute extends PageView {
         mainLayout.setJustifyContentMode(JustifyContentMode.START);
 
         problems.forEach(problem -> {
-            BodyQuestionDesign design = new BodyQuestionDesign(problem);
             QuestionLayout questionLayout = new QuestionLayout(problem, questionNumber, problemQuantity);
             questionLayout.setId(problem.getId() + "");
             questionLayout.setVisible(false);
-            questionLayout.getDivAnswer01().addEventListener("click", e->{
-
-            });
+            questionLayout.setAction(event -> next(event.getSource().getText()));
             mainLayout.add(questionLayout);
             components.add(questionLayout);
             questionNumber++;
         });
-        mainLayout.add(navigator());
 
         if (components.size() > 0) {
             currentComponent = components.getFirst();
             currentComponent.setVisible(true);
         }
 
-        goToInit = new Button("<-- Volver al inicio");
+        goToInit = new Button("Volver al inicio");
         goToInit.setWidth("200px");
         goToInit.addClickListener(event -> Tools.navigateToStudentMainMenu());
-
     }
 
     private void buildMainLayout() {
@@ -92,96 +87,29 @@ public class TestRoute extends PageView {
         mainLayout.getElement().getStyle().set("width", "100%");
     }
 
-    private Component navigator() {
-        HorizontalLayout layout = new HorizontalLayout();
-        Button back = new Button("<<< Volver");
-        Button jump = new Button("Saltar >>>");
-        Button next = new Button("Proximo >>>");
-        layout.add(back);
-        layout.add(jump);
-        layout.add(next);
-
-        back.setEnabled(false);
-
-        back.addClickListener(event -> {
-            currentComponent.setVisible(false);
-            currentComponent = components.get(components.indexOf(currentComponent) - 1);
-            currentComponent.setVisible(true);
-
-            if (components.indexOf(currentComponent) == 0) {
-                back.setEnabled(false);
-            } else {
-                jump.setEnabled(true);
-                next.setEnabled(true);
-                next.setText("Next >>>");
-            }
-        });
-
-        jump.addClickListener(event -> {
+    private void next(String answer) {
+        //Ultimo
+        if (components.indexOf(currentComponent) == components.size() - 1) {
+            components.forEach(component -> {
+                ProblemAnswerDto problemAnswerDto = new ProblemAnswerDto();
+                problemAnswerDto.setProblemDto(((QuestionLayout) component).getProblem());
+                problemAnswerDto.setAnswer(answer);
+                if (problemAnswerDto.getProblemDto().getCorrectAnswer().equals(problemAnswerDto.getAnswer())) {
+                    problemAnswerDto.setGood(true);
+                } else {
+                    problemAnswerDto.setGood(false);
+                }
+                result.add(problemAnswerDto);
+            });
+            removeAll();
+            add(result());
+            add(goToInit);
+            Notification.show("Si se realizo");
+        } else {
             currentComponent.setVisible(false);
             currentComponent = components.get(components.indexOf(currentComponent) + 1);
             currentComponent.setVisible(true);
-            if (components.indexOf(currentComponent) == components.size() - 1) {
-                jump.setEnabled(false);
-                next.setText("Summit");
-            } else {
-                back.setEnabled(true);
-                next.setEnabled(true);
-                next.setText("Proximo >>>");
-            }
-        });
-
-        next.addClickListener(event -> {
-            if (((BodyQuestionDesign) currentComponent).valid()) {
-                if (next.getText().equals("Summit")) {
-                    components.forEach(component -> {
-                        ProblemAnswerDto problemAnswerDto = new ProblemAnswerDto();
-                        problemAnswerDto.setProblemDto(((BodyQuestionDesign) component).getProblem());
-                        problemAnswerDto.setAnswer(((BodyQuestionDesign) component).getResponse());
-                        if (problemAnswerDto.getProblemDto().getCorrectAnswer().equals(problemAnswerDto.getAnswer())) {
-                            problemAnswerDto.setGood(true);
-                        } else {
-                            problemAnswerDto.setGood(false);
-                        }
-                        result.add(problemAnswerDto);
-                    });
-                    removeAll();
-                    add(result());
-                    add(goToInit);
-                    back.setVisible(false);
-                    jump.setVisible(false);
-                    next.setVisible(false);
-                    Notification.show("Si se realizo");
-                } else {
-                    currentComponent.setVisible(false);
-                    currentComponent = components.get(components.indexOf(currentComponent) + 1);
-                    currentComponent.setVisible(true);
-                    if (components.indexOf(currentComponent) == components.size() - 1) {
-                        next.setText("Summit");
-                        jump.setEnabled(false);
-                    } else {
-                        back.setEnabled(true);
-                        jump.setEnabled(true);
-                        next.setText("Proximo >>>");
-                    }
-                }
-            } else {
-                Notification.show("Tienes que selecionar una repuestas");
-            }
-        });
-
-
-
-        if (components.indexOf(currentComponent) == components.size() - 1) {
-            jump.setEnabled(false);
-            next.setText("Summit");
-        } else {
-            back.setEnabled(true);
-            next.setEnabled(true);
-            next.setText("Proximo >>>");
         }
-
-        return layout;
     }
 
     private Component result() {

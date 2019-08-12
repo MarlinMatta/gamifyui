@@ -4,6 +4,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.models.LoginManager;
+import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.ui.components.TabsManager;
@@ -27,6 +28,8 @@ public class Tools extends PageView {
     public static final List<Long> ITEMS_PER_PAGE = Arrays.asList(5L, 10L, 15L, 20L, 25L, 30L, 35L, 40L, 45L, 50L);
 
     public static final Long DEFAULT_ITEMS_PER_PAGE_VALUE = 15L;
+
+    public static int totalPoints = 0;
 
     public static boolean isLogin() {
         return VaadinSession.getCurrent().getAttribute(SESSION_NAME) != null;

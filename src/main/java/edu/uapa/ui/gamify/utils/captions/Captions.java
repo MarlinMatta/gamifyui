@@ -54,6 +54,8 @@ public class Captions {
     public static final String BUTTON_SELECT = "Seleccionar";
     public static final String BUTTON_EXIT = "Salir";
     public static final String BUTTON_GENERATE = "General";
+    public static final String BUTTON_NEXT = "Siguiente";
+    public static final String BUTTON_BACK = "Anterior";
 
     public static final String CODE = "Codigo";
     public static final String NAME = "Nombre";
@@ -61,7 +63,7 @@ public class Captions {
     public static final String TYPE = "Tipo";
     public static final String DESCRIPTION = "Descripción";
     public static final String ONLY_ROOT = "Solo root";
-    public static final String USER_NAME = "Username";
+    public static final String USER_NAME = "Usuario";
     public static final String PASSWORD = "Contraseña";
     public static final String LANGUAGE = "Language";
     public static final String EMAIL = "Email";
