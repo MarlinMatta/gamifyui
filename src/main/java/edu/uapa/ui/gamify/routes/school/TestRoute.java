@@ -124,18 +124,20 @@ public class TestRoute extends PageView {
             String question = answer.getProblemDto().getQuestion();
             String correctAnswer = answer.getProblemDto().getCorrectAnswer();
             String studentAnswer = answer.getAnswer();
+            int point = 0;
 
             if (answer.isGood()) {
-                points += pointsPerProblem;
-                main.add(pointsPerProblem + "");
                 answerLayout = new AnswerLayout(question, correctAnswer, "");
+                points += pointsPerProblem;
+                point = pointsPerProblem;
             } else {
                 answerLayout = new AnswerLayout(question, correctAnswer, studentAnswer);
-                main.add("0");
+                point = 0;
             }
 
             main.setWidthFull();
             main.add(answerLayout);
+            main.add("Punto adquirido: "+point );
             main.add(new HorizontalLayout());
         });
 
