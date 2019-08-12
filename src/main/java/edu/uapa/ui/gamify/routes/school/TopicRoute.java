@@ -120,7 +120,7 @@ public class TopicRoute extends PageView {
                 } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
                     Tools.navigateToTest();
                 } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
-                    Tools.navigateToGame();
+                    Tools.navigateToConfiguration();
                 } else {
                     System.out.println(VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE) + "");
 //                    Tools.navigateToStudentMainMenu();

@@ -2,13 +2,9 @@ package edu.uapa.ui.gamify.routes.school;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.requests.gamifies.ExamRequests;
@@ -17,7 +13,6 @@ import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
-import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
 import edu.uapa.ui.gamify.views.gamifies.AnswerLayout;
 import edu.uapa.ui.gamify.views.gamifies.QuestionLayout;
 import edu.utesa.lib.models.dtos.school.ExamDto;
@@ -31,15 +26,17 @@ import java.util.List;
 @Route(value = AllRoutes.TEST_ROUTE, layout = MainAppLayout.class)
 public class TestRoute extends PageView {
 
-    private List<ExamDto> exam = ExamRequests.getInstance().getAll();
+    private List<ExamDto> examList = ExamRequests.getInstance().getAll();
+    private ExamDto exam = examList != null ? examList.get(0) : new ExamDto();
+
     private List<ProblemAnswerDto> result = new ArrayList<>();
-    private List<ProblemDto> problems = new ArrayList<>(exam.get(0).getProblems());
+    private List<ProblemDto> problems = new ArrayList<>(exam.getProblems());
     private VerticalLayout mainLayout;
     private LinkedList<Component> components = new LinkedList<>();
     private Component currentComponent;
     private Button goToInit;
-    private final int problemQuantity = exam.get(0).getProblemQuantity();
-    private final int pointsPerProblem = exam.get(0).getPoints() / problemQuantity;
+    private final int problemQuantity = exam.getProblems().size();
+    private final int pointsPerProblem = exam.getPoints() / problemQuantity;
     private int questionNumber = 1;
     private int points = 0;
 
@@ -130,9 +127,11 @@ public class TestRoute extends PageView {
 
             if (answer.isGood()) {
                 points += pointsPerProblem;
+                main.add(pointsPerProblem + "");
                 answerLayout = new AnswerLayout(question, correctAnswer, "");
             } else {
                 answerLayout = new AnswerLayout(question, correctAnswer, studentAnswer);
+                main.add("0");
             }
 
             main.setWidthFull();
@@ -140,7 +139,7 @@ public class TestRoute extends PageView {
             main.add(new HorizontalLayout());
         });
 
-        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
+        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play") || VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
             VerticalLayout verticalLayout = new VerticalLayout();
             verticalLayout.setHeight("20px");
             main.add(verticalLayout);

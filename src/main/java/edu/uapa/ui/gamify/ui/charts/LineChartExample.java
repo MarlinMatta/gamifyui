@@ -23,7 +23,7 @@ public class LineChartExample extends Div {
                         .withCurve(Curve.straight)
                         .build())
                 .withTitle(TitleSubtitleBuilder.get()
-                        .withText("Product Trends by Month")
+                        .withText("Desembolvimiento de estudiantes por materia")
                         .withAlign(Align.left)
                         .build())
                 .withGrid(GridBuilder.get()
@@ -32,7 +32,7 @@ public class LineChartExample extends Div {
                                 .withOpacity(0.5).build()
                         ).build())
                 .withXaxis(XAxisBuilder.get()
-                        .withCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep")
+                        .withCategories("Matematicas", "Lengua Espanola", "Ciencias Sociales", "Ciencias Naturales")
                         .build())
                 .withSeries(new Series("Desktops", 10.0, 41.0, 35.0, 51.0, 49.0, 62.0, 69.0, 91.0, 148.0));
         add(lineChart);

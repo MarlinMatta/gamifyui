@@ -8,6 +8,7 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
 import edu.utesa.lib.models.dtos.configurations.ConfigurationDto;
+import edu.utesa.lib.models.enums.ExamDifficulty;
 import edu.utesa.lib.models.enums.GameDifficulty;
 import edu.utesa.lib.models.enums.GameMode;
 
@@ -24,7 +25,7 @@ import java.util.List;
 public class ConfigurationFormDesign extends PolymerTemplate<ConfigurationFormDesign.ConfigurationFormDesignModel> implements FormStructure<ConfigurationDto> {
 
     @Id("cbdifficulty")
-    private ComboBox<GameDifficulty> cbdifficulty;
+    private ComboBox<ExamDifficulty> cbdifficulty;
     @Id("cbquestions")
     private ComboBox<Integer> cbquestions;
     @Id("cbmode")
@@ -46,7 +47,7 @@ public class ConfigurationFormDesign extends PolymerTemplate<ConfigurationFormDe
     }
 
     public void fillDifficulty() {
-        cbdifficulty.setItems(GameDifficulty.values());
+        cbdifficulty.setItems(ExamDifficulty.values());
     }
 
     public void fillQuestion(List<Integer> items) {

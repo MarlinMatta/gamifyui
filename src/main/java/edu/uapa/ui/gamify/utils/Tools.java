@@ -81,6 +81,9 @@ public class Tools extends PageView {
 
     public static void navigateToStudentMainMenu() {
         UI.getCurrent().navigate(STUDENT_MAIN_MENU_ROUTE);
+        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE) != null && VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
+            UI.getCurrent().getPage().reload();
+        }
     }
 
     public static void navigateToTeacherMainMenu() {
