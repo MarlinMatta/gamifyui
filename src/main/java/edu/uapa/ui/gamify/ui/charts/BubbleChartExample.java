@@ -44,6 +44,6 @@ public class BubbleChartExample extends Div {
                 .withXaxis(XAxisBuilder.get().withType(XAxisType.numeric).build())
                 .withYaxis(YAxisBuilder.get().withMax(70.0).build());
         add(bubbleChart);
-        setWidth("500px");
+        setWidth("350px");
     }
 }

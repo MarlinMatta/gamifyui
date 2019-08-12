@@ -2,6 +2,7 @@ package edu.uapa.ui.gamify.routes.school;
 
 import com.github.appreciated.app.layout.webcomponents.applayout.AppDrawerLayout;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Image;
@@ -54,6 +55,9 @@ public class GameModeRoute extends PageView {
         mainLayout.setJustifyContentMode(JustifyContentMode.CENTER);
         mainLayout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         mainLayout.setHeight("90%");
+        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
+            UI.getCurrent().getPage().reload();
+        }
     }
 
     private Component header() {
@@ -121,7 +125,7 @@ public class GameModeRoute extends PageView {
     private Component playComponent() {
         VerticalLayout layout = new VerticalLayout();
         Label label = new Label("Play");
-        Button button = new Button(Captions.PLAY,new Image("frontend/src/images/rompecabezas.png", Captions.PLAY));
+        Button button = new Button(Captions.PLAY, new Image("frontend/src/images/rompecabezas.png", Captions.PLAY));
         button.setId(Captions.PLAY);
         button.setWidth("250px");
         button.setHeight("100px");

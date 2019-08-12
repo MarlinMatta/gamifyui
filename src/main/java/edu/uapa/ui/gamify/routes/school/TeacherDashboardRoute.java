@@ -76,12 +76,4 @@ public class TeacherDashboardRoute extends PageView {
         bodyLayout.setHeight("80%");
         return bodyLayout;
     }
-
-//    private Component playComponent() {
-//        VerticalLayout layout = new VerticalLayout();
-//        BubbleChartExample bubbleChartExample = new BubbleChartExample();
-//        layout.add(bubbleChartExample);
-//
-//        return layout;
-//    }
 }

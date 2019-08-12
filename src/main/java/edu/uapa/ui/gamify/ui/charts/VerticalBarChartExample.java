@@ -46,6 +46,6 @@ public class VerticalBarChartExample extends Div {
                                         "}").build())
                         .build());
         add(barChart);
-        setWidth("500px");
+        setWidth("350px");
     }
 }

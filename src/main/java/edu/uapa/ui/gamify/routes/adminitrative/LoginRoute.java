@@ -31,12 +31,18 @@ public class LoginRoute extends VerticalLayout {
         loginOverlay = new LoginOverlay();
         i18n = LoginI18n.createDefault();
         add(loginOverlay);
+        loginOverlay.setI18n(i18n);
     }
 
     private void setLanguage() {
         loginOverlay.setTitle("Gametice");
-        loginOverlay.setDescription("A Fun  Way To Learn");
+        loginOverlay.setDescription("Una forma divertida de aprender");
         i18n.setErrorMessage(new LoginI18n.ErrorMessage());
+        i18n.getForm().setUsername("Usario ");
+        i18n.getForm().setPassword("Clave");
+        i18n.getForm().setSubmit("Iniciar session");
+        i18n.getForm().setForgotPassword("Olvide mi clave");
+        loginOverlay.setI18n(i18n);
     }
 
     private void setAction() {

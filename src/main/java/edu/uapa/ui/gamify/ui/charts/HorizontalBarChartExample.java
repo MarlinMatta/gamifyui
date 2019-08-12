@@ -29,6 +29,6 @@ public class HorizontalBarChartExample extends Div {
                         .withCategories()
                         .build());
         add(barChart);
-        setWidth("500px");
+        setWidth("350px");
     }
 }

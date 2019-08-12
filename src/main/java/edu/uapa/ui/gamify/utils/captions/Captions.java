@@ -12,60 +12,60 @@ public class Captions {
     public static final String PROBLEM_ITEM = "Problemas";
     public static final String TEST_ITEM = "Examen";
 
-    public static final String SECURITY_MENU = "Security";
-    public static final String PARAMETER_ITEM = "Parameter";
-    public static final String PERMISSION_ITEM = "Permission";
-    public static final String PERMISSION_GROUP_ITEM = "Permission Group";
-    public static final String USER_ITEM = "User";
+    public static final String SECURITY_MENU = "Seguridad";
+    public static final String PARAMETER_ITEM = "Parametros";
+    public static final String PERMISSION_ITEM = "Permisos";
+    public static final String PERMISSION_GROUP_ITEM = "Grupo de permisos";
+    public static final String USER_ITEM = "Usuario";
 
-    public static final String LOGOUT = "Logout";
+    public static final String LOGOUT = "Cerrar session";
 
-    public static final String GRID_COLUMN_CODE = "Code";
-    public static final String GRID_COLUMN_USER = "User";
-    public static final String GRID_COLUMN_VALUE = "Value";
-    public static final String GRID_COLUMN_ONLY_ROOT = "Only root";
-    public static final String GRID_COLUMN_NAME = "Name";
-    public static final String GRID_COLUMN_ACTION = "Action";
+    public static final String GRID_COLUMN_CODE = "Codigo";
+    public static final String GRID_COLUMN_USER = "Usuario";
+    public static final String GRID_COLUMN_VALUE = "Valor";
+    public static final String GRID_COLUMN_ONLY_ROOT = "Solo root";
+    public static final String GRID_COLUMN_NAME = "Nombre";
+    public static final String GRID_COLUMN_ACTION = "Accion";
     public static final String GRID_COLUMN_EMAIL = "Email";
-    public static final String GRID_COLUMN_ADMIN = "Admin";
-    public static final String GRID_COLUMN_LANGUAGE = "Language";
-    public static final String GRID_COLUMN_COMPANY = "Company";
-    public static final String GRID_COLUMN_DESCRIPTION = "Description";
-    public static final String GRID_COLUMN_DISTRICT = "District";
-    public static final String GRID_COLUMN_ADDRESS = "Address";
-    public static final String GRID_COLUMN_SCHOOL = "School";
-    public static final String GRID_COLUMN_GRADE = "Grade";
-    public static final String GRID_COLUMN_SUBJECT = "Subject";
-    public static final String GRID_COLUMN_TOPIC = "Topic";
-    public static final String GRID_COLUMN_QUESTION = "Question";
-    public static final String GRID_COLUMN_POINTS = "Points";
+    public static final String GRID_COLUMN_ADMIN = "Administrador?";
+    public static final String GRID_COLUMN_LANGUAGE = "Idioma";
+    public static final String GRID_COLUMN_COMPANY = "Compañia";
+    public static final String GRID_COLUMN_DESCRIPTION = "Descripccion";
+    public static final String GRID_COLUMN_DISTRICT = "Districto";
+    public static final String GRID_COLUMN_ADDRESS = "Direccion";
+    public static final String GRID_COLUMN_SCHOOL = "Escuela";
+    public static final String GRID_COLUMN_GRADE = "Grado";
+    public static final String GRID_COLUMN_SUBJECT = "Materia";
+    public static final String GRID_COLUMN_TOPIC = "Tema";
+    public static final String GRID_COLUMN_QUESTION = "Pregunta";
+    public static final String GRID_COLUMN_POINTS = "Puntos";
     public static final String GRID_COLUMN_TO_DATE = "Hasta fecha";
-    public static final String GRID_COLUMN_DIFFICULTY = "Difficulty";
-    public static final String GRID_COLUMN_TEACHER = "Teacher";
+    public static final String GRID_COLUMN_DIFFICULTY = "dificulta";
+    public static final String GRID_COLUMN_TEACHER = "Profesor";
 
-    public static final String SEARCH = "Search";
+    public static final String SEARCH = "Buscar";
 
-    public static final String BUTTON_NEW = "New";
-    public static final String BUTTON_VIEW = "View";
-    public static final String BUTTON_EDIT = "Edit";
-    public static final String BUTTON_DELETE = "Delete";
-    public static final String BUTTON_SAVE = "Save";
-    public static final String BUTTON_CANCEL = "Cancel";
-    public static final String BUTTON_SELECT = "Select";
-    public static final String BUTTON_EXIT = "Exit";
-    public static final String BUTTON_GENERATE = "Generate";
+    public static final String BUTTON_NEW = "Nuevo";
+    public static final String BUTTON_VIEW = "Ver";
+    public static final String BUTTON_EDIT = "Editar";
+    public static final String BUTTON_DELETE = "Borrar";
+    public static final String BUTTON_SAVE = "Guardar";
+    public static final String BUTTON_CANCEL = "Cancelar";
+    public static final String BUTTON_SELECT = "Seleccionar";
+    public static final String BUTTON_EXIT = "Salir";
+    public static final String BUTTON_GENERATE = "General";
 
-    public static final String CODE = "Code";
+    public static final String CODE = "Codigo";
     public static final String NAME = "Nombre";
-    public static final String VALUE = "Value";
-    public static final String TYPE = "Type";
+    public static final String VALUE = "Valor";
+    public static final String TYPE = "Tipo";
     public static final String DESCRIPTION = "Descripción";
-    public static final String ONLY_ROOT = "Only root";
+    public static final String ONLY_ROOT = "Solo root";
     public static final String USER_NAME = "Username";
     public static final String PASSWORD = "Contraseña";
     public static final String LANGUAGE = "Language";
     public static final String EMAIL = "Email";
-    public static final String PERMISSION = "Permission";
+    public static final String PERMISSION = "Permisos";
 
     //Marlin
     public static final String LEARN = "Aprender";
@@ -87,10 +87,10 @@ public class Captions {
     public static final String FROM_DATE = "Desde la fecha";
     public static final String TO_DATE = "Hasta la fecha";
 
-    public static final String CHOOSE_SUBJECT = "Choose Subject";
-    public static final String HELLO_STUDENT = "Hello student!";
-    public static final String HELLO_TEACHER = "Hello Teacher!";
-    public static final String CONFIGURATION = "Configuration";
+    public static final String CHOOSE_SUBJECT = "Seleccionar Materia";
+    public static final String HELLO_STUDENT = "Bienvenido: Estudiante!";
+    public static final String HELLO_TEACHER = "Bienvenido: Profesor!";
+    public static final String CONFIGURATION = "Configuraccion";
 
     public static final String DISTRICT = "Distrito";
     public static final String CITY = "Ciudad";
@@ -109,4 +109,3 @@ public class Captions {
 
 
 }
-

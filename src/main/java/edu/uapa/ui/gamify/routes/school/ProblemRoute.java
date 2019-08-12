@@ -7,7 +7,9 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
+import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
@@ -180,13 +182,7 @@ public class ProblemRoute extends PageView {
         result.forEach(answer -> {
             Span question = new Span();
             Span response = new Span();
-            if (answer.isGood()) {
-//                points += answer.getProblemDto().getPoints();
-                question.getStyle().set("color", "green");
-//                main.add("Total de punto adquirido: " + answer.getProblemDto().getPoints());
-            } else {
-                question.getStyle().set("color", "red");
-            }
+
             question.getStyle().set("font-size", "24px");
             question.getStyle().set("width", "95%");
 
@@ -198,13 +194,30 @@ public class ProblemRoute extends PageView {
             question.getElement().setProperty("innerHTML", "<String>" + answer.getProblemDto().getQuestion() + "</strong>");
             response.getElement().setProperty("innerHTML", "<String>" + answer.getAnswer() + "</strong>");
 
+            if (answer.isGood()) {
+                question.getStyle().set("color", "green");
+                if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
+                    points += answer.getProblemDto().getPoint();
+                    main.add("Punto adquirido: " + answer.getProblemDto().getPoint());
+                }
+            } else {
+                question.getStyle().set("color", "red");
+            }
+
             main.setWidthFull();
             main.getStyle().set("border-style", "double");
             main.add(question);
             main.add(response);
             main.add(new HorizontalLayout());
         });
-        main.add("Total de punto adquirido: " + points);
+
+        if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
+            VerticalLayout verticalLayout = new VerticalLayout();
+            verticalLayout.setHeight("20px");
+            main.add(verticalLayout);
+            main.add("Total de punto adquirido: " + points);
+            StudentRequests.getInstance().setPoint(getLoginManager().getId(), points);
+        }
         return main;
     }
 }

@@ -1,28 +1,22 @@
 package edu.uapa.ui.gamify.views.gamifies;
 
+import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.templatemodel.TemplateModel;
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import edu.uapa.ui.gamify.models.interfaces.FormStructure;
 import edu.uapa.ui.gamify.utils.captions.Captions;
-import edu.utesa.lib.models.dtos.school.AnswerDto;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
 import edu.utesa.lib.models.dtos.school.TeacherDto;
 import edu.utesa.lib.models.dtos.school.TopicDto;
 import edu.utesa.lib.models.enums.ExamDifficulty;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * A Designer generated component for the problem-form-design template.
@@ -61,6 +55,8 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
 
     TeacherDto teacher;
     TopicDto topic;
+    @Id("tfPoint")
+    private TextField tfPoint;
 
     /**
      * Creates a new ProblemFormDesign.
@@ -70,6 +66,7 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         cbTopic.setLabel(Captions.TOPIC);
         cbDifficulty.setLabel(Captions.DIFFICULTY);
         taQuestion.setLabel(Captions.QUESTION);
+        tfPoint.setLabel(Captions.POINTS);
 
         teacher = new TeacherDto();
         topic = new TopicDto();
@@ -98,6 +95,7 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         teacher = data.getTeacherDto();
         topic = data.getTopicDto();
 
+        tfPoint.setValue(data.getPoint() + "");
         cbTeacher.setValue(teacher);
         cbTopic.setValue(topic);
         cbDifficulty.setValue(data.getExamDifficulty());
@@ -117,6 +115,7 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         cbTeacher.setReadOnly(true);
         cbTopic.setReadOnly(true);
         cbDifficulty.setReadOnly(true);
+        tfPoint.setReadOnly(true);
         taQuestion.setReadOnly(true);
         tfAnswer01.setReadOnly(true);
         cbCorrect01.setReadOnly(true);
@@ -135,6 +134,8 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         if (cbTopic.isInvalid())
             return false;
         if (cbDifficulty.isInvalid())
+            return false;
+        if (tfPoint.isInvalid())
             return false;
         if (taQuestion.isInvalid())
             return false;
@@ -164,6 +165,7 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
 
         model.setExamDifficulty(cbDifficulty.getValue());
         model.setQuestion(taQuestion.getValue());
+        model.setPoint(Double.parseDouble(tfPoint.getValue()));
 
         if (cbCorrect01.getValue()) {
             model.setCorrectAnswer(tfAnswer01.getValue());

@@ -7,7 +7,7 @@ public abstract class PageView extends AbstractView {
 
     protected PageView() {
         setSizeFull();
-        setAlignItems(FlexComponent.Alignment.START);
+        setAlignItems(Alignment.CENTER);
         setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
     }
 }

@@ -55,6 +55,10 @@ public class StudentRequests extends Request {
         return null;
     }
 
+    public void setPoint(Long id, long point) {
+        getExecute("/points?point=" + point + "&userId=" + id);
+    }
+
     public void delete(Long id) {
         deleteExecute("?id=" + id);
     }

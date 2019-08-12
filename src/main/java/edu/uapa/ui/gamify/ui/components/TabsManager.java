@@ -1,13 +1,17 @@
 package edu.uapa.ui.gamify.ui.components;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
+import edu.uapa.ui.gamify.ui.charts.BubbleChartExample;
+import edu.uapa.ui.gamify.ui.charts.HorizontalBarChartExample;
+import edu.uapa.ui.gamify.ui.charts.LineChartExample;
+import edu.uapa.ui.gamify.ui.charts.VerticalBarChartExample;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,8 +43,19 @@ public final class TabsManager extends VerticalLayout {
     }
 
     private void defaultTab() {
-        addTab("Academy", new Label("Hello Academy"), false);
+        addTab("Dashboard", appLayoutBody(), false);
         setAction();
+    }
+
+    private Component appLayoutBody() {
+        FormLayout bodyLayout = new FormLayout();
+        bodyLayout.add(new BubbleChartExample());
+        bodyLayout.add(new HorizontalBarChartExample());
+        bodyLayout.add(new VerticalBarChartExample());
+        bodyLayout.add(new LineChartExample());
+        bodyLayout.setWidth("80%");
+        bodyLayout.setHeight("80%");
+        return bodyLayout;
     }
 
     private void setAction() {

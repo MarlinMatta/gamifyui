@@ -8,17 +8,14 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import edu.uapa.ui.gamify.requests.gamifies.ExamRequests;
-import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
-import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
 import edu.utesa.lib.models.dtos.school.ExamDto;
 import edu.utesa.lib.models.dtos.school.ProblemAnswerDto;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
-import edu.utesa.lib.models.enums.ExamDifficulty;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -183,12 +180,17 @@ public class TestRoute extends PageView {
         result.forEach(answer -> {
             Span question = new Span();
             Span response = new Span();
+
+            question.getElement().setProperty("innerHTML", "<String>" + answer.getProblemDto().getQuestion() + "</strong>");
+            response.getElement().setProperty("innerHTML", "<String>" + answer.getAnswer() + "</strong>");
+
             if (answer.isGood()) {
                 points += pointsPerProblem;
                 question.getStyle().set("color", "green");
-//                main.add("Total de punto adquirido: " + answer.getProblemDto().getPoints());
+                main.add("Punto adquirido: " + answer.getProblemDto().getPoint());
             } else {
                 question.getStyle().set("color", "red");
+                main.add("Punto adquirido: " + 0);
             }
             question.getStyle().set("font-size", "24px");
             question.getStyle().set("width", "95%");
@@ -197,9 +199,6 @@ public class TestRoute extends PageView {
             response.getStyle().set("font-size", "18px");
             response.getStyle().set("margin-left", "20px");
             response.getStyle().set("width", "95%");
-
-            question.getElement().setProperty("innerHTML", "<String>" + answer.getProblemDto().getQuestion() + "</strong>");
-            response.getElement().setProperty("innerHTML", "<String>" + answer.getAnswer() + "</strong>");
 
             main.setWidthFull();
             main.getStyle().set("border-style", "double");

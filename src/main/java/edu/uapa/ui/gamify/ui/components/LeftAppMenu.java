@@ -47,7 +47,7 @@ public class LeftAppMenu extends AbstractView {
         layout.add(roundImage);
 
         Span description = new Span();
-        description.setText("A fun way to learn");
+        description.setText("Una forma divertida de aprender");
         description.getStyle().set("text-align", "center");
         layout.add(description);
 
