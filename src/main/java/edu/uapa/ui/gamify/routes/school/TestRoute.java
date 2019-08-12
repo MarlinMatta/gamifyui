@@ -50,14 +50,14 @@ public class TestRoute extends PageView {
         setMargin(false);
         setPadding(true);
         setSpacing(false);
-        setAlignItems(Alignment.START);
-        setJustifyContentMode(JustifyContentMode.START);
+        setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
 
         buildMainLayout();
         add(mainLayout);
 
-        mainLayout.setAlignItems(Alignment.START);
-        mainLayout.setJustifyContentMode(JustifyContentMode.START);
+        mainLayout.setAlignItems(Alignment.CENTER);
+        mainLayout.setJustifyContentMode(JustifyContentMode.CENTER);
 
         problems.forEach(problem -> {
             QuestionLayout questionLayout = new QuestionLayout(problem, questionNumber, problemQuantity);

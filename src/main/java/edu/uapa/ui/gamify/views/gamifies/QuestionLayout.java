@@ -43,7 +43,7 @@ public class QuestionLayout extends PolymerTemplate<QuestionLayout.QuestionLayou
     private Button answer03;
     @Id("answer04")
     private Button answer04;
-    @Id("answer01")
+    @Id("answer02")
     private Button answer01;
 
     /**
