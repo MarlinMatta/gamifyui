@@ -20,6 +20,7 @@ import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.*;
 import edu.utesa.lib.models.enums.GameDifficulty;
+import edu.utesa.lib.models.enums.GameDifficulty;
 import edu.utesa.lib.utils.DateUtils;
 
 import java.text.ParseException;
@@ -103,7 +104,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
     public void fillDifficulty() {
         cbDifficulty.setItems(GameDifficulty.values());
         cbDifficulty.setItemLabelGenerator(GameDifficulty::name);
-        cbDifficulty.setValue(GameDifficulty.BASIC);
+        cbDifficulty.setValue(GameDifficulty.BASIC   );
     }
 
     public void fillSubject() {
