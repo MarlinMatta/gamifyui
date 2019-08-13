@@ -137,7 +137,7 @@ public class TestRoute extends PageView {
 
             main.setWidthFull();
             main.add(answerLayout);
-            main.add("Punto adquirido: "+point );
+            main.add("Punto adquirido: " + point);
             main.add(new HorizontalLayout());
         });
 
