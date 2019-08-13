@@ -40,7 +40,7 @@ public class Captions {
     public static final String GRID_COLUMN_QUESTION = "Pregunta";
     public static final String GRID_COLUMN_POINTS = "Puntos";
     public static final String GRID_COLUMN_TO_DATE = "Hasta fecha";
-    public static final String GRID_COLUMN_DIFFICULTY = "dificultad";
+    public static final String GRID_COLUMN_DIFFICULTY = "Dificultad";
     public static final String GRID_COLUMN_TEACHER = "Profesor";
 
     public static final String SEARCH = "Buscar";

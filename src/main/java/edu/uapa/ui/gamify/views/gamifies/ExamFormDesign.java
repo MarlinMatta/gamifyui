@@ -19,7 +19,8 @@ import edu.uapa.ui.gamify.requests.school.TeacherRequests;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.*;
-import edu.utesa.lib.models.enums.ExamDifficulty;
+import edu.utesa.lib.models.enums.GameDifficulty;
+import edu.utesa.lib.models.enums.GameDifficulty;
 import edu.utesa.lib.utils.DateUtils;
 
 import java.text.ParseException;
@@ -39,7 +40,7 @@ import java.util.stream.Collectors;
 public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesignModel> implements FormStructure<ExamDto> {
 
     @Id("cbDifficulty")
-    private ComboBox<ExamDifficulty> cbDifficulty;
+    private ComboBox<GameDifficulty> cbDifficulty;
     @Id("cbSubject")
     private ComboBox<SubjectDto> cbSubject;
     @Id("cbTopic")
@@ -101,9 +102,9 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
     }
 
     public void fillDifficulty() {
-        cbDifficulty.setItems(ExamDifficulty.values());
-        cbDifficulty.setItemLabelGenerator(ExamDifficulty::name);
-        cbDifficulty.setValue(ExamDifficulty.BASIC);
+        cbDifficulty.setItems(GameDifficulty.values());
+        cbDifficulty.setItemLabelGenerator(GameDifficulty::name);
+        cbDifficulty.setValue(GameDifficulty.EASY   );
     }
 
     public void fillSubject() {
@@ -120,7 +121,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
     }
 
     public void generateExam() {
-        final ExamDifficulty difficulty = cbDifficulty.getValue();
+        final GameDifficulty difficulty = cbDifficulty.getValue();
         final int size = Integer.parseInt(cbProblemQuantity.getValue());
         final List<ProblemDto> problems = ProblemRequests.getInstance().getPractice(difficulty, size);
         fillGrid(problems);
@@ -132,7 +133,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
 
     public void buildGrid() {
         gdProblems.addColumn(ProblemDto::theTopicName).setHeader(Captions.GRID_COLUMN_TOPIC);
-        gdProblems.addColumn(ProblemDto::getExamDifficulty).setHeader(Captions.GRID_COLUMN_DIFFICULTY);
+        gdProblems.addColumn(ProblemDto::getGameDifficulty).setHeader(Captions.GRID_COLUMN_DIFFICULTY);
         gdProblems.addColumn(ProblemDto::getQuestion).setHeader(Captions.GRID_COLUMN_QUESTION);
     }
 
@@ -141,7 +142,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         subject = data.getSubjectDto();
         topic = data.getTopicDto();
 
-        cbDifficulty.setValue(data.getExamDifficulty());
+        cbDifficulty.setValue(data.getGameDifficulty());
         cbSubject.setValue(subject);
         cbTopic.setValue(topic);
         cbProblemQuantity.setValue(String.valueOf(data.getProblemQuantity()));
@@ -195,7 +196,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
         model.setTeacherDto(teacher);
         model.setSubjectDto(subject);
         model.setTopicDto(topic);
-        model.setExamDifficulty(cbDifficulty.getValue());
+        model.setGameDifficulty(cbDifficulty.getValue());
         model.setProblemQuantity(Integer.parseInt(cbProblemQuantity.getValue()));
         model.setFromDate(dpFromDate.getValue().toString());
         model.setToDate(dpToDate.getValue().toString());

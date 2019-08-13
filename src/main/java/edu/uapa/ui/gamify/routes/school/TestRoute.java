@@ -127,7 +127,7 @@ public class TestRoute extends PageView {
             int point = 0;
 
             if (answer.isGood()) {
-                answerLayout = new AnswerLayout(question, correctAnswer, "");
+                answerLayout = new AnswerLayout(question, correctAnswer);
                 points += pointsPerProblem;
                 point = pointsPerProblem;
             } else {

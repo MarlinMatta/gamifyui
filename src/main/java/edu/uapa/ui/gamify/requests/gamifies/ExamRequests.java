@@ -5,7 +5,7 @@ import edu.uapa.ui.gamify.requests.Request;
 import edu.uapa.ui.gamify.utils.JsonUtils;
 import edu.uapa.ui.gamify.utils.Urls;
 import edu.utesa.lib.models.dtos.school.ExamDto;
-import edu.utesa.lib.models.enums.ExamDifficulty;
+import edu.utesa.lib.models.enums.GameDifficulty;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -40,7 +40,7 @@ public class ExamRequests extends Request {
         return null;
     }
 
-    public List<ExamDto> getPractice(ExamDifficulty difficulty, int size) {
+    public List<ExamDto> getPractice(GameDifficulty difficulty, int size) {
         String response = getExecute("/?difficulty=" + difficulty.name() + "&size=" + size);
         if (!response.isEmpty()) {
             return JsonUtils.toObjectList(response, ExamDto.class);

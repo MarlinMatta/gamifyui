@@ -14,7 +14,7 @@ import edu.uapa.ui.gamify.utils.captions.Captions;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
 import edu.utesa.lib.models.dtos.school.TeacherDto;
 import edu.utesa.lib.models.dtos.school.TopicDto;
-import edu.utesa.lib.models.enums.ExamDifficulty;
+import edu.utesa.lib.models.enums.GameDifficulty;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
     @Id("cbTopic")
     private ComboBox<TopicDto> cbTopic;
     @Id("cbDifficulty")
-    private ComboBox<ExamDifficulty> cbDifficulty;
+    private ComboBox<GameDifficulty> cbDifficulty;
     @Id("taQuestion")
     private TextArea taQuestion;
     @Id("tfAnswer01")
@@ -73,9 +73,9 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
     }
 
     public void fillDifficulty() {
-        cbDifficulty.setItems(ExamDifficulty.values());
-        cbDifficulty.setItemLabelGenerator(ExamDifficulty::name);
-        cbDifficulty.setValue(ExamDifficulty.BASIC);
+        cbDifficulty.setItems(GameDifficulty.values());
+        cbDifficulty.setItemLabelGenerator(GameDifficulty::name);
+        cbDifficulty.setValue(GameDifficulty.EASY);
     }
 
     public void fillTeacher(List<TeacherDto> items) {
@@ -98,7 +98,7 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         tfPoint.setValue(data.getPoint() + "");
         cbTeacher.setValue(teacher);
         cbTopic.setValue(topic);
-        cbDifficulty.setValue(data.getExamDifficulty());
+        cbDifficulty.setValue(data.getGameDifficulty());
         taQuestion.setValue(data.getQuestion());
         tfAnswer01.setValue(data.getCorrectAnswer());
         cbCorrect01.setValue(true);
@@ -163,7 +163,7 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
         teacher = cbTeacher.getValue();
         topic = cbTopic.getValue();
 
-        model.setExamDifficulty(cbDifficulty.getValue());
+        model.setGameDifficulty(cbDifficulty.getValue());
         model.setQuestion(taQuestion.getValue());
         model.setPoint(Double.parseDouble(tfPoint.getValue()));
 

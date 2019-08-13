@@ -18,7 +18,7 @@ public class ProblemTab extends AbstractTabWithGrid<ProblemDto> {
     protected void setLanguage() {
         getGrid().addColumn(ProblemDto::theFullName).setHeader(Captions.GRID_COLUMN_NAME);
         getGrid().addColumn(ProblemDto::theTopicName).setHeader(Captions.GRID_COLUMN_TOPIC);
-        getGrid().addColumn(ProblemDto::getExamDifficulty).setHeader(Captions.GRID_COLUMN_DIFFICULTY);
+        getGrid().addColumn(ProblemDto::getGameDifficulty).setHeader(Captions.GRID_COLUMN_DIFFICULTY);
         getGrid().addColumn(ProblemDto::getQuestion).setHeader(Captions.GRID_COLUMN_QUESTION);
         addCRUDActionGrid();
     }

@@ -18,7 +18,7 @@ public class ExamTab extends AbstractTabWithGrid<ExamDto> {
     protected void setLanguage() {
         getGrid().addColumn(ExamDto::theTeacherName).setHeader(Captions.GRID_COLUMN_TEACHER);
         getGrid().addColumn(ExamDto::theTopicName).setHeader(Captions.GRID_COLUMN_TOPIC);
-        getGrid().addColumn(ExamDto::getExamDifficulty).setHeader(Captions.GRID_COLUMN_DIFFICULTY);
+        getGrid().addColumn(ExamDto::getGameDifficulty).setHeader(Captions.GRID_COLUMN_DIFFICULTY);
         getGrid().addColumn(ExamDto::getPoints).setHeader(Captions.GRID_COLUMN_POINTS);
         getGrid().addColumn(ExamDto::getToDate).setHeader(Captions.GRID_COLUMN_TO_DATE);
         addCRUDActionGrid();

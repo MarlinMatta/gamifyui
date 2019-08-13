@@ -28,12 +28,18 @@ public class AnswerLayout extends PolymerTemplate<AnswerLayout.AnswerLayoutModel
     /**
      * Creates a new AnswerLayout.
      */
+    //Wrong answer
     public AnswerLayout(String question, String correctAnswer, String studentAnswer) {
         this.question.setText(question);
         this.correctAnswer.setText("Correcto: " + correctAnswer);
-        if (!studentAnswer.equals("")){
-            this.studentAnswer.setText("Incorrecto: " + studentAnswer);
-        } else this.studentAnswer.remove();
+        this.studentAnswer.setText("Incorrecto: " + studentAnswer);
+    }
+
+    //Good answer
+    public AnswerLayout(String question, String correctAnswer) {
+        this.question.setText(question);
+        this.correctAnswer.setText("Correcto: " + correctAnswer);
+//        this.studentAnswer.setText("");
     }
 
     /**
