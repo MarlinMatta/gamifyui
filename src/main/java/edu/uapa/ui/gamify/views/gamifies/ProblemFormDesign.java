@@ -75,7 +75,7 @@ public class ProblemFormDesign extends PolymerTemplate<ProblemFormDesign.Problem
     public void fillDifficulty() {
         cbDifficulty.setItems(GameDifficulty.values());
         cbDifficulty.setItemLabelGenerator(GameDifficulty::name);
-        cbDifficulty.setValue(GameDifficulty.EASY);
+        cbDifficulty.setValue(GameDifficulty.BASIC);
     }
 
     public void fillTeacher(List<TeacherDto> items) {

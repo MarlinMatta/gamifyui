@@ -2,21 +2,15 @@ package edu.uapa.ui.gamify.views.gamifies;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.flow.dom.Element;
-import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.templatemodel.TemplateModel;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
-import org.w3c.dom.events.EventTarget;
 
-import javax.swing.event.DocumentEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,6 +39,8 @@ public class QuestionLayout extends PolymerTemplate<QuestionLayout.QuestionLayou
     private Button answer04;
     @Id("answer01")
     private Button answer01;
+
+    private String answer = "";
 
     /**
      * Creates a new QuestionLayout.
@@ -76,6 +72,14 @@ public class QuestionLayout extends PolymerTemplate<QuestionLayout.QuestionLayou
 
     public ProblemDto getProblem() {
         return problem;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     /**

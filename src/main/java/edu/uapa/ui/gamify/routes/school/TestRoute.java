@@ -2,7 +2,6 @@ package edu.uapa.ui.gamify.routes.school;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -91,7 +90,7 @@ public class TestRoute extends PageView {
             components.forEach(component -> {
                 ProblemAnswerDto problemAnswerDto = new ProblemAnswerDto();
                 problemAnswerDto.setProblemDto(((QuestionLayout) component).getProblem());
-                problemAnswerDto.setAnswer(answer);
+                problemAnswerDto.setAnswer(((QuestionLayout) component).getAnswer());
                 if (problemAnswerDto.getProblemDto().getCorrectAnswer().equals(problemAnswerDto.getAnswer())) {
                     problemAnswerDto.setGood(true);
                 } else {
@@ -102,9 +101,9 @@ public class TestRoute extends PageView {
             removeAll();
             add(result());
             add(goToInit);
-            Notification.show("Si se realizo");
         } else {
             currentComponent.setVisible(false);
+            ((QuestionLayout) components.get(components.indexOf(currentComponent))).setAnswer(answer);
             currentComponent = components.get(components.indexOf(currentComponent) + 1);
             currentComponent.setVisible(true);
         }
@@ -126,12 +125,13 @@ public class TestRoute extends PageView {
             String studentAnswer = answer.getAnswer();
             int point = 0;
 
+            System.out.println(studentAnswer);
             if (answer.isGood()) {
                 answerLayout = new AnswerLayout(question, correctAnswer);
                 points += pointsPerProblem;
                 point = pointsPerProblem;
             } else {
-                answerLayout = new AnswerLayout(question, correctAnswer, studentAnswer);
+                answerLayout = new AnswerLayout(question, correctAnswer, answer.getAnswer());
                 point = 0;
             }
 
