@@ -2,18 +2,14 @@ package edu.uapa.ui.gamify.routes.school;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
-import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
-import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
 import edu.uapa.ui.gamify.views.gamifies.AnswerLayout;
 import edu.uapa.ui.gamify.views.gamifies.QuestionLayout;
 import edu.utesa.lib.models.dtos.school.ProblemAnswerDto;
@@ -89,8 +85,7 @@ public class ProblemRoute extends PageView {
             components.forEach(component -> {
                 ProblemAnswerDto problemAnswerDto = new ProblemAnswerDto();
                 problemAnswerDto.setProblemDto(((QuestionLayout) component).getProblem());
-                problemAnswerDto.setAnswer(answer);
-                System.out.println(problemAnswerDto.getProblemDto().getCorrectAnswer() + " - " + answer);
+                problemAnswerDto.setAnswer(((QuestionLayout) component).getAnswer());
                 if (problemAnswerDto.getProblemDto().getCorrectAnswer().equals(problemAnswerDto.getAnswer())) {
                     problemAnswerDto.setGood(true);
                 } else {
@@ -101,13 +96,14 @@ public class ProblemRoute extends PageView {
             removeAll();
             add(result());
             add(goToInit);
-            Notification.show("Si se realizo");
         } else {
             currentComponent.setVisible(false);
+            ((QuestionLayout) components.get(components.indexOf(currentComponent))).setAnswer(answer);
             currentComponent = components.get(components.indexOf(currentComponent) + 1);
             currentComponent.setVisible(true);
         }
     }
+
 
     private Component result() {
         setAlignItems(Alignment.START);
@@ -123,7 +119,7 @@ public class ProblemRoute extends PageView {
             String question = answer.getProblemDto().getQuestion();
             String correctAnswer = answer.getProblemDto().getCorrectAnswer();
             String studentAnswer = answer.getAnswer();
-            System.out.println(question + " - " + correctAnswer + " - " +  studentAnswer + " - " + answer.isGood());
+            System.out.println(question + " - " + correctAnswer + " - " + studentAnswer + " - " + answer.isGood());
 
             if (answer.isGood()) {
                 answerLayout = new AnswerLayout(question, correctAnswer);
