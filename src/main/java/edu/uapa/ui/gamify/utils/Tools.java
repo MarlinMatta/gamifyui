@@ -4,10 +4,10 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.models.LoginManager;
-import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.ui.components.TabsManager;
+import edu.utesa.lib.models.dtos.configurations.ConfigurationDto;
 import edu.utesa.lib.models.dtos.security.UserDto;
 import edu.utesa.lib.utils.HashUtils;
 
@@ -24,6 +24,7 @@ public class Tools extends PageView {
 
     public static final String SESSION_SUBJECT = "waquikkwalaquaza";
     public static final String SESSION_TOPIC = "Kkwazzawazzakkwa";
+    public static final String SESSION_CONFIGURATION = "MarlinMattaAzarta";
 
     public static final List<Long> ITEMS_PER_PAGE = Arrays.asList(5L, 10L, 15L, 20L, 25L, 30L, 35L, 40L, 45L, 50L);
 
@@ -102,7 +103,7 @@ public class Tools extends PageView {
         return (String) VaadinSession.getCurrent().getAttribute(Tools.SESSION_SUBJECT);
     }
 
-    public static Long getUserId(){
+    public static Long getUserId() {
         return getLoginManager().getId();
     }
 
@@ -112,6 +113,14 @@ public class Tools extends PageView {
 
     public static String getSessionTopic() {
         return (String) VaadinSession.getCurrent().getAttribute(Tools.SESSION_TOPIC);
+    }
+
+    public static void setSessionConfiguration(ConfigurationDto dto) {
+        VaadinSession.getCurrent().setAttribute(Tools.SESSION_CONFIGURATION, dto);
+    }
+
+    public static ConfigurationDto getSessionConfiguration() {
+        return (ConfigurationDto) VaadinSession.getCurrent().getAttribute(Tools.SESSION_CONFIGURATION);
     }
 
     public static void initTabs() {

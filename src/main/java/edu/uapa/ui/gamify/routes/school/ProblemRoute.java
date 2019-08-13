@@ -16,7 +16,6 @@ import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.views.components.BodyQuestionDesign;
 import edu.utesa.lib.models.dtos.school.ProblemAnswerDto;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
-import edu.utesa.lib.models.enums.ExamDifficulty;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -28,7 +27,7 @@ import static edu.uapa.ui.gamify.routes.AllRoutes.PROBLEM_ROUTE;
 public class ProblemRoute extends PageView {
 
     private List<ProblemAnswerDto> result = new ArrayList<>();
-    private List<ProblemDto> problems = ProblemRequests.getInstance().getPractice(ExamDifficulty.BASIC, 10);
+    private List<ProblemDto> problems;
     private VerticalLayout mainLayout;
     private LinkedList<Component> components = new LinkedList<>();
     private Component currentComponent;
@@ -45,7 +44,7 @@ public class ProblemRoute extends PageView {
         setSpacing(false);
         setAlignItems(Alignment.START);
         setJustifyContentMode(JustifyContentMode.START);
-
+        problems = ProblemRequests.getInstance().getPractice(Tools.getSessionConfiguration().getDifficulty(), Tools.getSessionConfiguration().getQuestions());
         buildMainLayout();
         add(mainLayout);
 

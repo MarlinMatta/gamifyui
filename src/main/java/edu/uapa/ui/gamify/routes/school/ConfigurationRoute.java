@@ -92,6 +92,8 @@ public class ConfigurationRoute extends PageView {
         back.addClickListener(event -> Tools.navigateToTopic());
         next.addClickListener(event -> {
             if (doForm.validField()) {
+                collect();
+                Tools.setSessionConfiguration(dto);
                 Tools.navigateToGame();
             } else {
                 Notification.show("Debe selecionar un item para poder proseguir");
