@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import edu.uapa.ui.gamify.requests.gamifies.ProblemRequests;
+import edu.uapa.ui.gamify.requests.school.StudentRequests;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
@@ -31,6 +32,7 @@ public class ProblemRoute extends PageView {
     private Component currentComponent;
     private Button goToInit;
     int questionNumber = 1;
+    private int points = 0;
 
     public ProblemRoute() {
         initialized();
@@ -96,6 +98,7 @@ public class ProblemRoute extends PageView {
             removeAll();
             add(result());
             add(goToInit);
+            this.setAlignSelf(Alignment.END, goToInit);
         } else {
             currentComponent.setVisible(false);
             ((QuestionLayout) components.get(components.indexOf(currentComponent))).setAnswer(answer);
@@ -119,15 +122,22 @@ public class ProblemRoute extends PageView {
             String question = answer.getProblemDto().getQuestion();
             String correctAnswer = answer.getProblemDto().getCorrectAnswer();
             String studentAnswer = answer.getAnswer();
+            int point = 0;
 
             if (answer.isGood()) {
                 answerLayout = new AnswerLayout(question, correctAnswer);
+                points += answer.getProblemDto().getPoint();
+                point = (int) answer.getProblemDto().getPoint();
             } else {
                 answerLayout = new AnswerLayout(question, correctAnswer, studentAnswer);
+                point = 0;
             }
 
             main.setWidthFull();
             main.add(answerLayout);
+            if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play") || VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
+                main.add("Punto adquirido: " + point);
+            }
             main.add(new HorizontalLayout());
         });
 
@@ -135,6 +145,8 @@ public class ProblemRoute extends PageView {
             VerticalLayout verticalLayout = new VerticalLayout();
             verticalLayout.setHeight("20px");
             main.add(verticalLayout);
+            main.add("Total de puntos adquiridos: " + points);
+            StudentRequests.getInstance().setPoint(getLoginManager().getId(), points);
         }
         return main;
     }

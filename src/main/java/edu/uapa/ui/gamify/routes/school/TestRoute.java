@@ -125,7 +125,6 @@ public class TestRoute extends PageView {
             String studentAnswer = answer.getAnswer();
             int point = 0;
 
-            System.out.println(studentAnswer);
             if (answer.isGood()) {
                 points += pointsPerProblem;
                 point = pointsPerProblem;

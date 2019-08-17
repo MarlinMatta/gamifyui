@@ -87,12 +87,12 @@ public class ChooseSubjectRoute extends PageView {
 
     private Component footer() {
         HorizontalLayout layout = new HorizontalLayout();
-        Button next = new Button("Next", new Icon(VaadinIcon.ARROW_RIGHT));
+        Button next = new Button("Siguiente", new Icon(VaadinIcon.ARROW_RIGHT));
         next.setIconAfterText(true);
         next.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        next.setWidth("120px");
+        next.setWidth("130px");
 
-        Button back = new Button("Back", new Icon(VaadinIcon.ARROW_LEFT));
+        Button back = new Button("Atrás", new Icon(VaadinIcon.ARROW_LEFT));
         back.setWidth("120px");
 
         VerticalLayout klk = new VerticalLayout();
