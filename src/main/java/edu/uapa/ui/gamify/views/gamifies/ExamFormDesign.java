@@ -124,13 +124,13 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
     public void generateExam() {
         final GameDifficulty difficulty = cbDifficulty.getValue();
         final int size = Integer.parseInt(cbProblemQuantity.getValue());
-        final int teacherID = Integer.parseInt(teacher.getId().toString());
-        final int topicID = Integer.parseInt(cbTopic.getValue().getId().toString());
+        final int teacherId = Integer.parseInt(teacher.getId().toString());
+        final int topicId = Integer.parseInt(cbTopic.getValue().getId().toString());
         String from = dpFromDate.getValue().toString();
         String to = dpToDate.getValue().toString();
 
-        final List<ProblemDto> problems = ProblemRequests.getInstance().getAllByExam(difficulty, size, teacherID,
-                topicID, from, to);
+        final List<ProblemDto> problems = ProblemRequests.getInstance().getAllByExam(difficulty, size, teacherId,
+                topicId, from, to);
 
         fillGrid(problems);
     }

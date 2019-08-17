@@ -8,30 +8,31 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
+import edu.uapa.ui.gamify.requests.gamifies.ExamRequests;
 import edu.uapa.ui.gamify.requests.gamifies.TopicRequests;
 import edu.uapa.ui.gamify.routes.AllRoutes;
 import edu.uapa.ui.gamify.ui.MainAppLayout;
 import edu.uapa.ui.gamify.ui.abstracts.PageView;
 import edu.uapa.ui.gamify.utils.Tools;
 import edu.uapa.ui.gamify.utils.captions.Captions;
+import edu.utesa.lib.models.dtos.school.ExamDto;
 import edu.utesa.lib.models.dtos.school.TopicDto;
 
 import java.util.List;
 
-@Route(value = AllRoutes.TOPIC_ROUTE, layout = MainAppLayout.class)
-public class TopicRoute extends PageView {
+@Route(value = AllRoutes.CHOOSE_TEST_ROUTE, layout = MainAppLayout.class)
+public class ChooseTestRoute extends PageView {
 
     private VerticalLayout mainLayout;
     private AppDrawerLayout bodyLayout = new AppDrawerLayout();
-    private List<TopicDto> subjects = TopicRequests.getInstance().getBySubject(Tools.getSessionSubject());
+    private List<ExamDto> exams = ExamRequests.getInstance().getFiltered(Tools.getSessionSubject(), Tools.getSessionTopic());
     private boolean hasSelect = false;
 
-    public TopicRoute() {
+    public ChooseTestRoute() {
         initialized();
     }
 
@@ -62,7 +63,7 @@ public class TopicRoute extends PageView {
         HorizontalLayout layout = new HorizontalLayout();
         layout.setWidthFull();
         Span h2 = new Span();
-        h2.getElement().setProperty("innerHTML", "<String><u>" + Captions.TOPIC + "</u></strong>");
+        h2.getElement().setProperty("innerHTML", "<String><u>" + "Tema: " + exams.get(0).getTopicDto().getName() + "</u></strong>");
         h2.getStyle().set("color", "blue");
         h2.getStyle().set("font-size", "24px");
         h2.getStyle().set("margin-bottom", "20px");
@@ -70,16 +71,16 @@ public class TopicRoute extends PageView {
         layout.setSpacing(false);
         layout.setPadding(false);
         layout.add(h2);
-        layout.setAlignItems(FlexComponent.Alignment.CENTER);
-        layout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-        layout.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, h2);
+        layout.setAlignItems(Alignment.CENTER);
+        layout.setJustifyContentMode(JustifyContentMode.CENTER);
+        layout.setVerticalComponentAlignment(Alignment.CENTER, h2);
         return layout;
     }
 
     private Component appLayoutBody() {
-        subjects.forEach(subjectDto -> {
-            Component component = subjectComponent(subjectDto.getName());
-            component.setId(subjectDto.getId() + "");
+        exams.forEach(exam -> {
+            Component component = subjectComponent("Profesor: " + exam.theTeacherName() + " - Puntos: " + exam.getPoints());
+            component.setId(exam.getId() + "");
             bodyLayout.add(component);
         });
         return bodyLayout;
@@ -118,7 +119,7 @@ public class TopicRoute extends PageView {
                 } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Practicar")) {
                     Tools.navigateToConfiguration();
                 } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
-                    Tools.navigateToChooseExam();
+                    Tools.navigateToTest();
                 } else if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play")) {
                     Tools.navigateToConfiguration();
                 } else {
@@ -138,7 +139,7 @@ public class TopicRoute extends PageView {
         layout.add(back);
         layout.add(klk);
         layout.add(next);
-        layout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        layout.setJustifyContentMode(JustifyContentMode.CENTER);
         layout.getStyle().set("position", "absolute");
         layout.getStyle().set("bottom", "0px");
         layout.getStyle().set("left", "0px");
@@ -158,7 +159,7 @@ public class TopicRoute extends PageView {
             if (event.getSource().getIcon() == null) {
                 bodyLayout.getChildren().forEach(component -> ((Button) component).setIcon(null));
                 event.getSource().setIcon(new Icon(VaadinIcon.CHECK));
-                Tools.setSessionTopic(button.getId().orElse("1"));
+                Tools.setSessionExam(button.getId().orElse("1"));
                 hasSelect = true;
             } else {
                 hasSelect = false;

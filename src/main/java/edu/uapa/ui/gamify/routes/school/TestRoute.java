@@ -25,8 +25,7 @@ import java.util.List;
 @Route(value = AllRoutes.TEST_ROUTE, layout = MainAppLayout.class)
 public class TestRoute extends PageView {
 
-    private List<ExamDto> examList = ExamRequests.getInstance().getAll();
-    private ExamDto exam = examList != null ? examList.get(0) : new ExamDto();
+    private ExamDto exam = ExamRequests.getInstance().getById(Tools.getSessionExam());
 
     private List<ProblemAnswerDto> result = new ArrayList<>();
     private List<ProblemDto> problems = new ArrayList<>(exam.getProblems());

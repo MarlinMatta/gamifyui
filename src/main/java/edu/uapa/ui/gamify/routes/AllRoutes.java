@@ -15,6 +15,7 @@ public class AllRoutes {
     public static final String CONFIGURATION_ROUTE = "configuration";
     public static final String LEARN_ROUTE = "learn";
     public static final String TEST_ROUTE = "test";
+    public static final String CHOOSE_TEST_ROUTE = "choose-test";
     public static final String PLAY_ROUTE = "play";
     public static final String PROBLEM_ROUTE = "problem";
     public static final String SUMMIT_RESULT = "result";

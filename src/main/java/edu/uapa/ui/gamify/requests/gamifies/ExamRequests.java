@@ -48,6 +48,23 @@ public class ExamRequests extends Request {
         return null;
     }
 
+    public List<ExamDto> getFiltered(String subjectId, String topicId) {
+        String response = getExecute("/filtered?&subjectId=" + subjectId +
+                "&topicId=" + topicId);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObjectList(response, ExamDto.class);
+        }
+        return null;
+    }
+
+    public ExamDto getById(String id) {
+        String response = getExecute("/one?id=" + id);
+        if (!response.isEmpty()) {
+            return JsonUtils.toObject(response, ExamDto.class);
+        }
+        return null;
+    }
+
     public List<ExamDto> getAll() {
         String response = getExecute("/all");
         if (!response.isEmpty()) {

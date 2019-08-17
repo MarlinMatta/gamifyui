@@ -23,6 +23,7 @@ public class Tools extends PageView {
     public static final String SESSION_GAME_MODE = "Kkwazzawazzakkwaquikkwalaquaza";
 
     public static final String SESSION_SUBJECT = "waquikkwalaquaza";
+    public static final String SESSION_EXAM = "waquikkwalaquazacdsefcevsdvcsas";
     public static final String SESSION_TOPIC = "Kkwazzawazzakkwa";
     public static final String SESSION_CONFIGURATION = "MarlinMattaAzarta";
 
@@ -68,6 +69,10 @@ public class Tools extends PageView {
         UI.getCurrent().navigate(AllRoutes.CHOOSE_SUBJECT_ROUTE);
     }
 
+    public static void navigateToChooseExam() {
+        UI.getCurrent().navigate(AllRoutes.CHOOSE_TEST_ROUTE);
+    }
+
     public static void navigateToProfile() {
         UI.getCurrent().navigate(AllRoutes.PROFILE_ROUTE);
     }
@@ -109,6 +114,14 @@ public class Tools extends PageView {
 
     public static void setSessionTopic(String id) {
         VaadinSession.getCurrent().setAttribute(Tools.SESSION_TOPIC, id);
+    }
+
+    public static void setSessionExam(String id) {
+        VaadinSession.getCurrent().setAttribute(Tools.SESSION_EXAM, id);
+    }
+
+    public static String getSessionExam() {
+        return (String) VaadinSession.getCurrent().getAttribute(Tools.SESSION_EXAM);
     }
 
     public static String getSessionTopic() {
