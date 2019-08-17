@@ -87,10 +87,10 @@ public class TopicRoute extends PageView {
 
     private Component footer() {
         HorizontalLayout layout = new HorizontalLayout();
-        Button next = new Button("Next >>>");
-        next.setWidth("120px");
+        Button next = new Button("Siguiente >>>");
+        next.setWidth("130px");
 
-        Button back = new Button("<<< Back");
+        Button back = new Button("<<< Atrás");
         back.setWidth("120px");
         VerticalLayout klk = new VerticalLayout();
         klk.setWidth("75%");
@@ -150,7 +150,7 @@ public class TopicRoute extends PageView {
         Button button = new Button(name);
         button.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         button.setId(name);
-        button.setWidth("200px");
+        button.setWidth("400px");
         button.setHeight("100px");
         button.getStyle().set("margin", "2px");
         button.getStyle().set("border", "3px solid magenta");

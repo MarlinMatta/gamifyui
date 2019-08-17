@@ -18,7 +18,7 @@ public class Captions {
     public static final String PERMISSION_GROUP_ITEM = "Grupo de permisos";
     public static final String USER_ITEM = "Usuario";
 
-    public static final String LOGOUT = "Cerrar sessión";
+    public static final String LOGOUT = "Cerrar sesión";
 
     public static final String GRID_COLUMN_CODE = "Código";
     public static final String GRID_COLUMN_USER = "Usuario";
@@ -79,7 +79,7 @@ public class Captions {
     public static final String GRADE = "Grado";
     public static final String SUBJECT = "Materia";
     public static final String TEACHER = "Profesor";
-    public static final String TOPIC = "Tema";
+    public static final String TOPIC = "Seleccionar Tema";
     public static final String ANSWER = "Respuesta";
     public static final String QUESTION = "Pregunta";
     public static final String POINTS = "Puntos";

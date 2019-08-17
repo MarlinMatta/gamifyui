@@ -96,6 +96,7 @@ public class ProblemRoute extends PageView {
             removeAll();
             add(result());
             add(goToInit);
+            this.setAlignSelf(Alignment.END, goToInit);
         } else {
             currentComponent.setVisible(false);
             ((QuestionLayout) components.get(components.indexOf(currentComponent))).setAnswer(answer);

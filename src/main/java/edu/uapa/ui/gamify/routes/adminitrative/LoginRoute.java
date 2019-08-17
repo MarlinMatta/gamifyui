@@ -40,14 +40,14 @@ public class LoginRoute extends VerticalLayout {
         i18n.setErrorMessage(new LoginI18n.ErrorMessage());
         i18n.getForm().setUsername("Usario ");
         i18n.getForm().setPassword("Clave");
-        i18n.getForm().setSubmit("Iniciar session");
+        i18n.getForm().setSubmit("Iniciar sesión");
         i18n.getForm().setForgotPassword("Olvide mi clave");
         loginOverlay.setI18n(i18n);
     }
 
     private void setAction() {
         loginOverlay.addLoginListener(it -> authentication(it.getUsername(), it.getPassword()));
-        loginOverlay.addForgotPasswordListener(it -> Notification.show("Por que olvidaste tu clave"));
+        loginOverlay.addForgotPasswordListener(it -> Notification.show("Favor contactar el administrador"));
         loginOverlay.setOpened(true);
     }
 

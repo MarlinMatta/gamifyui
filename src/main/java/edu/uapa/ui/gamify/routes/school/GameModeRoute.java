@@ -85,7 +85,7 @@ public class GameModeRoute extends PageView {
 
     private Component footer() {
         HorizontalLayout layout = new HorizontalLayout();
-        Button next = new Button("Next", new Icon(VaadinIcon.ARROW_RIGHT));
+        Button next = new Button("Siguiente", new Icon(VaadinIcon.ARROW_RIGHT));
         next.setIconAfterText(true);
         next.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         next.setWidth("120px");

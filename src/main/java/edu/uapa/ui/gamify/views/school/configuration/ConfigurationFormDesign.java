@@ -36,10 +36,10 @@ public class ConfigurationFormDesign extends PolymerTemplate<ConfigurationFormDe
      * Creates a new ConfigurationFormDesign.
      */
     public ConfigurationFormDesign() {
-        cbdifficulty.setLabel("Difficulty");
+        cbdifficulty.setLabel("Dificultad");
         cbdifficulty.setRequired(true);
 
-        cbquestions.setLabel("Questions");
+        cbquestions.setLabel("Cantidad de preguntas a responder");
         cbquestions.setRequired(true);
 
         cbmode.setLabel("Mode");
