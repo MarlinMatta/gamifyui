@@ -135,7 +135,9 @@ public class ProblemRoute extends PageView {
 
             main.setWidthFull();
             main.add(answerLayout);
-            main.add("Punto adquirido: " + point);
+            if (VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Play") || VaadinSession.getCurrent().getAttribute(Tools.SESSION_GAME_MODE).equals("Pruebas")) {
+                main.add("Punto adquirido: " + point);
+            }
             main.add(new HorizontalLayout());
         });
 
