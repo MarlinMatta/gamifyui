@@ -43,8 +43,8 @@ public class ProblemRequests extends Request {
         return null;
     }
 
-    public List<ProblemDto> getPractice(GameDifficulty difficulty, int size) {
-        String response = getExecute("/?difficulty=" + difficulty.name() + "&size=" + size);
+    public List<ProblemDto> getPractice(GameDifficulty difficulty, int topicId, int size) {
+        String response = getExecute("/?difficulty=" + difficulty.name() + "&topicId=" + topicId + "&size=" + size);
         if (!response.isEmpty()) {
             return JsonUtils.toObjectList(response, ProblemDto.class);
         }

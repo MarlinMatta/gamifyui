@@ -44,7 +44,8 @@ public class ProblemRoute extends PageView {
         setSpacing(false);
         setAlignItems(Alignment.START);
         setJustifyContentMode(JustifyContentMode.START);
-        problems = ProblemRequests.getInstance().getPractice(Tools.getSessionConfiguration().getDifficulty(), Tools.getSessionConfiguration().getQuestions());
+        problems = ProblemRequests.getInstance().getPractice(Tools.getSessionConfiguration().getDifficulty(),
+                Integer.parseInt(Tools.getSessionTopic()), Tools.getSessionConfiguration().getQuestions());
         final int problemQuantity = problems.size();
 
         buildMainLayout();
@@ -130,7 +131,6 @@ public class ProblemRoute extends PageView {
                 point = (int) answer.getProblemDto().getPoint();
             } else {
                 answerLayout = new AnswerLayout(question, correctAnswer, studentAnswer);
-                point = 0;
             }
 
             main.setWidthFull();
