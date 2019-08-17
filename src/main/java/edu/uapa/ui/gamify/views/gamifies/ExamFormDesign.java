@@ -24,7 +24,9 @@ import edu.utesa.lib.utils.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,7 +105,7 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
     public void fillDifficulty() {
         cbDifficulty.setItems(GameDifficulty.values());
         cbDifficulty.setItemLabelGenerator(GameDifficulty::name);
-        cbDifficulty.setValue(GameDifficulty.BASIC);
+        cbDifficulty.setValue(GameDifficulty.EASY);
     }
 
     public void fillSubject() {
@@ -122,7 +124,14 @@ public class ExamFormDesign extends PolymerTemplate<ExamFormDesign.ExamFormDesig
     public void generateExam() {
         final GameDifficulty difficulty = cbDifficulty.getValue();
         final int size = Integer.parseInt(cbProblemQuantity.getValue());
-        final List<ProblemDto> problems = ProblemRequests.getInstance().getPractice(difficulty, size);
+        final int teacherID = Integer.parseInt(teacher.getId().toString());
+        final int topicID = Integer.parseInt(cbTopic.getValue().getId().toString());
+        String from = dpFromDate.getValue().toString();
+        String to = dpToDate.getValue().toString();
+
+        final List<ProblemDto> problems = ProblemRequests.getInstance().getAllByExam(difficulty, size, teacherID,
+                topicID, from, to);
+
         fillGrid(problems);
     }
 

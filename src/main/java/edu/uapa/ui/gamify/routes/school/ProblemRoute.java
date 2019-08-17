@@ -119,7 +119,6 @@ public class ProblemRoute extends PageView {
             String question = answer.getProblemDto().getQuestion();
             String correctAnswer = answer.getProblemDto().getCorrectAnswer();
             String studentAnswer = answer.getAnswer();
-            System.out.println(question + " - " + correctAnswer + " - " + studentAnswer + " - " + answer.isGood());
 
             if (answer.isGood()) {
                 answerLayout = new AnswerLayout(question, correctAnswer);

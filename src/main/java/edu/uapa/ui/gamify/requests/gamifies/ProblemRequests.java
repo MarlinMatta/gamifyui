@@ -7,6 +7,7 @@ import edu.uapa.ui.gamify.utils.Urls;
 import edu.utesa.lib.models.dtos.school.ProblemDto;
 import edu.utesa.lib.models.enums.GameDifficulty;
 import edu.utesa.lib.models.enums.GameDifficulty;
+import edu.utesa.lib.utils.DateUtils;
 import org.apache.http.HttpStatus;
 
 import java.util.Date;
@@ -50,8 +51,8 @@ public class ProblemRequests extends Request {
         return null;
     }
 
-    public List<ProblemDto> getAllByExam(GameDifficulty difficulty, int size, int teacherId, int topicId, Date from,
-                                         Date to) {
+    public List<ProblemDto> getAllByExam(GameDifficulty difficulty, int size, int teacherId, int topicId, String from,
+                                         String to) {
         String response = getExecute("/exam?difficulty=" + difficulty.name() + "&size=" + size
                 + "&teacherId=" + teacherId + "&topicId=" + topicId + "&from=" + from + "&to=" + to);
         if (!response.isEmpty()) {

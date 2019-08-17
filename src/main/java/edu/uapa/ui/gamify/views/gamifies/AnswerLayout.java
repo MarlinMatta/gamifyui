@@ -23,6 +23,8 @@ public class AnswerLayout extends PolymerTemplate<AnswerLayout.AnswerLayoutModel
     private Span question;
     @Id("studentAnswer")
     private Span studentAnswer;
+    @Id("acquiredPoints")
+    private Span acquiredPoints;
 
     /**
      * Creates a new AnswerLayout.
@@ -35,6 +37,13 @@ public class AnswerLayout extends PolymerTemplate<AnswerLayout.AnswerLayoutModel
     }
 
     //Good answer
+    public AnswerLayout(String question, String correctAnswer, int acquiredPoints) {
+        this.question.setText(question);
+        this.correctAnswer.setText("Correcto: " + correctAnswer);
+        this.acquiredPoints.setText("Puntos adquiridos: " + acquiredPoints);
+    }
+
+    //Good answer practice
     public AnswerLayout(String question, String correctAnswer) {
         this.question.setText(question);
         this.correctAnswer.setText("Correcto: " + correctAnswer);
